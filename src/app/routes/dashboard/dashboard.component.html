@@ -1,0 +1,145 @@
+<page-header [autoBreadcrumb]="false" title="欢迎您，哈哈哈！">
+  <ng-template #logo>
+    <nz-avatar class="lee-img" nzSize="large" nzShape="circle" nzSrc="http://img5.imgtn.bdimg.com/it/u=4208386305,57701306&fm=26&gp=0.jpg">
+
+    </nz-avatar>
+  </ng-template>
+  <!--<ng-template #content>-->
+    <!--<div>-->
+      <!--会员<nz-divider nzType="vertical"></nz-divider>-->
+      <!--到期时间-->
+    <!--</div>-->
+  <!--</ng-template>-->
+  <ng-template #action>
+    <div nz-row nzType="flex" nzJustify="center" nzAlign="middle" style="height: 56px;width: 420px">
+      <div nz-col nzSpan="7" style="text-align: center;">
+        <div>方案数</div>
+        <div class="display-1 black-font">10</div>
+      </div>
+      <div nz-col nzSpan="1" style="text-align: center;height: 100%;">
+        <nz-divider nzType="vertical" style="height:42px;margin-top: 7px"></nz-divider>
+      </div>
+      <div nz-col nzSpan="7" style="text-align: center">
+        <div>设备种类数</div>
+        <div class="display-1 black-font">5</div>
+      </div>
+      <div nz-col nzSpan="1" style="text-align: center;height: 100%;">
+        <nz-divider nzType="vertical" style="height:42px;margin-top: 7px"></nz-divider>
+      </div>
+      <div nz-col nzSpan="7" style="text-align: center">
+        <div>设备数</div>
+        <div class="display-1 black-font">19</div>
+      </div>
+    </div>
+  </ng-template>
+</page-header>
+
+<div nz-row style="margin-left: -12px;margin-right: -12px;">
+
+  <div nz-col [nzXs]="24" [nzSm]="18" style="padding-left: 12px;padding-right: 12px">
+    <div nz-col [nzSpan]="24">
+      <nz-card [nzBordered]="false" nzTitle="方案概况" [nzExtra]="extraTemplate">
+        <div nz-row>
+          <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
+            <p class="text-grey-dark"><nz-badge nzStatus="error"></nz-badge>运行中方案</p>
+            <p class="display-2 black-font">2个方案</p>
+            <em></em>
+          </div>
+          <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
+            <p class="text-grey-dark"><nz-badge nzStatus="processing"></nz-badge>方案预计处理时间</p>
+            <p class="display-2 black-font">32分钟</p>
+            <em></em>
+          </div>
+          <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
+            <p class="text-grey-dark"><nz-badge nzStatus="success"></nz-badge>已完成方案</p>
+            <p class="display-2 black-font">8个方案</p>
+          </div>
+        </div>
+        <ng-template #extraTemplate>
+          <a routerLink="/network/projects">方案详情</a>
+        </ng-template>
+      </nz-card>
+    </div>
+
+    <div nz-col [nzSpan]="24">
+      <nz-card [nzBodyStyle]="{padding:0}" [nzBordered]="false" nzTitle="设备概况">
+        <div nz-row>
+
+          <div class="ant-card-grid" (click)="clickToDevice('battery')">
+            <nz-card [nzBordered]="false" [nzBodyStyle]="{padding:0}" >
+              <nz-card-meta nzTitle="电池" nzDescription="您有3种电池设备" [nzAvatar]="avatarTemplate1"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate1>
+              <nz-avatar nzSrc="./assets/device/icon-battery.png"></nz-avatar>
+            </ng-template>
+          </div>
+
+          <div class=" ant-card-grid" (click)="clickToDevice('wind-turbine')">
+            <nz-card [nzBordered]="false" [nzBodyStyle]="{padding:0}" >
+              <nz-card-meta nzTitle="风力发电机" nzDescription="您有3种风力发电机设备" [nzAvatar]="avatarTemplate2"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate2>
+              <nz-avatar nzSrc="./assets/device/icon-wind-turbine.png"></nz-avatar>
+            </ng-template>
+          </div>
+
+          <div class="ant-card-grid" (click)="clickToDevice('turbine')">
+            <nz-card [nzBordered]="false" [nzBodyStyle]="{padding:0}" >
+              <nz-card-meta nzTitle="水力发电机" nzDescription="您有3种水力发电机设备" [nzAvatar]="avatarTemplate3"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate3>
+              <nz-avatar nzSrc="./assets/device/icon-turbine.png"></nz-avatar>
+            </ng-template>
+          </div>
+
+        </div>
+
+        <div nz-row>
+
+          <div class="ant-card-grid" (click)="clickToDevice('photovoltaic')">
+            <nz-card [nzBordered]="false" [nzBodyStyle]="{padding:0}" >
+              <nz-card-meta nzTitle="光伏发电机" nzDescription="您有3种光伏发电机设备" [nzAvatar]="avatarTemplate4"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate4>
+              <nz-avatar nzSrc="./assets/device/icon-photovoltaic.png"></nz-avatar>
+            </ng-template>
+          </div>
+
+          <div class=" ant-card-grid" (click)="clickToDevice('generator')">
+            <nz-card [nzBordered]="false" [nzBodyStyle]="{padding:0}" >
+              <nz-card-meta nzTitle="常规发电机" nzDescription="您有3种常规发电机设备" [nzAvatar]="avatarTemplate5"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate5>
+              <nz-avatar nzSrc="./assets/device/icon-generator.png"></nz-avatar>
+            </ng-template>
+          </div>
+
+          <!--<div class="ant-card-grid">-->
+            <!--<nz-card [nzBordered]="false">-->
+
+            <!--</nz-card>-->
+          <!--</div>-->
+
+        </div>
+      </nz-card>
+
+    </div>
+  </div>
+
+  <div nz-col [nzXs]="24" [nzSm]="6" style="padding-left: 12px;padding-right: 12px">
+    <div nz-col [nzSpan]="24">
+      <nz-card [nzBordered]="false" nzTitle="日志简况" [nzExtra]="extraTemplate2">
+        <p>2018年1月2日登录</p>
+        <p>2018年1月3日登录</p>
+        <p>2018年1月4日登录</p>
+        <p>2018年1月5日登录</p>
+        <p>2018年1月6日登录</p>
+        <p>2018年1月7日登录</p>
+        <ng-template #extraTemplate2>
+          <a>日志详情</a>
+        </ng-template>
+      </nz-card>
+    </div>
+  </div>
+</div>
+

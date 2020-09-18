@@ -1,0 +1,10 @@
+.diy-card{
+  border-bottom:1px solid #e8e8e8;
+  padding: 16px 24px
+}
+
+.diy-card p{
+  font-size:14px;
+  color:rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}

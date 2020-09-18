@@ -1,0 +1,34 @@
+<page-header [autoBreadcrumb]="false" title="方案详情">
+  <ng-template #logo>
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+  </ng-template>
+  <ng-template #action>
+    <button nz-button nzType="primary" (click)="generateNewProject()">新建方案</button>
+  </ng-template>
+</page-header>
+<div>
+  <nz-card [nzBordered]="false">
+    <div nz-row>
+
+      <strong>项目类别 :</strong>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck1" (nzCheckedChange)="checkChange($event,1)">全部</nz-tag>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck2" (nzCheckedChange)="checkChange($event,2)">未完成</nz-tag>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck3" (nzCheckedChange)="checkChange($event,3)">已完成</nz-tag>
+
+    </div>
+  </nz-card>
+</div>
+
+<div>
+
+  <nz-spin *ngIf="loading" class="modal-spin"></nz-spin>
+  <div nz-row nzGutter="24" *ngIf="!loading">
+
+    <div *ngFor="let item of items" nz-col nzSpan="6">
+
+      <app-project-details-card [record]="item"></app-project-details-card>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<page-header [autoBreadcrumb]="false" logo="logo" action="action" content="content">
+  <ng-template #content>
+    <div style="margin-right: 56px">
+      <nz-steps [nzCurrent]="current">
+        <nz-step nzTitle="结构设计"></nz-step>
+        <nz-step nzTitle="设备选择"></nz-step>
+        <nz-step nzTitle="约束控制"></nz-step>
+        <nz-step nzTitle="计算"></nz-step>
+      </nz-steps>
+    </div>
+  </ng-template>
+  <ng-template #logo><img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png"></ng-template>
+  <ng-template #action>
+    <div class="steps-action">
+      <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0 && current < 3">
+        <span>上一步</span>
+      </button>
+      <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+        <span>下一步</span>
+      </button>
+      <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+        <span>完成</span>
+      </button>
+    </div>
+  </ng-template>
+</page-header>
+
+<div class="steps-content" *ngIf="current == 0">
+  <app-network-design [default_checkOptions]="checkOptions"
+                      [default_radioValue]="radioValue"
+                      [default_checkOptions_object]="allCheckOptions"
+                      (checkOptionsEmitter)="getCheckOptions($event)"
+                      (radioValueEmitter)="getRadioValue($event)"
+                      (allCheckOptionsEmitter)="getAllCheckOptions($event)">
+  </app-network-design>
+</div>
+
+<div class="steps-content" *ngIf="current == 1">
+  <app-network-select [checkOptionsSet]="checkOptions"
+                      [radioValue]="radioValue"
+                      [checkOptions]="allCheckOptions"
+                      [defaultSelectDeviceData]="selectDeviceData"
+                      [defaultListData]="listData"
+                      (selectDeviceDataEmitter)="getSelectDeviceData($event)"
+                      (listDataEmitter)="getListData($event)">
+
+  </app-network-select>
+</div>
+
+<div class="steps-content" *ngIf="current == 2">
+  <app-network-control [radioValue]="radioValue"
+                       (controlFormDataEmitter)="getControlFormData($event)">
+
+  </app-network-control>
+</div>
+
+<div class="steps-content" *ngIf="current == 3">
+  <app-network-result [getDoneRes]="result">
+
+  </app-network-result>
+</div>
+

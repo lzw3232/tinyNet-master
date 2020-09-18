@@ -1,0 +1,90 @@
+<div>
+  <st [data]="url" [columns]="columns"
+      [req]="{params: params}" [res]="{process: dataProcess}"
+      (change)="change($event)" [scroll]="{x: '1400px'}"></st>
+</div>
+<!--<button nz-button nzType="primary" (click)="changeData()">primary</button>-->
+<nz-card  nzTitle="经济" style="margin-top:18px">
+  <div nz-row id="div-test">
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data1" [scale]="scale">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y1"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data2" [scale]="scale">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y2"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data3" [scale]="scale">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y3"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+  </div>
+</nz-card>
+
+<nz-card  nzTitle="设备参数" style="margin-top:18px">
+  <div nz-row>
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data4" [scale]="scale">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x4"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y4"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data5" [scale]="scale">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x5"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y5"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+  </div>
+</nz-card>
+
+<nz-card  nzTitle="优化范围设置">
+  <div nz-row >
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">上限</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="台" style="width:80%">
+            <input type="text" name="battery_upper_limit" id="generator_upper_limit" [(ngModel)]="result_data.data.generator_upper_limit" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_lower_limit">下限</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="台" style="width:80%">
+            <input type="text" name="battery_lower_limit" id="generator_lower_limit" [(ngModel)]="result_data.data.generator_lower_limit" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>

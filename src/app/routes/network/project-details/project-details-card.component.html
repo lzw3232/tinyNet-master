@@ -1,0 +1,38 @@
+<div>
+  <nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting,actionEdit,actionEllipsis]" [nzHoverable]="true">
+    <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="descriptionTemplate"></nz-card-meta>
+    <div>
+          <span class="text-grey">
+            创建于 2018-04-13 23:59:59
+          </span>
+    </div>
+  </nz-card>
+  <ng-template #titleTemplate>
+    <div style="color: #1890ff;"><nz-badge nzStatus="error"></nz-badge>{{record["owner"]}}的方案{{record["name"]}}</div>
+  </ng-template>
+  <ng-template #descriptionTemplate>
+    <p>该离网方案包含17个设备，共计5种设备类型。</p>
+  </ng-template>
+  <ng-template #coverTemplate>
+    <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>
+  </ng-template>
+  <ng-template #actionSetting>
+    <i class="anticon anticon-file-text" (click)="getDetail()"></i>
+  </ng-template>
+  <ng-template #actionEdit>
+    <i class="anticon anticon-delete"></i>
+  </ng-template>
+  <ng-template #actionEllipsis>
+    <i class="anticon anticon-ellipsis"></i>
+  </ng-template>
+</div>
+
+<nz-modal [(nzVisible)]="detail" [nzFooter]="null" nzTitle="方案详情" (nzOnCancel)="handleCancel()" [nzWidth]="800">
+  <nz-spin *ngIf="loading" class="modal-spin"></nz-spin>
+  <div class="ant-spin-container" *ngIf="!loading">
+    <div class="ant-row">
+      <nz-progress [nzPercent]="result.no" nzType="circle" class="ant-col-6"></nz-progress>
+      <nz-card class="ant-col-18" class="text" [innerHTML]="text"></nz-card>
+    </div>
+  </div>
+</nz-modal>
