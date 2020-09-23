@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {apiService} from "./apiService";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import {valueFunctionProp} from "ng-zorro-antd/src/core/util/convert";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class TurbineService {
 
 
   url;
@@ -34,42 +32,63 @@ export class ProjectService {
   //     'Something bad happened; please try again later.');
   // };
 
-  action():Observable<any>{
-    let serverurl = this.url+"/tinyNet/record/action";
-    let token = this.api.getCookie("token");
-    let data={
-      "token":token,
-      "recordname":"lzw",
-    };
+  add(value:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/turbine/add";
+    let data = {
+      "turbine":value,
+      "token":this.api.getCookie("token")
+    }
+    console.log(data);
     // @ts-ignore
     return this.http.post(serverurl, data, this.api.getHeaders());
   }
 
-  getProjectDetail(recordname:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/record/getRes";
-    let token = this.api.getCookie("token");
-    let data={
-      "token":token,
-      "recordname":recordname,
-    };
+  list(pi:Number,ps:Number,val:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/turbine/list";
+    let data = {
+      "ps":ps,
+      "pi":pi,
+      "val":val,
+      "token":this.api.getCookie("token")
+    }
     // @ts-ignore
-    return this.http.post(serverurl, data, this.api.getHeaders());
+    return this.http.post(serverurl,data,this.api.getHeaders());
   }
 
-  getProject():Observable<any>{
-    let serverurl = this.url+"/tinyNet/record/list";
-    let token = this.api.getCookie("token");
-    let data={
-      "token":token,
-    };
+  select(id:Number):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/turbine/select"
+    let data = {
+      "id":id,
+      "token":this.api.getCookie("token")
+    }
     // @ts-ignore
-    return this.http.post(serverurl, data, this.api.getHeaders());
+    return this.http.post(serverurl,data,this.api.getHeaders());
   }
+
+  update(value:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/turbine/update"
+    let data = {
+      "turbine":value,
+      "token":this.api.getCookie("token")
+    }
+    // @ts-ignore
+    return this.http.post(serverurl,data,this.api.getHeaders());
+  }
+
+  delete(id:Number):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/turbine/delete";
+    let data = {
+      "id":id,
+      "token":this.api.getCookie("token")
+    }
+    // @ts-ignore
+    return this.http.post(serverurl,data,this.api.getHeaders());
+  }
+
 
   tologin(){
     this.api.tologin();
   }
-
 
   setCookie(name:string,value:string){
     this.api.setCookie(name,value);

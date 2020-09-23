@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-photovoltaic-detail-edit',
@@ -25,7 +26,7 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
         addOnAfter: '%',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      noctwd: { type: 'string', title: 'noct环境温度', default: 0, minimum: 0, ui: {
+      noctWd: { type: 'string', title: 'noct环境温度', default: 0, minimum: 0, ui: {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
@@ -37,7 +38,7 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
         addOnAfter: '%/°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      noctgz: { type: 'string', title: 'noct光照强度', default: 0, minimum: 0, ui: {
+      noctGz: { type: 'string', title: 'noct光照强度', default: 0, minimum: 0, ui: {
         addOnAfter: 'kWh/m2/d',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
@@ -45,7 +46,7 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      stcwd: { type: 'string', title: 'stcPV电池温度',  default: 0, minimum: 0, ui: {
+      stcWd: { type: 'string', title: 'stcPV电池温度',  default: 0, minimum: 0, ui: {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
@@ -72,8 +73,8 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
       gxcb4: { type: 'number', title: '替换成本4',  default: 1000000, minimum: 0 },
       yxwhcb4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
     },
-    required: ['name', 'edrl', 'jeys', 'gfzltynxsl', 'gffdxl', 'noctwd', 'life',
-      'wdxs', 'noctgz', 'gfbbzwd', 'stcwd', 'factory', 'type',
+    required: ['name', 'edrl', 'jeys', 'gfzltynxsl', 'gffdxl', 'noctWd', 'life',
+      'wdxs', 'noctGz', 'gfbbzwd', 'stcWd', 'factory', 'type',
       'capacity1', 'cjcb1', 'gxcb1', 'yxwhcb1',
       'capacity2', 'cjcb2', 'gxcb2', 'yxwhcb2',
       'capacity3', 'cjcb3', 'gxcb3', 'yxwhcb3',
@@ -107,54 +108,70 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
   constructor(
     private modal: NzModalRef,
     public http: _HttpClient,
-    private msgSrv: NzMessageService
+    private msgSrv: NzMessageService,
+    private devicesService: DevicesService,
   ) {}
 
   ngOnInit(): void {
+    console.log(this.record);
+    console.log(this.i);
     if (this.record.id) {
-      this.http
-        .post('/tinyNet/device/photovoltaic/select', {id : this.record.id})
+      // this.http.get(`/user/${this.record.id}`).subscribe(res => (this.i = res));
+      this.devicesService
+        .select(this.record.id,"photovoltaic")
         .subscribe(res => {
-          if (res['type'] === '交流') {
-            res['type'] = 0;
-          } else if (res['type'] === '直流') {
-            res['type'] = 1;
+          console.log(res);
+          if(res["errno"]=="0"){
+            this.i = res["data"]["data"]["data"];
           }
-          this.i = res;
+          else if(res["errno"]=="2"){
+            this.devicesService.tologin();
+          }
+          else{
+            this.msgSrv.create('error', `error`);
+          }
+          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
 
   save(value: any) {
-    // 如果存在 record 记录，则做更新操作，否则为新建操作
+    //如果存在 record 记录，则做更新操作，否则为新建操作
+    console.log(value);
     if (this.record.id) {
-      this.http
-        .post('/tinyNet/device/photovoltaic/update', {battery : value})
-        .subscribe(
-          res => {
-            this.msgSrv.success('更新成功');
-            this.modal.close(true);
-          },
-          error => {
-            this.msgSrv.error('更新失败');
-            this.modal.close(true);
-          });
+      this.devicesService.update(value,"photovoltaic").subscribe((res)=>{
+        console.log(res);
+        if(res["errno"]=="0"){
+          this.modal.destroy("true");
+          this.msgSrv.create('success', `success`);
+        }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
+        else{
+          this.msgSrv.create('error', `error`);
+        }
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
+      })
     } else {
-      this.http
-        .post('/tinyNet/device/photovoltaic/add', {battery : value})
-        .subscribe(
-          res => {
-            this.msgSrv.success('添加成功');
-            this.modal.close(true);
-          },
-          error => {
-            this.msgSrv.error('添加失败');
-            this.modal.close(true);
-          });
+      this.devicesService.add(value,"photovoltaic").subscribe((res)=>{
+        console.log(res);
+        if(res["errno"]=="0"){
+          this.modal.destroy("true");
+          this.msgSrv.create('success', `success`);
+        }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
+        else{
+          this.msgSrv.create('error', `error`);
+        }
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
+      })
     }
   }
 
   close() {
-    this.modal.destroy();
+    this.modal.destroy(false);
   }
 }

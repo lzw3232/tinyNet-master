@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import {Router} from "@angular/router";
+import {NzMessageService} from "ng-zorro-antd";
 
 @Injectable({
   providedIn: 'root'
 })
 export class apiService {
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private msgSrv: NzMessageService) {
   }
 
   getUrl(): string {
@@ -42,6 +45,12 @@ export class apiService {
     var exp = new Date();
     exp.setTime(exp.getTime() + Days*24*60*60*1000);
     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toString();
+  }
+
+  tologin(){
+    this.msgSrv.create('error', `登陆超时，请重新登录`);
+    this.setCookie("token","");
+    this.router.navigateByUrl('/passport/login');
   }
 
 }

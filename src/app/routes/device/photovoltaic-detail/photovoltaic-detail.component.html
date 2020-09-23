@@ -4,6 +4,10 @@
   </ng-template>
 </page-header>
 <nz-card>
-  <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
-  <st #st [data]="url" [columns]="columns" [scroll]="{x: '1600px'}" ></st>
+  <sf mode="search" #sf [schema]="searchSchema" (formSubmit)="submit(sf.value)" (formReset)="reset($event)"></sf>
+  <st #st [data]="data" [columns]="columns" [scroll]="{x: '1600px'}" [pi]="pi" [ps]="ps" [page]="pages" [total]="total"  (change)="change($event)" >
+    <ng-template st-row="custom"  let-item let-index="type" let-column="column" >
+      {{ (item.type == 1)?"直流":"交流"}}
+    </ng-template>
+  </st>
 </nz-card>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-generator-detail-view',
@@ -23,14 +24,17 @@ export class DeviceGeneratorDetailViewComponent implements OnInit {
   constructor(
     private modal: NzModalRef,
     public msgSrv: NzMessageService,
-    public http: _HttpClient
+    public http: _HttpClient,
+    private devicesService: DevicesService
   ) { }
 
   ngOnInit(): void {
-    this.http
-      .post('/tinyNet/device/generator/select', {id : this.record.id})
-      .subscribe(res => {
-        this.i = res;
+    console.log(this.record);
+    console.log(this.i);
+    this.devicesService.select(this.record.id,"generator").subscribe((res)=>{
+      console.log(res);
+      if(res["errno"]=="0"){
+        this.i = res["data"]["data"]["data"];
         const sourceData: any[] = [
           {x : this.i.capacity1, 初建成本 : this.i.cjcb1, 替换成本 : this.i.gxcb1, 运维成本 : this.i.yxwhcb1},
           {x : this.i.capacity2, 初建成本 : this.i.cjcb2, 替换成本 : this.i.gxcb2, 运维成本 : this.i.yxwhcb2},
@@ -54,7 +58,15 @@ export class DeviceGeneratorDetailViewComponent implements OnInit {
           sourceData1.push({x : j, cost_type : '燃料消耗(L/kW)', cost_number : this.i['rlxh' + j]});
         }
         this.data2 = sourceData1;
-      });
+      }
+      else if(res["errno"]=="2"){
+        this.devicesService.tologin();
+      }
+      else{
+        this.msgSrv.create('error', `error`);
+      }
+      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
+    })
   }
 
   close() {

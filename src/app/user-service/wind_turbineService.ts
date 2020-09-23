@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {apiService} from "./apiService";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import {valueFunctionProp} from "ng-zorro-antd/src/core/util/convert";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BatteryService {
+export class Wind_turbineService {
 
 
   url;
@@ -35,9 +33,9 @@ export class BatteryService {
   // };
 
   add(value:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/add";
+    let serverurl = this.url+"/tinyNet/device/wind_turbines/add";
     let data = {
-      "battery":value,
+      "wind_turbine":value,
       "token":this.api.getCookie("token")
     }
     console.log(data);
@@ -46,7 +44,7 @@ export class BatteryService {
   }
 
   list(pi:Number,ps:Number,val:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/list";
+    let serverurl = this.url+"/tinyNet/device/wind_turbines/list";
     let data = {
       "ps":ps,
       "pi":pi,
@@ -58,7 +56,7 @@ export class BatteryService {
   }
 
   select(id:Number):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/select"
+    let serverurl = this.url+"/tinyNet/device/wind_turbines/select"
     let data = {
       "id":id,
       "token":this.api.getCookie("token")
@@ -68,9 +66,9 @@ export class BatteryService {
   }
 
   update(value:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/update"
+    let serverurl = this.url+"/tinyNet/device/wind_turbines/update"
     let data = {
-      "battery":value,
+      "wind_turbine":value,
       "token":this.api.getCookie("token")
     }
     // @ts-ignore
@@ -78,7 +76,7 @@ export class BatteryService {
   }
 
   delete(id:Number):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/delete";
+    let serverurl = this.url+"/tinyNet/device/wind_turbines/delete";
     let data = {
       "id":id,
       "token":this.api.getCookie("token")
@@ -87,11 +85,10 @@ export class BatteryService {
     return this.http.post(serverurl,data,this.api.getHeaders());
   }
 
+
   tologin(){
     this.api.tologin();
   }
-
-
 
   setCookie(name:string,value:string){
     this.api.setCookie(name,value);

@@ -5,7 +5,7 @@
       <nz-form-item>
         <nz-form-control>
           <nz-input-group nzSize="large" nzPrefixIcon="anticon anticon-user">
-            <input nz-input formControlName="userName" placeholder="admin">
+            <input nz-input formControlName="userName" placeholder="account" autofocus="autofocus">
           </nz-input-group>
           <nz-form-explain *ngIf="userName.dirty && userName.errors">请输入账户名且至少五个字符！</nz-form-explain>
         </nz-form-control>
@@ -13,7 +13,7 @@
       <nz-form-item>
         <nz-form-control>
           <nz-input-group nzSize="large" nzPrefixIcon="anticon anticon-lock">
-            <input nz-input type="password" formControlName="password" placeholder="888888">
+            <input nz-input type="password" formControlName="password" placeholder="password" (keyup.enter)="submit()">
           </nz-input-group>
           <nz-form-explain *ngIf="password.dirty && password.errors">
             请输入密码！

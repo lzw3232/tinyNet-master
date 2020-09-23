@@ -6,14 +6,15 @@ import { NetworkSelectComponent } from './select/select.component';
 import { NetworkControlComponent } from './control/control.component';
 import { NetworkResultComponent } from './result/result.component';
 import { NetworkProjectDetailsComponent } from './project-details/project-details.component';
+import {AuthGuard} from "../../user-service/login-guard.service";
 
 const routes: Routes = [
 
-  { path: 'projects', component: NetworkProjectDetailsComponent },
-  { path: 'generateProject', component: NetworkGenerateProjectComponent },
-  { path: 'select', component: NetworkSelectComponent },
-  { path: 'control', component: NetworkControlComponent },
-  { path: 'result', component: NetworkResultComponent }];
+  { path: 'projects', component: NetworkProjectDetailsComponent ,canActivate:[AuthGuard]},
+  { path: 'generateProject', component: NetworkGenerateProjectComponent ,canActivate:[AuthGuard]},
+  { path: 'select', component: NetworkSelectComponent ,canActivate:[AuthGuard]},
+  { path: 'control', component: NetworkControlComponent ,canActivate:[AuthGuard]},
+  { path: 'result', component: NetworkResultComponent ,canActivate:[AuthGuard]}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

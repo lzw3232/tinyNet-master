@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-turbine-detail-edit',
@@ -88,48 +89,69 @@ export class DeviceTurbineDetailEditComponent implements OnInit {
     private modal: NzModalRef,
     public http: _HttpClient,
     public msgSrv: NzMessageService,
+    private devicesService: DevicesService
   ) {}
 
   ngOnInit(): void {
+    console.log(this.record);
+    console.log(this.i);
     if (this.record.id) {
-      this.http
-        .post('/tinyNet/device/turbine/select', {id : this.record.id})
+      // this.http.get(`/user/${this.record.id}`).subscribe(res => (this.i = res));
+      this.devicesService
+        .select(this.record.id,"turbine")
         .subscribe(res => {
-          this.i = res;
+          console.log(res);
+          if(res["errno"]=="0"){
+            this.i = res["data"]["data"]["data"];
+          }
+          else if(res["errno"]=="2"){
+            this.devicesService.tologin();
+          }
+          else{
+            this.msgSrv.create('error', `error`);
+          }
+          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
 
   save(value: any) {
-    // 如果存在 record 记录，则做更新操作，否则为新建操作
+    //如果存在 record 记录，则做更新操作，否则为新建操作
+    console.log(value);
     if (this.record.id) {
-      this.http
-        .post('/tinyNet/device/turbine/update', {battery : value})
-        .subscribe(
-          res => {
-            this.msgSrv.success('更新成功');
-            this.modal.close(true);
-          },
-          error => {
-            this.msgSrv.error('更新失败');
-            this.modal.close(true);
-          });
+      this.devicesService.update(value,"turbine").subscribe((res)=>{
+        console.log(res);
+        if(res["errno"]=="0"){
+          this.modal.destroy("true");
+          this.msgSrv.create('success', `success`);
+        }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
+        else{
+          this.msgSrv.create('error', `error`);
+        }
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
+      })
     } else {
-      this.http
-        .post('/tinyNet/device/turbine/add', {battery : value})
-        .subscribe(
-          res => {
-            this.msgSrv.success('添加成功');
-            this.modal.close(true);
-          },
-          error => {
-            this.msgSrv.error('添加失败');
-            this.modal.close(true);
-          });
+      this.devicesService.add(value,"turbine").subscribe((res)=>{
+        console.log(res);
+        if(res["errno"]=="0"){
+          this.modal.destroy("true");
+          this.msgSrv.create('success', `success`);
+        }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
+        else{
+          this.msgSrv.create('error', `error`);
+        }
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
+      })
     }
   }
 
   close() {
-    this.modal.destroy();
+    this.modal.destroy(false);
   }
 }

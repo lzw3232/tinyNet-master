@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {apiService} from "./apiService";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import {valueFunctionProp} from "ng-zorro-antd/src/core/util/convert";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BatteryService {
+export class DevicesService {
 
 
   url;
@@ -34,19 +32,19 @@ export class BatteryService {
   //     'Something bad happened; please try again later.');
   // };
 
-  add(value:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/add";
+  add(value:string,name:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/"+name+"/add";
     let data = {
-      "battery":value,
       "token":this.api.getCookie("token")
     }
+    data[name]=value;
     console.log(data);
     // @ts-ignore
     return this.http.post(serverurl, data, this.api.getHeaders());
   }
 
-  list(pi:Number,ps:Number,val:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/list";
+  list(pi:Number,ps:Number,val:string,name:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/"+name+"/list";
     let data = {
       "ps":ps,
       "pi":pi,
@@ -57,8 +55,8 @@ export class BatteryService {
     return this.http.post(serverurl,data,this.api.getHeaders());
   }
 
-  select(id:Number):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/select"
+  select(id:Number,name:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/"+name+"/select"
     let data = {
       "id":id,
       "token":this.api.getCookie("token")
@@ -67,18 +65,18 @@ export class BatteryService {
     return this.http.post(serverurl,data,this.api.getHeaders());
   }
 
-  update(value:string):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/update"
+  update(value:string,name:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/"+name+"/update"
     let data = {
-      "battery":value,
       "token":this.api.getCookie("token")
     }
+    data[name]=value;
     // @ts-ignore
     return this.http.post(serverurl,data,this.api.getHeaders());
   }
 
-  delete(id:Number):Observable<any>{
-    let serverurl = this.url+"/tinyNet/device/battery/delete";
+  delete(id:Number,name:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/device/"+name+"/delete";
     let data = {
       "id":id,
       "token":this.api.getCookie("token")
@@ -86,12 +84,11 @@ export class BatteryService {
     // @ts-ignore
     return this.http.post(serverurl,data,this.api.getHeaders());
   }
+
 
   tologin(){
     this.api.tologin();
   }
-
-
 
   setCookie(name:string,value:string){
     this.api.setCookie(name,value);

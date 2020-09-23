@@ -41,9 +41,9 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
   ngOnInit() { }
 
 
-  getDetail(){
+  getDetail(recorname){
     this.interval=window.setInterval(()=>{
-      this.projectService.getProjectDetail().subscribe((res)=>{
+      this.projectService.getProjectDetail(recorname).subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
           this.text = res["data"]["data"]["data"];
@@ -58,6 +58,9 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
               break;
             }
           }
+        }
+        else if(res["errno"]=="2"){
+          this.projectService.tologin();
         }
         else{
           this.msgSrv.error(res["errmsg"]);

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import {FormProperty, PropertyGroup, SFSchema, SFUISchema} from '@delon/form';
-import {BatteryService} from "../../../../user-service/batteryService";
+import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-battery-detail-edit',
@@ -103,27 +103,28 @@ export class DeviceBatteryDetailEditComponent implements OnInit {
   constructor(
     private modal: NzModalRef,
     public http: _HttpClient,
-    public batteryService: BatteryService,
+    public devicesService: DevicesService,
     private msgSrv: NzMessageService
   ) {}
 
   ngOnInit(): void {
     console.log(this.record);
-    console.log(this.i);
     if (this.record.id) {
       // this.http.get(`/user/${this.record.id}`).subscribe(res => (this.i = res));
-      this.batteryService
-        .select(this.record.id)
+      this.devicesService
+        .select(this.record.id,"battery")
         .subscribe(res => {
-
           console.log(res);
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
+          else if(res["errno"]=="2"){
+            this.devicesService.tologin();
+          }
           else{
             this.msgSrv.create('error', `error`);
           }
-          this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -132,28 +133,34 @@ export class DeviceBatteryDetailEditComponent implements OnInit {
     //如果存在 record 记录，则做更新操作，否则为新建操作
     console.log(value);
     if (this.record.id) {
-      this.batteryService.update(value).subscribe((res)=>{
+      this.devicesService.update(value,"battery").subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
         else{
           this.msgSrv.create('error', `error`);
         }
-        this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
-      this.batteryService.add(value).subscribe((res)=>{
+      this.devicesService.add(value,"battery").subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
+        else if(res["errno"]=="2"){
+          this.devicesService.tologin();
+        }
         else{
           this.msgSrv.create('error', `error`);
         }
-        this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
 

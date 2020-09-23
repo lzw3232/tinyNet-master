@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import {BatteryService} from "../../../../user-service/batteryService";
 import {STChange} from "@delon/abc";
+import {DevicesService} from "../../../../user-service/devicesService";
 
 const DataSet = require('@antv/data-set');
 
@@ -26,13 +26,13 @@ export class DeviceBatteryDetailViewComponent implements OnInit {
     private modal: NzModalRef,
     public msgSrv: NzMessageService,
     public http: _HttpClient,
-    private batteryService: BatteryService,
+    private devicesService: DevicesService,
   ) { }
 
   ngOnInit(): void {
     console.log(this.record);
     console.log(this.i);
-    this.batteryService.select(this.record.id).subscribe((res)=>{
+    this.devicesService.select(this.record.id,"battery").subscribe((res)=>{
       console.log(res);
       if(res["errno"]=="0"){
         this.i = res["data"]["data"]["data"];
@@ -53,10 +53,13 @@ export class DeviceBatteryDetailViewComponent implements OnInit {
         const data = dv.rows;
         this.data = data;
       }
+      else if(res["errno"]=="2"){
+        this.devicesService.tologin();
+      }
       else{
         this.msgSrv.create('error', `error`);
       }
-      this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
     // this.http
     //   .post('/tinyNet/device/battery/select', {id : this.record.id})

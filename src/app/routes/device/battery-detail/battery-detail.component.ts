@@ -1,12 +1,11 @@
 import {Component, OnInit, Output, ViewChild} from '@angular/core';
-import { _HttpClient, ModalHelper } from '@delon/theme';
+import {_HttpClient, MenuService, ModalHelper} from '@delon/theme';
 import {STChange, STColumn, STComponent, STPage} from '@delon/abc';
 import { SFSchema } from '@delon/form';
 import {DeviceBatteryDetailViewComponent} from './view/view.component';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
-import {BatteryService} from "../../../user-service/batteryService";
-import {apiService} from "../../../user-service/apiService";
 import {DeviceBatteryDetailEditComponent} from './edit/edit.component'
+import {DevicesService} from "../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-battery-detail',
@@ -56,7 +55,9 @@ export class DeviceBatteryDetailComponent implements OnInit {
         },
         { text: '<i class="anticon anticon-edit"></i>',
           type: 'static', component: DeviceBatteryDetailEditComponent,
-          click: 'reload'
+          click: (record, _modal, comp) => {
+              this.getlist(this.pi);
+          }
         },
         { text: '<i class="anticon anticon-delete"></i>',
           click: (record, _modal, comp) => {
@@ -65,21 +66,25 @@ export class DeviceBatteryDetailComponent implements OnInit {
                   nzOkText: 'OK',
                   nzCancelText: 'Cancel',
                   nzOnOk:()=>{
-                    this.http.post(this.api.getUrl()+'/tinyNet/device/battery/delete', {"id" : record.id,"token":this.api.getCookie("token")})
+                    this.devicesService.delete(record.id,"battery")
                       .subscribe((res) => {
                         console.log(res);
                         if(res["errno"]=="0"){
                           this.msgSrv.success(`成功删除 ${record.name}`);
                         }
+                        else if(res["errno"]=="2"){
+                          this.devicesService.tologin();
+                        }
                         else{
                           this.msgSrv.create('error', `error`);
                         }
-                        this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+                        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
                         // comp.removeRow(record);
-                        comp.reload();
+                        this.getlist(this.pi);
                       });
                   }
                 })
+
           }
         },
       ]
@@ -89,17 +94,17 @@ export class DeviceBatteryDetailComponent implements OnInit {
   constructor(private http: _HttpClient,
               private modal: ModalHelper,
               private msgSrv: NzMessageService,
-              private batteryService: BatteryService,
-              private api: apiService,private modalService: NzModalService
-
+              private devicesService: DevicesService,
+              private modalService: NzModalService,
   ) {
+  }
+
+  ngOnInit() {
     this.pi = 1;
     this.ps = 10;
-
     this.getlist(this.pi);
   }
 
-  ngOnInit() { }
 
   add() {
     this.modal
@@ -118,7 +123,7 @@ export class DeviceBatteryDetailComponent implements OnInit {
   }
 
   getlist(pi){
-    this.batteryService.list(pi,this.ps,this.val).subscribe((res)=>{
+    this.devicesService.list(pi,this.ps,this.val,"battery").subscribe((res)=>{
       console.log(res);
       if(res["errno"]=="0"){
         this.total = res["data"]["data"]["total"];
@@ -127,10 +132,13 @@ export class DeviceBatteryDetailComponent implements OnInit {
         this.pi = pi;
         // this.ps = 10;
       }
+      else if(res["errno"]=="2"){
+        this.devicesService.tologin();
+      }
       else{
         this.msgSrv.create('error', `error`);
       }
-      this.batteryService.setCookie("token",res["data"]["data"]["token"]);
+      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
   }
 

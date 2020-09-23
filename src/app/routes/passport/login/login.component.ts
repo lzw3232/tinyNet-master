@@ -6,8 +6,6 @@ import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import {
   SocialService,
   SocialOpenType,
-  TokenService,
-  DA_SERVICE_TOKEN,
 } from '@delon/auth';
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
@@ -36,7 +34,6 @@ export class UserLoginComponent implements OnDestroy {
     @Optional()
     @Inject(ReuseTabService)
     private reuseTabService: ReuseTabService,
-    @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
     private startupSrv: StartupService,
     private loginService: LoginService,
   ) {
@@ -85,6 +82,12 @@ export class UserLoginComponent implements OnDestroy {
   }
 
   // endregion
+  keyUpSearch(event){
+    if(event.KeyCode==13){
+      this.submit();
+    }
+  }
+
 
   submit() {
     this.error = '';
@@ -105,11 +108,13 @@ export class UserLoginComponent implements OnDestroy {
     this.loginService.login(this.userName.value,this.password.value).subscribe((res)=>{
       console.log(res);
       if(res["errno"]=="0"){
+        this.loginService.setCookie("token",res["data"]["data"]["token"]);
+        this.reuseTabService.clear();
+        this.router.navigateByUrl('/');
       }
       else{
         this.msgSrv.error(res["errmsg"]);
       }
-      this.loginService.setCookie("token",res["data"]["data"]["token"])
     });
 
     // **注：** DEMO中使用 `setTimeout` 来模拟 http

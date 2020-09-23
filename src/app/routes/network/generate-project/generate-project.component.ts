@@ -142,6 +142,9 @@ export class NetworkGenerateProjectComponent implements OnInit {
       if(res["errno"]=="0"){
         this.result["isdone"]=true;
       }
+      else if(res["errno"]=="2"){
+        this.projectService.tologin();
+      }
       else{
         this.result["isdone"]=false;
         this.result["msg"] = res["errmsg"];
