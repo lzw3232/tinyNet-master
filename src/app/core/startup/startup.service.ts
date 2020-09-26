@@ -121,23 +121,110 @@ export class StartupService {
                 // reuse: false,
               },
               {
-                text: '风力发电机',
+                text: '风机',
                 link: '/device/windGeneratorDetail',
                 // reuse: false,
               },
               {
-                text: '水力发电机',
+                text: '水轮机',
                 link: '/device/turbineDetail',
                 // reuse: false,
               },
               {
-                text: '光伏发电机',
+                text: '光伏',
                 link: '/device/photovoltaicDetail',
                 // reuse: false,
               },
               {
-                text: '常规发电机',
+                text: '发电机',
                 link: '/device/generatorDetail',
+                // reuse: false,
+              },
+              {
+                text: '燃气轮机',
+                link: '/device/gasTurbineDetail',
+                // reuse: false,
+              },
+              {
+                text: '燃气内燃机',
+                link: '/device/GasEngineDetail',
+                // reuse: false,
+              },
+              {
+                text: '电锅炉',
+                link: '/device/electricBoilerDetail',
+                // reuse: false,
+              },
+              {
+                text: '燃气热水锅炉',
+                link: '/device/gasBoilerDetail',
+                // reuse: false,
+              },
+              {
+                text: '燃气蒸汽锅炉',
+                link: '/device/gasSteamDetail',
+                // reuse: false,
+              },
+              {
+                text: '热泵',
+                link: '/device/heatPumpDetail',
+                // reuse: false,
+              },
+              {
+                text: '电制冷机',
+                icon: 'anticon anticon-rocket',
+                children: [
+                  {
+                    text: '涡旋式电制冷机',
+                    link: '/device/scrollDetail',
+                    // reuse: false,
+                  },
+                  {
+                    text: '螺杆式电制冷机',
+                    link: '/device/screwDetail',
+                    // reuse: false,
+                  },
+                  {
+                    text: '离心式电制冷机',
+                    link: '/device/centrifugalDetail',
+                    // reuse: false,
+                  },
+                  ]
+                // reuse: false,
+              },
+              {
+                text: '溴化锂空调',
+                link: '/device/lithiumBromideDetail',
+                // reuse: false,
+              },
+              {
+                text: '直燃型溴化锂空调',
+                link: '/device/DirectFiredLithiumBromideDetail',
+                // reuse: false,
+              },
+              {
+                text: '双工况主机',
+                link: '/device/hostDetail',
+                // reuse: false,
+              },
+              {
+                text: '蓄热装置',
+                link: '/device/heatStorageDetail',
+                // reuse: false,
+              },
+              {
+                text: '余热锅炉',
+                link: '/device/residualHeatDetail',
+                // reuse: false,
+              },
+              {
+                text: '板式换热器',
+                link: '/device/plateHeatDetail',
+                // reuse: false,
+              },
+              {
+                text: '核电机组',
+                link: '/device/nuclearDetail',
                 // reuse: false,
               },
             ]
