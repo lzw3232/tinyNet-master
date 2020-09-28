@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { zip } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from '@delon/theme';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
+import { DA_SERVICE_TOKEN, TokenService } from '@delon/auth';
 import { ACLService } from '@delon/acl';
+import {apiService} from "../../user-service/apiService";
 
 /**
  * 用于应用启动时
@@ -18,9 +19,10 @@ export class StartupService {
     private settingService: SettingsService,
     private aclService: ACLService,
     private titleService: TitleService,
-    @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
+    @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
     private httpClient: HttpClient,
-    private injector: Injector
+    private injector: Injector,
+    private apiService: apiService,
   ) { }
 
   private viaHttp(resolve: any, reject: any) {
@@ -53,6 +55,25 @@ export class StartupService {
     });
   }
 
+  public set_user(){
+    //lz未解决：此文件不能调用外部文件，如apiService中的函数，原因不明，所以目前只能在这里获取cookie，或者这里重新发送post/get请求获得个人信息
+    var name;
+    var arr,reg=new RegExp("(^| )name=([^;]*)(;|$)");
+    if(arr=document.cookie.match(reg))
+      name=unescape(arr[2]);
+    else
+      name=null;
+
+    const user: any = {
+      name: name,
+      avatar: './assets/tmp/img/avatar.jpg',
+      email: 'lzw32321226@163.com',
+    };
+
+
+    this.settingService.setUser(user);
+  }
+
   private viaMock(resolve: any, reject: any) {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
@@ -65,16 +86,19 @@ export class StartupService {
       name: `ng-alain`,
       description: `Ng-zorro admin panel front-end framework`
     };
+
     const user: any = {
-      name: 'Admin',
+      name: "name",
       avatar: './assets/tmp/img/avatar.jpg',
-      email: 'cipchk@qq.com',
+      email: 'lzw32321226@163.com',
       token: '123456789'
     };
+
     // 应用信息：包括站点名、描述、年份
     this.settingService.setApp(app);
     // 用户信息：包括姓名、头像、邮箱地址
-    this.settingService.setUser(user);
+    //this.settingService.setUser(user);
+    this.set_user();
     // ACL：设置权限为全量
     this.aclService.setFull(true);
     // 初始化菜单

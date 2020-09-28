@@ -14,7 +14,7 @@ export class NetworkProjectDetailsComponent implements OnInit {
   tagCheck2 = true;
   tagCheck3 = true;
 
-  loading = true;
+  loading = 1;
 
   items = [];
   items_done = [];
@@ -32,7 +32,7 @@ export class NetworkProjectDetailsComponent implements OnInit {
         this.items = res["data"]["data"]["data"];
         this.items_done = res["data"]["data"]["data"].filter(item=>item["state"]==2);
         this.items_none = res["data"]["data"]["data"].filter(item=>item["state"]!=2);
-        this.loading = false;
+        this.loading = 0;
         this.change();
       } else {
         this.msgSrv.error(res["errmsg"]);

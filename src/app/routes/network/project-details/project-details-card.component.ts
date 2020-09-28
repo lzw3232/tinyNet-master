@@ -42,22 +42,37 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
 
 
   getDetail(recorname){
-    this.interval=window.setInterval(()=>{
+    // this.interval=window.setInterval(()=>{
+    //   this.projectService.getProjectDetail(recorname).subscribe((res)=>{
+    //     console.log(res);
+    //     if(res["errno"]=="0"){
+    //       this.text = res["data"]["data"]["data"];
+    //       let x = this.text.split("<br/>");
+    //       //console.log(x);
+    //       for(let i = (x.length-1);i>=0;i--){
+    //         if(x[i].search("遗传算法第")!=-1){
+    //           // console.log(x[i]);
+    //           var reg =/[\u4e00-\u9fa5]/g;
+    //           this.result.no = String(Math.ceil(x[i].replace(reg, "")/99*100));
+    //           this.loading=false;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //     else if(res["errno"]=="2"){
+    //       this.projectService.tologin();
+    //     }
+    //     else{
+    //       this.msgSrv.error(res["errmsg"]);
+    //     }
+    //     this.projectService.setCookie("token",res["data"]["data"]["token"]);
+    //   })
+    // },"1000");
+
       this.projectService.getProjectDetail(recorname).subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
-          this.text = res["data"]["data"]["data"];
-          let x = this.text.split("<br/>");
-          //console.log(x);
-          for(let i = (x.length-1);i>=0;i--){
-            if(x[i].search("遗传算法第")!=-1){
-              // console.log(x[i]);
-              var reg =/[\u4e00-\u9fa5]/g;
-              this.result.no = String(Math.ceil(x[i].replace(reg, "")/99*100));
-              this.loading=false;
-              break;
-            }
-          }
+          console.log(res);
         }
         else if(res["errno"]=="2"){
           this.projectService.tologin();
@@ -67,7 +82,6 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
         }
         this.projectService.setCookie("token",res["data"]["data"]["token"]);
       })
-    },"1000");
     this.detail=true;
   }
 

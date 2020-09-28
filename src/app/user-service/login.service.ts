@@ -46,6 +46,7 @@ export class LoginService {
   }
 
   setCookie(name:string,value:string){
+    console.log(value);
     this.api.setCookie(name,value);
   }
 

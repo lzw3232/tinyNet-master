@@ -56,6 +56,17 @@ export class ProjectService {
     return this.http.post(serverurl, data, this.api.getHeaders());
   }
 
+  getProjectOutput(recordname:string):Observable<any>{
+    let serverurl = this.url+"/tinyNet/record/getOutput";
+    let token = this.api.getCookie("token");
+    let data={
+      "token":token,
+      "recordname":recordname,
+    };
+    // @ts-ignore
+    return this.http.post(serverurl, data, this.api.getHeaders());
+  }
+
   getProject():Observable<any>{
     let serverurl = this.url+"/tinyNet/record/list";
     let token = this.api.getCookie("token");

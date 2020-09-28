@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd";
+import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from '@delon/theme';
+import { TokenService, DA_SERVICE_TOKEN ,ITokenModel,JWTTokenModel} from '@delon/auth';
+import {Token} from "@angular/compiler";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,10 @@ export class apiService {
 
   constructor(
     private router: Router,
-    private msgSrv: NzMessageService) {
+    private msgSrv: NzMessageService,
+    private settingService: SettingsService,
+    @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
+    ) {
   }
 
   getUrl(): string {
@@ -30,12 +36,11 @@ export class apiService {
   getCookie(name: string):String
   {
     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-
     if(arr=document.cookie.match(reg))
-
       return unescape(arr[2]);
     else
       return null;
+
   }
 
 

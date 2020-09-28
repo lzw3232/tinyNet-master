@@ -110,6 +110,8 @@ export class UserLoginComponent implements OnDestroy {
       if(res["errno"]=="0"){
         this.loginService.setCookie("token",res["data"]["data"]["token"]);
         this.reuseTabService.clear();
+        this.startupSrv.set_user();
+        this.loginService.setCookie("name",this.userName.value);
         this.router.navigateByUrl('/');
       }
       else{

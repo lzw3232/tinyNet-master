@@ -37,7 +37,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private isLogin(){
     let token = this.api.getCookie("token");
-    console.log("canActivate");
     if(!token || token==""){
       this.router.navigateByUrl('/passport/login');
       return false;

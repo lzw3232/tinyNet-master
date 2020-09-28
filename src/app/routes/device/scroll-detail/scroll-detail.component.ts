@@ -2,8 +2,8 @@ import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {_HttpClient, MenuService, ModalHelper} from '@delon/theme';
 import {STChange, STColumn, STComponent, STPage} from '@delon/abc';
 import { SFSchema } from '@delon/form';
-import {HeatPumpDetailViewComponent} from './view/view.component';
-import {HeatPumpDetailEditComponent} from './edit/edit.component'
+import {ScrollDetailViewComponent} from './view/view.component';
+import {ScrollDetailEditComponent} from './edit/edit.component'
 import {DevicesService} from "../../../user-service/devicesService";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
 
