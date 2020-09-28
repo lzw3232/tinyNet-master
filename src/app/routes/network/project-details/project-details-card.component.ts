@@ -69,10 +69,10 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
     //   })
     // },"1000");
 
-      this.projectService.getProjectDetail(recorname).subscribe((res)=>{
-        console.log(res);
+      this.projectService.getProjectOutput(recorname).subscribe((res)=>{
         if(res["errno"]=="0"){
           console.log(res);
+          this.loading = false;
         }
         else if(res["errno"]=="2"){
           this.projectService.tologin();
@@ -82,7 +82,7 @@ export class NetworkProjectDetailsCardComponent implements OnInit {
         }
         this.projectService.setCookie("token",res["data"]["data"]["token"]);
       })
-    this.detail=true;
+      this.detail=true;
   }
 
   handleCancel(){
