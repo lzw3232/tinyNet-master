@@ -34,31 +34,40 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   checkOptions = {
     checkOptionsOne_load: [
-      { label: '首要负荷', value: '1_1', checked: false, disabled: false },
+      { label: '电负荷', value: '1_1', checked: false, disabled: false },
       { label: '冷负荷', value: '1_2', checked: false, disabled: false },
-      { label: '热负荷', value: '1_3', checked: false, disabled: false }
+      { label: '热水负荷', value: '1_3', checked: false, disabled: false },
+      { label: '蒸汽负荷', value: '1_4', checked: false, disabled: false }
     ],
     checkOptionsOne_renewable_energy: [
       { label: '风力发电机', value: '2_1', checked: false, disabled: false },
-      { label: '光伏阵列', value: '2_2', checked: false, disabled: false },
+      { label: '光伏发电系统', value: '2_2', checked: false, disabled: false },
       { label: '水力发电机', value: '2_3', checked: false, disabled: false }
     ],
     checkOptionsOne_stored_energy: [
-      { label: '电池储能系统', value: '3_1', checked: false, disabled: false },
-      { label: '蓄冰装置', value: '3_2', checked: false, disabled: false },
+      { label: '蓄冰空调', value: '3_1', checked: false, disabled: false },
+      { label: '电池储能系统', value: '3_2', checked: false, disabled: false },
       { label: '储热装置', value: '3_3', checked: false, disabled: false }
     ],
     checkOptionsOne_component: [
-      { label: '燃气锅炉', value: '4_1', checked: false, disabled: false },
-      { label: '热泵', value: '4_2', checked: false, disabled: false },
+      { label: '热泵', value: '4_1', checked: false, disabled: false },
+      { label: '燃气热水锅炉', value: '4_2', checked: false, disabled: false },
       { label: '电锅炉', value: '4_3', checked: false, disabled: false },
       { label: '余热锅炉', value: '4_4', checked: false, disabled: false },
-      { label: '电制冷机', value: '4_5', checked: false, disabled: false },
-      { label: '溴化锂空调', value: '4_6', checked: false, disabled: false }
+      { label: '涡旋式电制冷机', value: '4_5', checked: false, disabled: false },
+      { label: '溴化锂空调', value: '4_6', checked: false, disabled: false },
+      { label: '螺杆式电制冷机', value: '4_7', checked: false, disabled: false },
+      { label: '离心式电制冷机', value: '4_8', checked: false, disabled: false },
+      { label: '板式换热器', value: '4_9', checked: false, disabled: false },
+      { label: '燃气蒸汽锅炉', value: '4_10', checked: false, disabled: false },
+      { label: '直燃型溴化锂空调', value: '4_11', checked: false, disabled: false },
+      { label: '市政蒸汽', value: '4_12', checked: false, disabled: false },
     ],
     checkOptionsOne_electric_generator: [
-      { label: '常规发电机', value: '5_1', checked: false, disabled: false },
-      { label: '燃气轮机', value: '5_2', checked: false, disabled: false }
+      { label: '燃气轮机', value: '5_1', checked: false, disabled: false },
+      { label: '常规发电机', value: '5_2', checked: false, disabled: false },
+      { label: '燃气内燃机', value: '5_3', checked: false, disabled: false },
+      { label: '核电机组', value: '5_4', checked: false, disabled: false },
     ],
   };
 
@@ -72,8 +81,9 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   // 初始值
   init_radioValue = 'A';
-  init_checkOptions = new Set(['1_1', '2_1', '2_2', '2_3', '3_1', '5_1']);
-  init_no_init_checkOptions = new Set(['1_2', '1_3', '3_2', '3_3', '4_1', '4_2', '4_3', '4_4', '4_5', '4_6', '5_2']);
+  init_checkOptions = new Set(['1_1', '2_1', '2_2', '2_3', '3_2', '5_2']);
+  init_no_init_checkOptions = new Set(['1_2', '1_3','1_4', '3_1', '3_3', '4_1', '4_2', '4_3', '4_4', '4_5', '4_6','4_7','4_8','4_9','4_10','4_11','4_12','5_1']);
+
   init_B_checkOptions = new Set(['1_2', '1_3']);
   init_cold_checkOptions = new Set(['3_2', '4_2', '4_5', '5_2']);
   init_hot_checkOptions = new Set(['3_3', '4_1', '4_2', '4_3', '5_2']);
@@ -111,8 +121,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
       dblClickZoomEnabled: false
     });
     this.setDefaultValues();
-
-    this.checkOptions['checkOptionsOne_load'][0]['disabled'] = true;
   }
 
   ngOnDestroy() {

@@ -19,7 +19,7 @@ export class apiService {
   }
 
   getUrl(): string {
-    return 'http://172.26.117.247:8080';
+    return 'http://172.26.43.47:8080';
     //return 'api/v1';
   }
 
