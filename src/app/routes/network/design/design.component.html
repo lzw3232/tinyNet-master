@@ -140,7 +140,7 @@
             <title>图层 1</title>
 
             <!-- 第一条线 -->
-            <g transform="translate(150 0)">
+            <g transform="translate(150 0)" *ngIf="lines[0]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -148,7 +148,7 @@
             </g>
 
             <!-- 电网 -->
-            <g transform="translate(90 50)">
+            <g transform="translate(90 50)" *ngIf="radioValue=='B'">
               <use width="200" height="200" transform="translate(0 0) scale(.2)" xlink:href="#dianwang-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="0" y="11">电网</tspan>
@@ -158,7 +158,7 @@
             </g>
 
             <!-- 光资源 -->
-            <g transform="translate(10 100)">
+            <g transform="translate(10 100)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[1].checked">
               <use width="200" height="200" transform="translate(0 0) scale(.2)" xlink:href="#guangziyuan-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">光资源</tspan>
@@ -168,7 +168,7 @@
             </g>
 
             <!-- 光伏 -->
-            <g transform="translate(90 100)">
+            <g transform="translate(90 100)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[1].checked">
               <use width="200" height="200" transform="translate(0 0) scale(.2)" xlink:href="#guangfu-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="0" y="11">光伏</tspan>
@@ -178,7 +178,7 @@
             </g>
 
             <!-- 风资源 -->
-            <g transform="translate(10 160)">
+            <g transform="translate(10 160)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[0].checked">
               <use width="200" height="200" transform="translate(0 0) scale(.2)" xlink:href="#fengziyuan-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">风资源</tspan>
@@ -188,7 +188,7 @@
             </g>
 
             <!-- 风机 -->
-            <g transform="translate(90 160)">
+            <g transform="translate(90 160)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[0].checked">
               <use width="200" height="180" transform="translate(0 0) scale(.2)" xlink:href="#fengji-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="0" y="11">风机</tspan>
@@ -198,7 +198,7 @@
             </g>
 
             <!-- 电负荷 -->
-            <g transform="translate(190 160)">
+            <g transform="translate(190 160)" *ngIf="checkOptions.checkOptionsOne_load[0].checked">
               <use width="200" height="180" transform="translate(45 0) scale(.2)" xlink:href="#dianfuhe-img" id="dianwang-show" />
               <text transform="translate(45 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-2" y="11">电负荷</tspan>
@@ -208,7 +208,7 @@
             </g>
 
             <!-- 电池 -->
-            <g transform="translate(90 220)">
+            <g transform="translate(90 220)" *ngIf="checkOptions.checkOptionsOne_stored_energy[1].checked">
               <use width="200" height="180" transform="translate(0 0) scale(.2)" xlink:href="#dianchi-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="0" y="11">电池</tspan>
@@ -218,7 +218,7 @@
             </g>
 
             <!-- 水资源 -->
-            <g transform="translate(10 280)">
+            <g transform="translate(10 280)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[2].checked">
               <use width="200" height="200" transform="translate(0 0) scale(.2)" xlink:href="#shuiziyuan-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">水资源</tspan>
@@ -228,7 +228,7 @@
             </g>
 
             <!-- 水力发电机 -->
-            <g transform="translate(90 280)">
+            <g transform="translate(90 280)" *ngIf="checkOptions.checkOptionsOne_renewable_energy[2].checked">
               <use width="200" height="180" transform="translate(0 0) scale(.2)" xlink:href="#shuilifadianji-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-20" y="11">水力发电机</tspan>
@@ -238,7 +238,7 @@
             </g>
 
             <!-- 常规发电机 -->
-            <g transform="translate(90 340)">
+            <g transform="translate(90 340)" *ngIf="checkOptions.checkOptionsOne_electric_generator[1].checked">
               <use width="200" height="180" transform="translate(0 0) scale(.2)" xlink:href="#changguifadianji-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-20" y="11">常规发电机</tspan>
@@ -248,7 +248,7 @@
             </g>
 
             <!-- 核电机组 -->
-            <g transform="translate(90 400)">
+            <g transform="translate(90 400)" *ngIf="checkOptions.checkOptionsOne_electric_generator[3].checked">
               <use width="200" height="180" transform="translate(0 0) scale(.2)" xlink:href="#hedianjizu-img" id="dianwang-show" />
               <text transform="translate(5 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-20" y="11">核电机组</tspan>
@@ -264,7 +264,7 @@
 
 
             <!-- 第二条线 -->
-            <g transform="translate(200 0)">
+            <g transform="translate(200 0)" *ngIf="lines[1]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -272,7 +272,7 @@
             </g>
 
             <!-- 涡旋式电制冷机 -->
-            <g transform="translate(0 50)">
+            <g transform="translate(0 50)" *ngIf="checkOptions.checkOptionsOne_component[4].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(100 0) scale(.2)" xlink:href="#woxuanshidianzhilengji-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
@@ -283,7 +283,7 @@
             </g>
 
             <!-- 双工况主机 -->
-            <g transform="translate(0 100)">
+            <g transform="translate(0 100)" *ngIf="checkOptions.checkOptionsOne_stored_energy[0].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="150" height="150" x="10" y="30" transform="translate(100 0) scale(.2)" xlink:href="#shuanggongkuangzhuji-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
@@ -295,7 +295,7 @@
             </g>
 
             <!-- 蓄冰装置 -->
-            <g transform="translate(0 160)">
+            <g transform="translate(0 160)" *ngIf="checkOptions.checkOptionsOne_stored_energy[0].checked">
               <use width="200" height="200" x="-10" y="20" transform="translate(100 0) scale(.2)" xlink:href="#xubingzhuangzhi-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">蓄冰装置</tspan>
@@ -305,7 +305,7 @@
             </g>
 
             <!-- 离心式电制冷机 -->
-            <g transform="translate(0 220)">
+            <g transform="translate(0 220)" *ngIf="checkOptions.checkOptionsOne_component[7].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" x="0" y="0" transform="translate(100 0) scale(.2)" xlink:href="#lixinshizhilengji-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
@@ -316,7 +316,7 @@
             </g>
 
             <!-- 螺杆式电制冷机 -->
-            <g transform="translate(0 280)">
+            <g transform="translate(0 280)" *ngIf="checkOptions.checkOptionsOne_component[6].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" x="0" y="0" transform="translate(100 0) scale(.2)" xlink:href="#luoganshizhilengji-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
@@ -327,7 +327,7 @@
             </g>
 
             <!-- 冷负荷 -->
-            <g transform="translate(250 280)">
+            <g transform="translate(250 280)" *ngIf="checkOptions.checkOptionsOne_load[1].checked">
               <line x1="-10" y1="22.5" x2="38.1" y2="22.5" class="color2" marker-end="url(#Arrow_Right2)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" x="0" y="0" transform="translate(50 0) scale(.2)" xlink:href="#reshuifuhe-img" id="dianwang-show" />
               <text transform="translate(50 45)" fill="black">
@@ -337,19 +337,23 @@
             </g>
 
             <!-- 热泵 -->
-            <g transform="translate(0 340)">
+            <g transform="translate(0 340)" *ngIf="checkOptions.checkOptionsOne_component[0].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" x="0" y="0" transform="translate(100 0) scale(.2)" xlink:href="#rebeng-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="7" y="11">热泵</tspan>
               </text>
+              <g *ngIf="lines[1]">
               <line x1="140" y1="12.5" x2="218.1" y2="12.5" class="color2" marker-end="url(#Arrow_Right2)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <line x1="140" y1="32.5" x2="268.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
+              <g *ngIf="lines[2]">
+                <line x1="140" y1="32.5" x2="268.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
             <!-- 电锅炉 -->
-            <g transform="translate(0 420)">
+            <g transform="translate(0 420)" *ngIf="checkOptions.checkOptionsOne_component[2].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" x="0" y="0" transform="translate(100 0) scale(.2)" xlink:href="#dianguolu-img" id="dianwang-show" />
               <text transform="translate(100 40)" fill="black">
@@ -357,7 +361,9 @@
               </text>
               <line x1="140" y1="22.5" x2="188.1" y2="22.5" class="color6" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="188.1" y1="22.5" x2="188.1" y2="450" class="color6" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              <g *ngIf="lines[5]">
               <line x1="188.1" y1="450" x2="220" y2="450" class="color6" marker-end="url(#Arrow_Right6)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
@@ -365,7 +371,7 @@
 
           <g transform="translate(530 320)">
             <!-- 第三条线 -->
-            <g transform="translate(0 0)">
+            <g transform="translate(0 0)" *ngIf="lines[2]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -373,7 +379,7 @@
             </g>
 
             <!-- 热水负荷 -->
-            <g transform="translate(50 120)">
+            <g transform="translate(50 120)" *ngIf="checkOptions.checkOptionsOne_load[2].checked">
               <line x1="-10" y1="22.5" x2="88.1" y2="22.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(100 0) scale(.2)" xlink:href="#reshuifuhe-img" id="dianwang-show" />
               <text transform="translate(100 45)" fill="black">
@@ -383,7 +389,7 @@
             </g>
 
             <!-- 蓄热装置 -->
-            <g transform="translate(50 380)">
+            <g transform="translate(50 380)" *ngIf="checkOptions.checkOptionsOne_stored_energy[2].checked">
               <line x1="0" y1="22.5" x2="88.1" y2="22.5" class="color3" marker-start="url(#Arrow_Left3)" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(100 0) scale(.2)" xlink:href="#reshuifuhe-img" id="dianwang-show" />
               <text transform="translate(100 45)" fill="black">
@@ -395,7 +401,7 @@
 
           <g transform="translate(0 500)">
             <!-- 第四条线 -->
-            <g transform="translate(0 0)">
+            <g transform="translate(0 0)" *ngIf="lines[3]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -403,19 +409,23 @@
             </g>
 
             <!-- 直燃型溴化锂空调 -->
-            <g transform="translate(50 20)">
+            <g transform="translate(50 20)" *ngIf="checkOptions.checkOptionsOne_component[10].checked">
               <line x1="-10" y1="22.5" x2="238.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(250 0) scale(.2)" xlink:href="#reshuifuhe-img" id="dianwang-show" />
               <text transform="translate(220 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">直燃型溴化锂空调</tspan>
               </text>
+              <g *ngIf="lines[1]">
               <line x1="290" y1="12.5" x2="448.1" y2="12.5" class="color2" marker-end="url(#Arrow_Right2)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <line x1="290" y1="32.5" x2="498.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
+              <g *ngIf="lines[2]">
+                <line x1="290" y1="32.5" x2="498.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="250" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
             <!-- 燃气热水锅炉 -->
-            <g transform="translate(50 100)">
+            <g transform="translate(50 100)" *ngIf="checkOptions.checkOptionsOne_component[1].checked">
               <line x1="-10" y1="22.5" x2="238.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(250 0) scale(.2)" xlink:href="#ranqireshuiguolu-img" id="dianwang-show" />
               <text transform="translate(250 45)" fill="black">
@@ -426,7 +436,7 @@
             </g>
 
             <!-- 燃气轮机 -->
-            <g transform="translate(50 180)">
+            <g transform="translate(50 180)" *ngIf="checkOptions.checkOptionsOne_electric_generator[0].checked">
               <line x1="-10" y1="22.5" x2="18.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(35 0) scale(.2)" xlink:href="#ranqilunji-img" id="dianwang-show" />
               <text transform="translate(35 45)" fill="black">
@@ -435,12 +445,14 @@
               <line x1="80" y1="12.5" x2="100" y2="12.5" class="color1" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="100" y1="12.5" x2="100" y2="-270.5" class="color1" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="100" y1="-270.5" x2="200" y2="-270.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              <g *ngIf="lines[4]">
               <line x1="80" y1="32.5" x2="170" y2="32.5" class="color5" marker-end="url(#Arrow_Right5)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="35" y="0" width="40" height="50" id="path_11" fill-opacity="0"/>
+              </g>
+                <rect class="rect-img" rx="1" ry="1" x="35" y="0" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
             <!-- 燃气内燃机 -->
-            <g transform="translate(50 280)">
+            <g transform="translate(50 280)" *ngIf="checkOptions.checkOptionsOne_electric_generator[2].checked">
               <line x1="-10" y1="22.5" x2="18.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(35 0) scale(.2)" xlink:href="#reshuifuhe-img" id="dianwang-show" />
               <text transform="translate(35 45)" fill="black">
@@ -449,15 +461,19 @@
               <line x1="80" y1="12.5" x2="120" y2="12.5" class="color1" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="120" y1="12.5" x2="120" y2="-310.5" class="color1" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="120" y1="-310.5" x2="200" y2="-310.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              <g *ngIf="lines[4]">
               <line x1="80" y1="22.5" x2="170" y2="22.5" class="color5" marker-end="url(#Arrow_Right5)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
+              <g *ngIf="lines[6]">
               <line x1="80" y1="32.5" x2="120" y2="32.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="120" y1="32.5" x2="120" y2="132.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="120" y1="132.5" x2="150" y2="132.5" class="color7" marker-end="url(#Arrow_Right7)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="35" y="0" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
             <!-- 燃气蒸汽锅炉 -->
-            <g transform="translate(50 480)">
+            <g transform="translate(50 480)" *ngIf="checkOptions.checkOptionsOne_component[9].checked">
               <line x1="-10" y1="22.5" x2="238.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(250 0) scale(.2)" xlink:href="#ranqizhengqiguolu-img" id="dianwang-show" />
               <text transform="translate(250 45)" fill="black">
@@ -471,7 +487,7 @@
 
           <g transform="translate(200 640)">
             <!-- 第五条线 -->
-            <g transform="translate(0 0)">
+            <g transform="translate(0 0)" *ngIf="lines[4]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -479,8 +495,8 @@
             </g>
 
             <!-- 溴化锂空调 -->
-            <g transform="translate(50 60)">
-              <line x1="-10" y1="12.5" x2="38.1" y2="12.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+            <g transform="translate(50 60)" *ngIf="checkOptions.checkOptionsOne_component[5].checked">
+              <line x1="-10" y1="12.5" x2="38.1" y2="12.5" class="color4" marker-end="url(#Arrow_Right5)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="-30" y1="182.5" x2="10" y2="182.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="10" y1="32.5" x2="10" y2="182.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="10" y1="32.5" x2="38.1" y2="32.5" class="color7" marker-end="url(#Arrow_Right7)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
@@ -488,19 +504,25 @@
               <text transform="translate(50 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-15" y="11">溴化锂空调</tspan>
               </text>
+              <g *ngIf="lines[1]">
               <line x1="90" y1="12.5" x2="248.1" y2="12.5" class="color2" marker-end="url(#Arrow_Right2)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <line x1="90" y1="32.5" x2="298.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
+              <g *ngIf="lines[2]">
+                <line x1="90" y1="32.5" x2="298.1" y2="32.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="50" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
             <!-- 余热锅炉 -->
-            <g transform="translate(50 150)">
-              <line x1="-10" y1="22.5" x2="38.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right4)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+            <g transform="translate(50 150)" *ngIf="checkOptions.checkOptionsOne_component[3].checked">
+              <line x1="-10" y1="22.5" x2="38.1" y2="22.5" class="color4" marker-end="url(#Arrow_Right5)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(50 0) scale(.2)" xlink:href="#yureguolu-img" id="dianwang-show" />
               <text transform="translate(50 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-15" y="11">余热锅炉</tspan>
               </text>
+              <g *ngIf="lines[5]">
               <line x1="90" y1="22.5" x2="248.1" y2="22.5" class="color6" marker-end="url(#Arrow_Right6)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="50" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
 
@@ -508,7 +530,7 @@
 
           <g transform="translate(280 740)">
             <!-- 第六条线 -->
-            <g transform="translate(200 0)">
+            <g transform="translate(200 0)" *ngIf="lines[5]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -516,7 +538,7 @@
             </g>
 
             <!-- 市政蒸汽 -->
-            <g transform="translate(50 340)">
+            <g transform="translate(50 340)" *ngIf="checkOptions.checkOptionsOne_component[11].checked">
               <use width="200" height="200" transform="translate(-30 0) scale(.2)" xlink:href="#shizhengzhengqi-img" id="dianwang-show" />
               <text transform="translate(-30 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">市政蒸汽</tspan>
@@ -526,7 +548,7 @@
             </g>
 
             <!-- 蒸汽负荷 -->
-            <g transform="translate(200 180)">
+            <g transform="translate(200 180)" *ngIf="checkOptions.checkOptionsOne_load[3].checked">
               <line x1="40" y1="22.5" x2="88.1" y2="22.5" class="color6" marker-end="url(#Arrow_Right6)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <use width="200" height="200" transform="translate(100 0) scale(.2)" xlink:href="#zhengqifuhe-img" id="dianwang-show" />
               <text transform="translate(100 45)" fill="black">
@@ -540,7 +562,7 @@
 
           <g transform="translate(180 840)">
             <!-- 第七条线 -->
-            <g transform="translate(0 0)">
+            <g transform="translate(0 0)" *ngIf="lines[6]">
               <text transform="translate(0 0)" fill="black">
                 <tspan font-family="Kaiti SC" font-size="16" font-weight="500" x="0" y="17"></tspan>
               </text>
@@ -548,7 +570,7 @@
             </g>
 
             <!-- 板式换热器 -->
-            <g transform="translate(120 30)">
+            <g transform="translate(120 30)" *ngIf="checkOptions.checkOptionsOne_component[8].checked">
               <line x1="-80" y1="72.5" x2="-20" y2="72.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="-20" y1="22.5" x2="-20" y2="72.5" class="color7" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
               <line x1="-20" y1="22.5" x2="-10" y2="22.5" class="color7" marker-end="url(#Arrow_Right7)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
@@ -556,7 +578,9 @@
               <text transform="translate(0 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-15" y="11">板式换热器</tspan>
               </text>
-              <line x1="40" y1="22.5" x2="248.1" y2="22.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              <g *ngIf="lines[2]">
+                <line x1="40" y1="22.5" x2="248.1" y2="22.5" class="color3" marker-end="url(#Arrow_Right3)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
+              </g>
               <rect class="rect-img" rx="1" ry="1" x="-30" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
             </g>
           </g>
@@ -671,7 +695,7 @@
       </div>
       <div nz-row>
         <div *ngFor="let option of checkOptions.checkOptionsOne_electric_generator" nz-col  nzXl="6" nzLg="24">
-          <label nz-checkbox [(ngModel)]="option.checked" [nzDisabled]="option.disabled||nzDisabled" [(nzChecked)]="option.checked" (ngModelChange)="updateSingleChecked_electric_generator($event,option.value)" class="checkbox-margin-bottom">
+          <label nz-checkbox [(ngModel)]="option.checked" [nzDisabled]="option.disabled||nzDisabled" [(nzChecked)]="option.checked" (ngModelChange)="updateSingleChecked_electric_generator($event,option.value,option)" class="checkbox-margin-bottom">
             <span>{{ option.label }}</span>
           </label>
         </div>
