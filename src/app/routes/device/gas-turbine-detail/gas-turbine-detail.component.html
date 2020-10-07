@@ -1,9 +1,24 @@
+<!--燃气轮机-->
+<!--负责：燃气轮机，燃气内燃机，燃气热水锅炉，燃气蒸汽锅炉
+其中，燃气轮机与内燃机比其余两项增加动态数据添加与折线图制作，其余部分均相同，故注释燃气轮机作为参考。
+-->
 <page-header [autoBreadcrumb]="false">
-  <ng-template #action>
+  <ng-template #action>  <!--ng命令为加载模板-->
+  <!--点击新建按钮添加，连接ts中的add函数-->
     <button (click)="add()" nz-button nzType="primary">新建</button>
   </ng-template>
 </page-header>
+<!--加载卡片模块-->
 <nz-card>
-  gas-turbine
+  <!--sf动态表单，参考链接：https://ng-alain.com/form/getting-started/zh-->
+  <sf mode="search" #sf [schema]="searchSchema" (formSubmit)="submit(sf.value)" (formReset)="reset($event)"></sf>
+  <!--st表格标签，参考链接：https://ng-alain.com/components/st/zh-->
+  <st #st [data]="data" [page]="pages" [total]="total" [columns]="columns" [scroll]="{x: '1000px'}" [pi]="pi" [ps]="ps" (change)="change($event)">
+
+    <ng-template st-row="custom"  let-item let-index="type" let-column="column" >
+     
+    </ng-template>
+
+  </st>
 </nz-card>
 

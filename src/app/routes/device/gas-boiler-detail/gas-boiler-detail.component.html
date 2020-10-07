@@ -1,9 +1,15 @@
+<!--燃气热水锅炉-->
 <page-header [autoBreadcrumb]="false">
   <ng-template #action>
     <button (click)="add()" nz-button nzType="primary">新建</button>
   </ng-template>
 </page-header>
 <nz-card>
-  gas-boiler-detail
+  <sf mode="search" #sf [schema]="searchSchema" (formSubmit)="submit(sf.value)" (formReset)="reset($event)"></sf>
+  <st #st [data]="data" [page]="pages" [total]="total" [columns]="columns" [scroll]="{x: '1000px'}" [pi]="pi" [ps]="ps" (change)="change($event)">
+
+
+
+  </st>
 </nz-card>
 

@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import {STChange, STColumn, STData} from '@delon/abc';
+import {STChange, STColumn, STData, STPage} from '@delon/abc';
 import {BatteryLinehartHostDirective} from "./battery-linechart-host.directive";
 import {NetworkSelectBatteryLinechartComponent} from "./battery-linechart.component";
 import {fromEvent} from "rxjs/index";
+import { DevicesService} from '../../../../user-service/devicesService'
+import {SFSchema} from "@delon/form";
 const DataSet = require('@antv/data-set');
 
 const sourceData: any[] = [
@@ -30,23 +32,34 @@ const scale = [
 
 
 @Component({
-  selector: 'app-network-select-battery-view',
-  templateUrl: './battery-view.component.html',
+  selector: 'app-network-select-battery',
+  templateUrl: './battery.component.html',
 
 })
-export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit {
+export class NetworkSelectBatteryComponent implements OnInit {
 
   // @ViewChild(BatteryLinehartHostDirective) batteryLinehartHostDirective: BatteryLinehartHostDirective;
-
-  record: any = {};
-  i: any = 1;
   @Input() public title;
 
   forceFit = false; // 宽度自适应
   height = 400;
+  data;
+  params = { pi: 1, ps: 3 ,total:0,val:""};
+  pages: STPage = {
+    total: '',//分页显示多少条数据，字符串型
+    show: true,//显示分页
+    front: false //关闭前端分页，true是前端分页，false后端控制分页
+  };
+  searchSchema: SFSchema = {
+    properties: {
+      name: {
+        type: 'string',
+        title: '型号名称'
+      }
+    },
+  };
   data1;
-  data2;
-  data3;
+
   scale = scale;
   style = { stroke: '#fff', lineWidth: 1 };
   chart_title_x = {text: '个数', textStyle: {fill: '#515151'} };
@@ -54,11 +67,8 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
   chart_title_y2 = {text: '替换成本(元)', textStyle: {fill: '#515151'}};
   chart_title_y3 = {text: '运维成本(元)', textStyle: {fill: '#515151'}};
 
-
-  url = `/tinyNet/device/battery/list`;
-  params = { pi: 1, ps: 3 };
   columns: STColumn[] = [
-    { title: '编号', index: 'id', type: 'checkbox', fixed: 'left', width: '80px' },
+    { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
     { title: '名称', index: 'name', fixed: 'left', width: '120px' },
     { title: '制造商', index: 'factory', fixed: 'left', width: '150px' },
     { title: '额定电压(V)', index: 'eddy', type: 'number' },
@@ -76,7 +86,7 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
   result_data = {
     device : null,
     data : {
-      battery_ids : [],
+      battery_ids : null,
       battery_soc_1 : '0.00',
       battery_soc_2 : '0.00',
       battery_soc_3 : '0.00',
@@ -90,82 +100,77 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
   constructor(
     private modal: NzModalRef,
     public msgSrv: NzMessageService,
-    public http: _HttpClient,
-    // private componentFactoryResolver: ComponentFactoryResolver,
     private el: ElementRef,
+    private devicesService: DevicesService,
   ) { }
 
   ngOnInit(): void {
-    // this.http.get(`/user/${this.record.id}`).subscribe(res => this.i = res);
     this.result_data.device = this.title;
-
-    // fromEvent(window, 'resize').subscribe(function () {
-    //   console.log("1");
-    // });
-  }
-
-  ngAfterViewInit() {
-
+    this.getlist(this.params.pi);
   }
 
   close() {
     this.modal.destroy(this.result_data);
   }
+  getlist(pi) {
+    this.devicesService.list(pi, this.params.ps, this.params.val, "battery").subscribe((res) => {
+      console.log(res);
+      if (res["errno"] == "0") {
+        this.params.total = res["data"]["data"]["total"];
+        this.pages.total = '共' + this.params.total + '条';
+        this.data = res["data"]["data"]["list"];
+        this.params.pi = pi;
+        // this.ps = 10;
+      } else if (res["errno"] == "2") {
+        this.devicesService.tologin();
+      } else {
+        this.msgSrv.create('error', `error`);
+      }
+      this.devicesService.setCookie("token", res["data"]["data"]["token"]);
+    })
+  }
+  submit(value:any){
+    this.params.val = (value["name"]==undefined)?"":value["name"];
+    this.getlist(1);
+    this.data1=[];
+  }
 
-  changeData() {
-    const sourceData1: any[] = [
-      {x : 0,     初建成本 : 0,        替换成本 : 0,              运维成本 : 0},
-      {x : 1,     初建成本 : 1000,     替换成本 : 1000 * 0.3,     运维成本 : 0},
-      {x : 100,   初建成本 : 100000,   替换成本 : 100000 * 0.3,   运维成本 : 0},
-      {x : 10000, 初建成本 : 10000000, 替换成本 : 10000000 * 0.3, 运维成本 : 0},
-    ];
-
-    const dv1 = new DataSet.View().source(sourceData1);
-    dv1.transform({
-      type: 'fold',
-      fields: ['初建成本', '替换成本', '运维成本'],
-      key: 'cost_type',
-      value: 'cost_number',
-    });
-    const dataTemp = dv1.rows;
-    this.data1 = dataTemp;
-    console.log(this.data1);
+  reset(value:any){
+    this.params.val = "";
+    this.getlist(1);
+    this.data1=[];
   }
 
   change(e: STChange) {
-
-    if (e.type === 'checkbox') {
+    if (e.type === 'radio') {
       console.log('change', e);
-      this.result_data.data.battery_ids = [];
-      const array = e.checkbox;
-      const sourceData1: any[] = [];
-      const sourceData2: any[] = [];
-      const sourceData3: any[] = [];
-      const _this = this;
-      array.forEach(function (value) {
-        for (let i = 1; i <= 4; i++) {
-          sourceData1.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['cjcb' + i]});
-          sourceData2.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['gxcb' + i]});
-          sourceData3.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['yxwhcb' + i]});
-        }
-        _this.result_data.data.battery_ids.push(value);
+      const value = e.radio;
+      const sourceData: any[] = [
+        {x : value.capacity1, 初建成本 : value.cjcb1, 替换成本 : value.gxcb1, 运维成本 : value.yxwhcb1},
+        {x : value.capacity2, 初建成本 : value.cjcb2, 替换成本 : value.gxcb2, 运维成本 : value.yxwhcb2},
+        {x : value.capacity3, 初建成本 : value.cjcb3, 替换成本 : value.gxcb3, 运维成本 : value.yxwhcb3},
+        {x : value.capacity4, 初建成本 : value.cjcb4, 替换成本 : value.gxcb4, 运维成本 : value.yxwhcb4},
+      ];
+
+      const dv = new DataSet.View().source(sourceData);
+      dv.transform({
+        type: 'fold',
+        fields: ['初建成本', '替换成本', '运维成本'],
+        key: 'cost_type',
+        value: 'cost_number',
       });
-      this.data1 = sourceData1;
-      this.data2 = sourceData2;
-      this.data3 = sourceData3;
-
-      console.log(this.result_data.data.battery_ids);
-
-      // this.result_data.data.battery_id = e.radio.id;
+      const data1 = dv.rows;
+      this.data1 = data1;
+      this.result_data.data.battery_ids = value.id;
     }
+
+    if(e.pi!=this.params.pi){
+      this.data1=[];
+      this.getlist(e.pi);
+    }
+
   }
 
-  dataProcess(data: STData[]) {
-    return data.map((i: STData, index: number) => {
-      i.checked = false;
-      return i;
-    });
-  }
 
   /**
    * 在 modal 中使用 G2图表 会有打开modal后图标不渲染的情况，

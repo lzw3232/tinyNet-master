@@ -11,9 +11,68 @@
   stroke-width:1;
   stroke:black;
   fill-opacity:0.1;
+  cursor: pointer;
   transition:all 200ms cubic-bezier(0.47,0,0.745,0.715) 0s;
 }
 .svg-border{
   border:1px solid #e8e8e8;
+}
+
+svg .color1 path{
+  fill: #4CB4E7;
+  stroke: #4CB4E7;
+}
+.color1{
+  fill: #4CB4E7;
+  stroke: #4CB4E7;
+}
+
+svg .color2 path{
+  fill: #91BFBF;
+  stroke: #91BFBF;
+}
+.color2{
+  fill: #91BFBF;
+  stroke: #91BFBF;
+}
+svg .color3 path{
+  fill: #E6AABB;
+  stroke: #E6AABB;
+}
+.color3{
+  fill: #E6AABB;
+  stroke: #E6AABB;
+}
+svg .color4 path{
+  fill: #F0DF98;
+  stroke: #F0DF98;
+}
+.color4{
+  fill: #F0DF98;
+  stroke: #F0DF98;
+}
+svg .color5 path{
+  fill: #FCC689;
+  stroke: #FCC689;
+}
+.color5{
+  fill: #FCC689;
+  stroke: #FCC689;
+}
+svg .color6 path{
+  fill: #9CAEF0;
+  stroke: #9CAEF0;
+}
+.color6{
+  fill: #9CAEF0;
+  stroke: #9CAEF0;
+}
+svg .color7 path{
+  fill: #94A0B6;
+  stroke: #94A0B6;
+}
+.color7{
+  fill: #94A0B6;
+  stroke: #94A0B6;
 }
 

@@ -1,12 +1,36 @@
-import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import { NetworkSelectBatteryViewComponent } from './view/battery-view.component';
 import {NzModalService} from 'ng-zorro-antd';
+import { NetworkSelectBatteryComponent } from './battery/battery.component';
 import {NetworkSelectTurbineComponent} from './turbine/turbine.component';
 import {NetworkSelectWindTurbineComponent} from './wind-turbine/wind-turbine.component';
 import {NetworkSelectPhotovoltaicComponent} from './photovoltaic/photovoltaic.component';
 import {NetworkSelectGeneratorComponent} from './generator/generator.component';
-
+import { NetworkSelectCentrifugalComponent } from './centrifugal/centrifugal.component';
+import {NetworkSelectDirectFiredLithiumBromideComponent} from './direct-fired-lithium-bromide/direct-fired-lithium-bromide.component';
+import {NetworkSelectElectricBoilerComponent} from './electric-boiler/electric-boiler.component';
+import {NetworkSelectGasBoilerComponent} from './gas-boiler/gas-boiler.component';
+import {NetworkSelectGasEngineComponent} from './gas-engine/gas-engine.component';
+import { NetworkSelectGasSteamComponent } from './gas-steam/gas-steam.component';
+import {NetworkSelectGasTurbineComponent} from './gas-turbine/gas-turbine.component';
+import { NetworkSelectHeatPumpComponent } from './heat-pump/heat-pump.component';
+import { NetworkSelectHeatStorageComponent } from './heat-storage/heat-storage.component';
+import { NetworkSelectHostComponent } from './host/host.component';
+import { NetworkSelectIceStorageComponent } from './ice-storage/ice-storage.component';
+import { NetworkSelectLithiumBromideComponent } from './lithium-bromide/lithium-bromide.component';
+import { NetworkSelectNuclearComponent } from './nuclear/nuclear.component';
+import { NetworkSelectPlateHeatComponent } from './plate-heat/plate-heat.component';
+import { NetworkSelectResidualHeatComponent } from './residual-heat/residual-heat.component';
+import { NetworkSelectScrewComponent } from './screw/screw.component';
+import { NetworkSelectScrollComponent } from './scroll/scroll.component';
 
 
 @Component({
@@ -29,31 +53,56 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   @Output() selectDeviceDataEmitter = new EventEmitter<any>();
 
   @Output() listDataEmitter = new EventEmitter<any>();
-
+  lines=[];
 
   select_device_data = {
-    dianwang : { data : null },
-    guangziyuan : { data : null },
-    photovoltaic : { data : null },
-    fengziyuan : { data : null },
-    wind_turbines : { data : null },
-    shuiziyuan : { data : null },
-    turbine : { data : null },
-    generator : { data : null },
-    ranqilunji : { data : null },
     battery : { data : null },
-    dianfuhe : { data : null },
-    dianzhilengji : { data : null },
-    shuanggongkuangzhuji : { data : null },
-    xubingzhuangzhi : { data : null },
-    rebeng : { data : null },
-    dianguolu : { data : null },
-    xiulihuakongtiao : { data : null },
-    yureguolu : { data : null },
-    ranqiguolu : { data : null },
-    lengfuhe : { data : null },
-    refuhe : { data : null },
-    xurezhuangzhi : { data : null }
+    centrifugal : { data : null },
+    direct_fired_lithium_bromide : { data : null },
+    electric_boiler : { data : null },
+    gas_boiler : { data : null },
+    gas_engine : { data : null },
+    gas_steam : { data : null },
+    gas_turbine : { data : null },
+    generator : { data : null },
+    heat_pump : { data : null },
+    heat_storage : { data : null },
+    host : { data : null },
+    ice_storage : { data : null },
+    lithium_bromide : { data : null },
+    nuclear : { data : null },
+    photovoltaic : { data : null },
+    plate_heat : { data : null },
+    residual_heat : { data : null },
+    screw : { data : null },
+    scroll : { data : null },
+    turbine : { data : null },
+    wind_turbines : { data : null },
+  };
+
+  toComponent = {
+    battery : NetworkSelectBatteryComponent,
+    centrifugal : NetworkSelectCentrifugalComponent,
+    direct_fired_lithium_bromide : NetworkSelectDirectFiredLithiumBromideComponent,
+    electric_boiler : NetworkSelectElectricBoilerComponent,
+    gas_boiler : NetworkSelectGasBoilerComponent,
+    gas_engine : NetworkSelectGasEngineComponent,
+    gas_steam : NetworkSelectGasSteamComponent,
+    gas_turbine : NetworkSelectGasTurbineComponent,
+    generator : NetworkSelectGeneratorComponent,
+    heat_pump : NetworkSelectHeatPumpComponent,
+    heat_storage : NetworkSelectHeatStorageComponent,
+    host : NetworkSelectHostComponent,
+    ice_storage : NetworkSelectIceStorageComponent,
+    lithium_bromide : NetworkSelectLithiumBromideComponent,
+    nuclear : NetworkSelectNuclearComponent,
+    photovoltaic : NetworkSelectPhotovoltaicComponent,
+    plate_heat :NetworkSelectPlateHeatComponent,
+    residual_heat : NetworkSelectResidualHeatComponent,
+    screw : NetworkSelectScrewComponent,
+    scroll : NetworkSelectScrollComponent,
+    turbine : NetworkSelectTurbineComponent,
+    wind_turbines : NetworkSelectWindTurbineComponent,
   };
 
   loading = false;
@@ -62,18 +111,34 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   i = 1;
 
   constructor(
-    private http: _HttpClient,
     private modalService: NzModalService,
     private el: ElementRef,
   ) { }
 
   ngOnInit() {
     console.log('NetworkSelectComponent init');
-    // console.log(this.checkOptionsSet);
+    //console.log(this.checkOptions);
     if (this.defaultListData.length > 0) {
       this.list_data = this.defaultListData;
       this.select_device_data = this.defaultSelectDeviceData;
     }
+    this.lines[0] = this.checkOptions.checkOptionsOne_load[0].checked
+      ||this.checkOptions.checkOptionsOne_renewable_energy[0].checked
+      ||this.checkOptions.checkOptionsOne_renewable_energy[1].checked
+      ||this.checkOptions.checkOptionsOne_renewable_energy[2].checked
+      ||this.checkOptions.checkOptionsOne_stored_energy[1].checked
+      ||this.checkOptions.checkOptionsOne_electric_generator[1].checked
+      ||(this.radioValue=="B")
+    ;
+    console.log(this.lines[0]);
+    console.log(this.checkOptions.checkOptionsOne_load[0].checked);
+    this.lines[1]=this.checkOptions.checkOptionsOne_load[1].checked;
+    this.lines[2]=this.checkOptions.checkOptionsOne_load[2].checked;
+    this.lines[3]=this.checkOptions.checkOptionsOne_electric_generator[0].checked||this.checkOptions.checkOptionsOne_electric_generator[2].checked||this.checkOptions.checkOptionsOne_component[9].checked;
+    this.lines[4]=this.checkOptions.checkOptionsOne_component[5].checked||this.checkOptions.checkOptionsOne_component[3].checked;
+    this.lines[5]=this.checkOptions.checkOptionsOne_load[3].checked;
+    this.lines[6]=this.checkOptions.checkOptionsOne_component[5].checked||this.checkOptions.checkOptionsOne_component[8].checked;
+
   }
 
   ngOnDestroy() {
@@ -128,26 +193,8 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   hello(name) {
     // console.log(name);
-    let temp;
-    switch (name) {
-      case 'dianchi':
-        temp = NetworkSelectBatteryViewComponent;
-        break;
-      case 'shuilifadianji':
-        temp = NetworkSelectTurbineComponent;
-        break;
-      case 'fenglifadianji':
-        temp = NetworkSelectWindTurbineComponent;
-        break;
-      case 'guangfuzhenlie':
-        temp = NetworkSelectPhotovoltaicComponent;
-        break;
-      case 'changguifadianji':
-        temp = NetworkSelectGeneratorComponent;
-        break;
-      default:
-        break;
-    }
+    let temp = this.toComponent[name];
+
     const modal = this.modalService.create({
       nzTitle: '设备详情',
       nzContent: temp,
@@ -187,7 +234,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       console.log('[afterClose] The result is:', result);
       if (result) {
         switch (result['device']) {
-          case 'dianchi':
+          case 'battery':
             if (result['data']['battery_ids'].length > 0) {
               this.select_device_data.battery.data = result['data'];
               this.updateTheList({

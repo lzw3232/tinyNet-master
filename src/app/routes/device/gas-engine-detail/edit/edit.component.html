@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <div class="modal-title" *ngIf="record.id">编辑 {{ record.name }} 信息</div>
+    <div class="modal-title" *ngIf="!record.id">新添 燃气内燃机 信息</div>
+  </div>
+  <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+  <sf *ngIf="i" #sf mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">
+    <!-- <div class="modal-footer"> -->
+    
+      <nz-card style="width:100%" *ngIf="i" style="margin-bottom: 24px;">
+        <!-- <page-header [autoBreadcrumb]="false"> -->
+          <!-- <ng-template #action>  ng命令为加载模板 -->
+          <!--点击新建按钮添加-->
+          <div >
+            <button nz-button (click)="add()" nzType="primary" style="margin-bottom:10px" >添加输出功率与燃料消耗</button>
+            <button nz-button (click)="delete1()" nzType="primary" style="margin-bottom:10px" >删除</button>
+
+        </div>
+          <table class="outPower">
+              <tr class="title">
+                  <td style="width: 65px;">编号</td>
+                  <td>输出功率(KM)</td>
+                    <td>燃烧消耗(m^3)</td>
+              </tr>
+              <tr *ngFor = "let item of shiyan">
+                <td class="border"><label nz-checkbox [(ngModel)]="item.checked" ></label></td>
+                <td><input type="text" [(ngModel)]="item.value1"></td>
+                <td><input type="text" [(ngModel)]="item.value2"></td>
+            </tr>
+          </table>
+            <!-- <ul>
+               
+                <li *ngFor = "let item of shiyan" style="list-style-type:none;">
+                    {{item.title1}}  <input type="text" [(ngModel)]="item.value1" style="margin-right:150px" type="red">
+                    {{item.title2}}  <input type="text" [(ngModel)]="item.value2" type="red">
+                    <button nz-button (click)="delect(item)" nzType="primary" style="margin-left:30px;margin-bottom:10px" >删除</button>
+                </li>
+            </ul> -->
+           
+          <!-- </ng-template> -->
+        <!-- </page-header>    -->
+      </nz-card>
+    <div class="modal-footer">
+      <button nz-button type="button" (click)="close()">关闭</button>
+      <button nz-button type="submit" [nzType]="'primary'" (click)="save(sf.value)" [disabled]="!sf.valid" [nzLoading]="http.loading">保存</button>
+    </div>
+  </sf>
+  

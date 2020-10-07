@@ -4,17 +4,12 @@
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
 <sv-container col="3" *ngIf="i">
   <sv label="型号名称">{{ i.name }}</sv>
-  <sv label="额定电压(V)">{{ i.eddy }}</sv>
-  <sv label="循环充放电效率(%)">{{ i.xhcfdxl }}</sv>
-  <sv label="最大充电速率">{{ i.zdcdsl }}</sv>
-  <sv label="最大充电电流(A)">{{ i.zdcddl }}</sv>
-  <sv label="最大放电速率">{{ i.zdfdsl }}</sv>
-  <sv label="电池容量(Ah)">{{ i.dcrl }}</sv>
+  <sv label="制热能效比">{{ i.heatingEnergyEfficiencyRatio }}</sv>
+  <sv label="制冷能效比">{{ i.refrigerationEnergyEfficiencyRatio }}</sv>
+  <sv label="额定制热功率(kW)">{{ i.ratedHeatingPower }}</sv>
+  <sv label="额定制冷功率(kW)">{{ i.ratedCoolingPower }}</sv>
   <sv label="寿命(年)">{{ i.life }}</sv>
-  <sv label="全寿命放电量(kWh)">{{ i.qsmfd }}</sv>
-  <sv label="串联个数">{{ i.clgs }}</sv>
-  <sv label="制造商">{{ i.factory }}</sv>
-  <sv label="类型">{{ i.type }}</sv>
+  <sv label="制造商">{{ i.manufacturer }}</sv>
 </sv-container>
 <nz-card style="width:100%" nzTitle="经济曲线" *ngIf="i" style="margin-top: 24px;">
   <div nz-row>

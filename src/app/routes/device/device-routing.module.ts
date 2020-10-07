@@ -19,6 +19,7 @@ import {LithiumBromideDetailComponent} from "./lithium-bromide-detail/lithium-br
 import {DirectFiredLithiumBromideDetailComponent} from "./direct-fired-lithium-bromide-detail/direct-fired-lithium-bromide-detail.component";
 import {HostDetailComponent} from "./host-detail/host-detail.component";
 import {HeatStorageDetailComponent} from "./heat-storage-detail/heat-storage-detail.component";
+import {IceStorageDetailComponent} from "./ice-storage-detail/ice-storage-detail.component";
 import {ResidualHeatDetailComponent} from "./residual-heat-detail/residual-heat-detail.component";
 import {PlateHeatDetailComponent} from "./plate-heat-detail/plate-heat-detail.component";
 import {NuclearDetailComponent} from "./nuclear-detail/nuclear-detail.component";
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'DirectFiredLithiumBromideDetail', component: DirectFiredLithiumBromideDetailComponent ,canActivate:[AuthGuard]},
   { path: 'hostDetail', component: HostDetailComponent ,canActivate:[AuthGuard]},
   { path: 'heatStorageDetail', component: HeatStorageDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'iceStorageDetail', component: IceStorageDetailComponent ,canActivate:[AuthGuard]},
   { path: 'residualHeatDetail', component: ResidualHeatDetailComponent ,canActivate:[AuthGuard]},
   { path: 'plateHeatDetail', component: PlateHeatDetailComponent ,canActivate:[AuthGuard]},
   { path: 'nuclearDetail', component: NuclearDetailComponent ,canActivate:[AuthGuard]},

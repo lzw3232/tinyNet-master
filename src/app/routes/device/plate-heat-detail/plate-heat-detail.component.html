@@ -4,6 +4,7 @@
   </ng-template>
 </page-header>
 <nz-card>
-  plate-heat-detail
+  <sf mode="search" #sf [schema]="searchSchema" (formSubmit)="submit(sf.value)" (formReset)="reset($event)"></sf>
+  <st #st [data]="data" [page]="pages" [total]="total" [columns]="columns" [scroll]="{x: '1600px'}" [pi]="pi" [ps]="ps" (change)="change($event)">
+  </st>
 </nz-card>
-

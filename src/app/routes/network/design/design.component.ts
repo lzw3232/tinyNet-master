@@ -34,7 +34,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   checkOptions = {
     checkOptionsOne_load: [
-      { label: '电负荷', value: '1_1', checked: false, disabled: false },
+      { label: '电负荷', value: '1_1', checked: true, disabled: true },
       { label: '冷负荷', value: '1_2', checked: false, disabled: true },
       { label: '热水负荷', value: '1_3', checked: false, disabled: true },
       { label: '蒸汽负荷', value: '1_4', checked: false, disabled: true }
@@ -94,12 +94,20 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
       zoomScaleSensitivity: 0.5,
       dblClickZoomEnabled: false
     });
-    this.radioValue="A";
+    if(this.default_radioValue){
+      this.checkOptions=this.default_checkOptions_object;
+      this.radioValue=this.default_radioValue;
+      this.current_checkOptions=this.default_checkOptions;
+    }
+    else{
+      this.radioValue="A";
+    }
     this.condition()
     //this.setDefaultValues();
   }
 
   ngOnDestroy() {
+    console.log(this.current_checkOptions);
     this.checkOptionsEmitter.emit(this.current_checkOptions);
     this.radioValueEmitter.emit(this.radioValue);
     this.allCheckOptionsEmitter.emit(this.checkOptions);
@@ -122,7 +130,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     this.checkOptions.checkOptionsOne_load[2].disabled = !(this.radioValue == "B");
     this.checkOptions.checkOptionsOne_load[3].disabled = !(this.radioValue == "B");
 
-    for(let i=0;i<this.checkOptions.checkOptionsOne_load.length;i++){
+    for(let i=1;i<this.checkOptions.checkOptionsOne_load.length;i++){
       if (this.checkOptions.checkOptionsOne_load[i].disabled === true)
         this.checkOptions.checkOptionsOne_load[i].checked = false;
     }
@@ -205,6 +213,15 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     this.lines[4]=this.checkOptions.checkOptionsOne_component[5].checked||this.checkOptions.checkOptionsOne_component[3].checked;
     this.lines[5]=this.checkOptions.checkOptionsOne_load[3].checked;
     this.lines[6]=this.checkOptions.checkOptionsOne_component[5].checked||this.checkOptions.checkOptionsOne_component[8].checked;
+
+
+    for(let i in this.checkOptions){
+      this.checkOptions[i].map(res=>{
+        if(res.checked==true){
+          this.current_checkOptions.add(res.value);
+        }
+      })
+    }
 
   }
 

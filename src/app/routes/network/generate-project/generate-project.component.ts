@@ -65,6 +65,7 @@ export class NetworkGenerateProjectComponent implements OnInit {
       但是由于该组件在步骤条切换时会 destroy 及重新 init，
       故可以使用生命周期方法ngOnDestroy()，在组件destroy时将设置参数发送到父组件，
       因此该方法留以备用
+      但是因为选择设备不够不切换使就不能通过destroy来获得
      */
     // if (this.current === 0) {
     //   this.checkOptions = this.networkDesignComponent.current_checkOptions;
@@ -75,52 +76,56 @@ export class NetworkGenerateProjectComponent implements OnInit {
     if ( this.current === 0) {
       const temp_checkOption = this.networkDesignComponent.current_checkOptions;
       const temp_radioValue = this.networkDesignComponent.radioValue;
+      if(!temp_checkOption.has('1_1')){
+        this.modalService.error({
+          nzTitle: '选择错误',
+          nzContent: '<b>电负荷</b>必须勾选',
+          nzWidth: '650'
+        });
+      }
       if (temp_checkOption.has('1_2')) {
-        if ( !temp_checkOption.has('4_2') && !temp_checkOption.has('4_5')) {
+        if ( !temp_checkOption.has('3_1') &&!temp_checkOption.has('4_1') && !temp_checkOption.has('4_5')
+          && !temp_checkOption.has('4_7')&& !temp_checkOption.has('4_8')&& !temp_checkOption.has('4_11')) {
           this.modalService.error({
             nzTitle: '选择错误',
-            nzContent: '<b>电制冷机</b>与<b>热泵</b>至少包含一个',
+            nzContent: '请选择<b>冷设备</b>',
             nzWidth: '650'
           });
-          console.log('电制冷机 与 热泵 至少包含一个');
           return;
         }
       }
       if (temp_checkOption.has('1_3')) {
         if ( !temp_checkOption.has('4_1')
           && !temp_checkOption.has('4_2')
-          && !temp_checkOption.has('4_3')) {
+          && !temp_checkOption.has('4_11')
+          && !temp_checkOption.has('3_3')) {
           this.modalService.error({
             nzTitle: '选择错误',
-            nzContent: '<b>燃气锅炉</b>、<b>热泵</b>与<b>电锅炉</b>至少包含一个',
+            nzContent: '请选择<b>热设备</b>',
             nzWidth: '650'
           });
-          console.log('燃气锅炉、热泵 与 电锅炉 至少包含一个');
           return;
         }
       }
-      if (temp_radioValue === 'B') {
-        if (!temp_checkOption.has('3_1') &&
-            !temp_checkOption.has('3_2') &&
-            !temp_checkOption.has('3_3') &&
-            !temp_checkOption.has('5_1') &&
-            !temp_checkOption.has('5_2')) {
+
+      if (temp_checkOption.has('5_1')||temp_checkOption.has('5_3')) {
+        if ( !temp_checkOption.has('4_6')) {
           this.modalService.error({
             nzTitle: '选择错误',
-            nzContent: '<b>电池储能系统</b>、<b>蓄冰装置</b>、<b>储热装置</b>、<b>常规发电机</b>与<b>燃气轮机</b至少包含一个',
+            nzContent: '请选择<b>烟气设备</b>',
             nzWidth: '650'
           });
-          console.log('电池储能系统、蓄冰装置、储热装置、常规发电机 与 燃气轮机 至少包含一个');
           return;
         }
-      } else {
-        if (!temp_checkOption.has('3_1')  && !temp_checkOption.has('4_1')) {
+      }
+      if (temp_radioValue === 'A') {
+        if (!temp_checkOption.has('5_2') &&
+            !temp_checkOption.has('3_2')) {
           this.modalService.error({
             nzTitle: '选择错误',
-            nzContent: '<b>电池储能系统</b>与<b>常规发电机</b>至少包含一个',
+            nzContent: '<b>电池储能系统</b>、<b>常规发电机</b>至少包含一个',
             nzWidth: '650'
           });
-          console.log('电池储能系统 与 常规发电机 至少包含一个');
           return;
         }
       }

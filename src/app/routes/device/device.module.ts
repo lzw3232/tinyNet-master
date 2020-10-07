@@ -56,6 +56,9 @@ import { HostDetailEditComponent } from './host-detail/edit/edit.component';
 import { HeatStorageDetailComponent } from './heat-storage-detail/heat-storage-detail.component';
 import { HeatStorageDetailViewComponent } from './heat-storage-detail/view/view.component';
 import { HeatStorageDetailEditComponent } from './heat-storage-detail/edit/edit.component';
+import { IceStorageDetailComponent } from './ice-storage-detail/ice-storage-detail.component';
+import { IceStorageDetailViewComponent } from './ice-storage-detail/view/view.component';
+import { IceStorageDetailEditComponent } from './ice-storage-detail/edit/edit.component';
 import { ResidualHeatDetailComponent } from './residual-heat-detail/residual-heat-detail.component';
 import { ResidualHeatDetailViewComponent } from './residual-heat-detail/view/view.component';
 import { ResidualHeatDetailEditComponent } from './residual-heat-detail/edit/edit.component';
@@ -123,6 +126,9 @@ const COMPONENTS_NOROUNT = [
   HeatStorageDetailComponent,
   HeatStorageDetailViewComponent,
   HeatStorageDetailEditComponent,
+  IceStorageDetailComponent,
+  IceStorageDetailViewComponent,
+  IceStorageDetailEditComponent,
   ResidualHeatDetailComponent,
   ResidualHeatDetailViewComponent,
   ResidualHeatDetailEditComponent,

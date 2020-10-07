@@ -1,0 +1,21 @@
+.outPower{
+    width: 100%;
+}
+
+.outPower tr td{
+    border: 1px solid #eee;
+}
+.outPower .title td{
+    background-color: #fafafa;
+    padding: 16px;
+}
+
+.outPower .border{
+    text-align: center;
+}
+
+.outPower tr td input{
+    border: none;
+    outline: none;
+    padding: 8px;
+}

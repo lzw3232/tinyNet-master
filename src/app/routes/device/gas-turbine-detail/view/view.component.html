@@ -1,35 +1,57 @@
 <div class="modal-header">
   <div class="modal-title">查看 {{ record.name }} 信息</div>
 </div>
+<!--*ngIf判断是否存在数据-->
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+<!--查看栅格系统，链接：https://ng-alain.com/components/sv/zh-->
 <sv-container col="3" *ngIf="i">
-  <sv label="型号名称">{{ i.name }}</sv>
-  <sv label="额定电压(V)">{{ i.eddy }}</sv>
-  <sv label="循环充放电效率(%)">{{ i.xhcfdxl }}</sv>
-  <sv label="最大充电速率">{{ i.zdcdsl }}</sv>
-  <sv label="最大充电电流(A)">{{ i.zdcddl }}</sv>
-  <sv label="最大放电速率">{{ i.zdfdsl }}</sv>
-  <sv label="电池容量(Ah)">{{ i.dcrl }}</sv>
-  <sv label="寿命(年)">{{ i.life }}</sv>
-  <sv label="全寿命放电量(kWh)">{{ i.qsmfd }}</sv>
-  <sv label="串联个数">{{ i.clgs }}</sv>
-  <sv label="制造商">{{ i.factory }}</sv>
-  <sv label="类型">{{ i.type }}</sv>
+  <sv label="型号名称">{{i.name}}</sv>
+  <sv label="额定功率(kW)">{{ i.ratedPower }}</sv>
+  <sv label="最小负载率(0-1)">{{ i.mLoadRate }}</sv>
+  <sv label="燃气轮机效率(%)">{{ i.gasTurbineEff }}</sv>
+  <sv label="燃机电热比">{{ i.gasCogRatio }}</sv>
+  <sv label="寿命(年)">{{ i.lifetime }}</sv>
+  
 </sv-container>
+<!--第一个卡片，显示经济曲线图像，*ngIf判断是否有数据，没有数据不显示-->
 <nz-card style="width:100%" nzTitle="经济曲线" *ngIf="i" style="margin-top: 24px;">
   <div nz-row>
     <div nz-col nzSpan="23">
       <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
-        <v-tooltip></v-tooltip>
+        <v-tooltip></v-tooltip><!--下拉条-->
         <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
         <v-axis dataKey="cost_number" [title]="chart_title_y"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+        <v-legend></v-legend>   <!--使得数据排列对齐-->
+        <v-line position="x*cost_number" color="cost_type"></v-line><!--线-->
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point><!--点-->
       </v-chart>
     </div>
   </div>
 </nz-card>
+<!--同上-->
+<nz-card style="width:100%" nzTitle="燃料曲线" *ngIf="i" style="margin-top: 24px;">
+  <div nz-row>
+    <div nz-col nzSpan="23">
+      <v-chart [forceFit]="forceFit" [height]="height" [data]="data1">
+      
+        <v-tooltip></v-tooltip> <!--下拉条-->
+        <!--v-scale x :tick-count="3" />
+        <v-tooltip :show-item-marker="false" show-x-value />
+        <v-line /-->
+        <v-axis dataKey="yaxis" [title]="chart_title_a"></v-axis>
+        <v-axis dataKey="zaxis" [title]="chart_title_b"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="yaxis*zaxis"></v-line>
+        <v-point position="yaxis*zaxis" [size]="4" [style]="style" shape="circle"></v-point>
+       
+
+      </v-chart>
+    </div>
+  </div>
+</nz-card>
+
+<!--底部标签，直接用的模板，close函数关闭view页面-->
 <div class="modal-footer">
   <button nz-button type="button" (click)="close()">关闭</button>
 </div>
+

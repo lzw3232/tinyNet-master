@@ -237,6 +237,11 @@ export class StartupService {
                 // reuse: false,
               },
               {
+                text: '蓄冰装置',
+                link: '/device/iceStorageDetail',
+                // reuse: false,
+              },
+              {
                 text: '余热锅炉',
                 link: '/device/residualHeatDetail',
                 // reuse: false,
