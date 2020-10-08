@@ -11,7 +11,7 @@ import {_HttpClient, ModalHelper} from '@delon/theme';
 import {NzModalService} from 'ng-zorro-antd';
 import { NetworkSelectBatteryComponent } from './battery/battery.component';
 import {NetworkSelectTurbineComponent} from './turbine/turbine.component';
-import {NetworkSelectWindTurbineComponent} from './wind-turbine/wind-turbine.component';
+import {NetworkSelectWindTurbinesComponent} from './wind-turbines/wind-turbines.component';
 import {NetworkSelectPhotovoltaicComponent} from './photovoltaic/photovoltaic.component';
 import {NetworkSelectGeneratorComponent} from './generator/generator.component';
 import { NetworkSelectCentrifugalComponent } from './centrifugal/centrifugal.component';
@@ -42,8 +42,6 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   @Input() radioValue: any;
 
-  @Input() checkOptionsSet: Set<string>;
-
   @Input() checkOptions: any;
 
   @Input() defaultSelectDeviceData: any;
@@ -53,32 +51,132 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   @Output() selectDeviceDataEmitter = new EventEmitter<any>();
 
   @Output() listDataEmitter = new EventEmitter<any>();
+
   lines=[];
 
-  select_device_data = {
-    battery : { data : null },
-    centrifugal : { data : null },
-    direct_fired_lithium_bromide : { data : null },
+  default_select_device_data = {
+    battery : {
+      id : null,
+      soc_1 : '0.00',
+      soc_2 : '0.00',
+      soc_3 : '0.00',
+      total_flow : '0.00',
+      back_flow : '0.00',
+      upper_limit : '1.00',
+      lower_limit : '10.00'},
+    centrifugal : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    direct_fired_lithium_bromide : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
     electric_boiler : { data : null },
-    gas_boiler : { data : null },
-    gas_engine : { data : null },
-    gas_steam : { data : null },
-    gas_turbine : { data : null },
-    generator : { data : null },
-    heat_pump : { data : null },
-    heat_storage : { data : null },
-    host : { data : null },
-    ice_storage : { data : null },
-    lithium_bromide : { data : null },
+    gas_boiler : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    gas_engine : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    gas_steam : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    gas_turbine : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    generator : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    heat_pump :  {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    heat_storage : {
+      id : null,
+      soc_1 : '0.00',
+      soc_2 : '0.00',
+      soc_3 : '0.00',
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    host : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    ice_storage : {
+      id : null,
+      soc_1 : '0.00',
+      soc_2 : '0.00',
+      soc_3 : '0.00',
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    lithium_bromide : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
     nuclear : { data : null },
-    photovoltaic : { data : null },
-    plate_heat : { data : null },
-    residual_heat : { data : null },
-    screw : { data : null },
-    scroll : { data : null },
-    turbine : { data : null },
-    wind_turbines : { data : null },
-  };
+    photovoltaic : {
+      id : null,
+      ground_reflection : '0.00',
+      angle_1 : '0.00',
+      angle_2 : '0.00',
+      solar_transmittance : '0.00',
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    plate_heat : {
+      id : null,
+      soc_1 : '0.00',
+      soc_2 : '0.00',
+      soc_3 : '0.00',
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    residual_heat : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    screw : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    scroll : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    turbine : {
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+    wind_turbines :{
+      id : null,
+      upper_limit : '1.00',
+      lower_limit : '10.00'
+    },
+  }
+
+  select_device_data:any;
 
   toComponent = {
     battery : NetworkSelectBatteryComponent,
@@ -102,7 +200,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
     screw : NetworkSelectScrewComponent,
     scroll : NetworkSelectScrollComponent,
     turbine : NetworkSelectTurbineComponent,
-    wind_turbines : NetworkSelectWindTurbineComponent,
+    wind_turbines : NetworkSelectWindTurbinesComponent,
   };
 
   loading = false;
@@ -117,11 +215,29 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('NetworkSelectComponent init');
-    //console.log(this.checkOptions);
-    if (this.defaultListData.length > 0) {
-      this.list_data = this.defaultListData;
-      this.select_device_data = this.defaultSelectDeviceData;
+    console.log(this.radioValue);
+    console.log(this.checkOptions);
+    // if (this.defaultListData.length > 0) {
+    //   this.list_data = this.defaultListData;
+    //   this.select_device_data = this.defaultSelectDeviceData;
+    // }else{
+    const data={};
+    for(let i in this.checkOptions){
+      this.checkOptions[i].map((res)=>{
+        if(res.checked===true&&res.name){
+          this.list_data.push({label:res.label,name:res.name});
+          data[res.name]=this.default_select_device_data[res.name];
+          if(res.name=="ice_storage"){
+            this.list_data.push({label:"双工况主机",name:"host"});
+            data["host"]=this.default_select_device_data["host"];
+          }
+        }
+      })
     }
+    this.select_device_data = data;
+    console.log(this.list_data);
+    console.log(this.select_device_data);
+
     this.lines[0] = this.checkOptions.checkOptionsOne_load[0].checked
       ||this.checkOptions.checkOptionsOne_renewable_energy[0].checked
       ||this.checkOptions.checkOptionsOne_renewable_energy[1].checked
@@ -148,31 +264,19 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * 查看 list 列表的 item
+   *
+   */
+  viewItem(item){
+    this.hello(item.name);
+  }
+
+  /**
    * 删除 list 列表的 item
    *
    */
   deleteItem(item: any): void {
-    console.log(item);
-    const temp = [];
-    this.list_data.forEach(function (value) {
-      if (value['device'] !== item['device']) {
-        temp.push(value);
-      }
-    });
-    this.loading = true;
-    setTimeout(() => {
-      this.list_data = temp;
-      this.loading = false;
-    }, 100);
-    this.select_device_data[item['device']]['data'] = null;
-  }
-
-  /**
-   * 查看 item 详情
-   *
-   */
-  viewItem(item: any): void {
-    console.log(item);
+    alert("shanchu");
   }
 
   /**
@@ -200,9 +304,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       nzContent: temp,
       nzComponentParams: {
         title: name,
-        record: {
-          id: 1
-        }
+        result:this.select_device_data[name]
       },
       nzGetContainer: this.el.nativeElement.querySelector('#battery-view'),
       nzMaskClosable: false,
@@ -232,77 +334,10 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
     // Return a result when closed
     modal.afterClose.subscribe((result) => {
       console.log('[afterClose] The result is:', result);
-      if (result) {
-        switch (result['device']) {
-          case 'battery':
-            if (result['data']['battery_ids'].length > 0) {
-              this.select_device_data.battery.data = result['data'];
-              this.updateTheList({
-                title: '电池',
-                device: 'battery',
-                avatar: './assets/device/icon-battery.png',
-                description: '您已经选择了 ' + result['data']['battery_ids'].length + ' 个电池。',
-              });
-            } else {
-              console.log('数据不合法');
-            }
-            break;
-          case 'shuilifadianji':
-            if (result['data']['turbine_ids'].length > 0) {
-              this.select_device_data.turbine.data = result['data'];
-              this.updateTheList({
-                title: '水力发电机',
-                device: 'turbine',
-                avatar: './assets/device/icon-turbine.png',
-                description: '您已经选择了 ' + result['data']['turbine_ids'].length + ' 台水力发电机。',
-              });
-            } else {
-              console.log('数据不合法');
-            }
-            break;
-          case 'fenglifadianji':
-            if (result['data']['wind_turbines_ids'].length > 0) {
-              this.select_device_data.wind_turbines.data = result['data'];
-              this.updateTheList({
-                title: '风力发电机',
-                device: 'wind_turbines',
-                avatar: './assets/device/icon-wind-turbine.png',
-                description: '您已经选择了 ' + result['data']['wind_turbines_ids'].length + ' 台风力发电机。',
-              });
-            } else {
-              console.log('数据不合法');
-            }
-            break;
-          case 'guangfuzhenlie':
-            if (result['data']['photovoltaic_ids'].length > 0) {
-              this.select_device_data.photovoltaic.data = result['data'];
-              this.updateTheList({
-                title: '光伏阵列',
-                device: 'photovoltaic',
-                avatar: './assets/device/icon-photovoltaic.png',
-                description: '您已经选择了 ' + result['data']['photovoltaic_ids'].length + ' 台光伏发电机。',
-              });
-            } else {
-              console.log('数据不合法');
-            }
-            break;
-          case 'changguifadianji':
-            if (result['data']['generator_ids'].length > 0) {
-              this.select_device_data.generator.data = result['data'];
-              this.updateTheList({
-                title: '常规发电机',
-                device: 'generator',
-                avatar: './assets/device/icon-generator.png',
-                description: '您已经选择了 ' + result['data']['generator_ids'].length + ' 台常规发电机。',
-              });
-            } else {
-              console.log('数据不合法');
-            }
-            break;
-          default:
-            break;
-        }
+      if(result){
+        this.select_device_data[name]=result;
       }
+
       // console.log(this.select_device_data);
     });
   }

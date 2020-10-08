@@ -589,7 +589,7 @@
     </div>
   </div>
 
-  <nz-card nzTitle="结构设计"  style="margin-left: 540px;min-height: 620px" [nzBordered]="false" [nzExtra]="extraTemplate">
+  <nz-card nzTitle="结构设计"  style="margin-left: 540px;min-height: 620px" [nzBodyStyle]="{'padding':'0px'}" [nzBordered]="false" [nzExtra]="extraTemplate">
 
     <div *ngIf="list_data.length === 0" style="margin-top: 160px;">
       <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
@@ -600,25 +600,10 @@
       </div>
     </div>
 
-    <nz-list [nzDataSource]="list_data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading">
-      <ng-template #item let-item>
-        <nz-list-item [nzActions]="item.loading?[]:[viewAction, deleteAction]">
-          <ng-template #viewAction><a (click)="viewItem(item)"><i class="anticon anticon-file-text"></i></a></ng-template>
-          <ng-template #deleteAction>
-            <a nz-popconfirm nzTitle="您确定删除吗？" nzOkText="确定" nzCancelText="取消" (nzOnConfirm)="deleteItem(item)" (nzOnCancel)="cancel()">
-              <i class="anticon anticon-delete"></i>
-            </a>
-          </ng-template>
-          <nz-list-item-meta
-            [nzTitle]="nzTitle"
-            [nzAvatar]="item.avatar"
-            [nzDescription]="item.description">
-            <ng-template #nzTitle>
-              <a href="https://ng.ant.design">{{item.title}}</a>
-            </ng-template>
-          </nz-list-item-meta>
-        </nz-list-item>
-      </ng-template>
+    <nz-list nzSize="large" style="max-height: 600px;overflow:auto">
+      <nz-list-item *ngFor="let item of list_data" nzNoFlex style="padding: 0;line-height: 45px;">
+        <div class="list-item" (click)="viewItem(item)">{{ item.label }}</div>
+      </nz-list-item>
     </nz-list>
 
     <!--{{radioValue}}-->

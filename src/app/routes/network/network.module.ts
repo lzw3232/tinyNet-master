@@ -15,7 +15,7 @@ import {NetworkProjectDetailsCardComponent} from "./project-details/project-deta
 
 import { NetworkSelectBatteryComponent } from './select/battery/battery.component';
 import { NetworkSelectTurbineComponent } from './select/turbine/turbine.component';
-import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-turbine.component';
+import { NetworkSelectWindTurbinesComponent } from './select/wind-turbines/wind-turbines.component';
 import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
 import { NetworkSelectGeneratorComponent } from './select/generator/generator.component';
 import { NetworkSelectCentrifugalComponent } from './select/centrifugal/centrifugal.component';
@@ -49,7 +49,7 @@ const COMPONENTS_NOROUNT = [
   NetworkSelectBatteryComponent,
   // NetworkSelectBatteryLinechartComponent,
   NetworkSelectTurbineComponent,
-  NetworkSelectWindTurbineComponent,
+  NetworkSelectWindTurbinesComponent,
   NetworkSelectPhotovoltaicComponent,
   NetworkSelectGeneratorComponent,
   NetworkProjectDetailsCardComponent,

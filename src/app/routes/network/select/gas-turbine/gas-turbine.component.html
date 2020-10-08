@@ -1,90 +1,68 @@
 <div>
-  <st [data]="url" [columns]="columns"
-      [req]="{params: params}" [res]="{process: dataProcess}"
-      (change)="change($event)" [scroll]="{x: '1000px'}"></st>
+  <sf mode="search" #sf [schema]="searchSchema" (formSubmit)="submit(sf.value)" (formReset)="reset($event)"></sf>
+  <st [data]="data" [columns]="columns"
+      [pi]="params.pi" [ps]="params.ps" [total]="params.total" [page]="pages"
+      (change)="change($event)" [scroll]="{x: '1400px'}" ></st>
 </div>
-<!--<button nz-button nzType="primary" (click)="changeData()">primary</button>-->
-<nz-card  nzTitle="经济" style="margin-top:18px">
-  <div nz-row id="div-test">
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data1" [scale]="scale">
-        <v-tooltip></v-tooltip>
-        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
-        <v-axis dataKey="cost_number" [title]="chart_title_y1"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
-      </v-chart>
-    </div>
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data2" [scale]="scale">
-        <v-tooltip></v-tooltip>
-        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
-        <v-axis dataKey="cost_number" [title]="chart_title_y2"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
-      </v-chart>
-    </div>
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data3" [scale]="scale">
-        <v-tooltip></v-tooltip>
-        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
-        <v-axis dataKey="cost_number" [title]="chart_title_y3"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
-      </v-chart>
-    </div>
-  </div>
-</nz-card>
 
-<nz-card  nzTitle="设备参数" style="margin-top:18px">
-  <div nz-row>
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data4" [scale]="scale">
-        <v-tooltip></v-tooltip>
-        <v-axis dataKey="x" [title]="chart_title_x4"></v-axis>
-        <v-axis dataKey="cost_number" [title]="chart_title_y4"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
-      </v-chart>
+<div nz-row  style="margin-top:18px">
+  <nz-card  nzTitle="经济" nz-col [nzXs]="24" [nzMd]="12">
+    <div nz-row id="div-test">
+      <div nz-col [nzXs]="24" [nzMd]="24">
+        <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data1">
+          <v-tooltip></v-tooltip>
+          <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
+          <v-axis dataKey="cost_number" [title]="chart_title_y1"></v-axis>
+          <v-legend></v-legend>
+          <v-line position="x*cost_number" color="cost_type"></v-line>
+          <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+        </v-chart>
+      </div>
     </div>
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <v-chart [forceFit]="forceFit" width="400" [height]="height" [data]="data5" [scale]="scale">
-        <v-tooltip></v-tooltip>
-        <v-axis dataKey="x" [title]="chart_title_x5"></v-axis>
-        <v-axis dataKey="cost_number" [title]="chart_title_y5"></v-axis>
-        <v-legend></v-legend>
-        <v-line position="x*cost_number" color="cost_type"></v-line>
-        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
-      </v-chart>
-    </div>
-  </div>
-</nz-card>
+  </nz-card>
+  <nz-card nzTitle="燃料曲线" nz-col [nzXs]="24" [nzMd]="12">
+    <div nz-row>
+      <div nz-col nzSpan="23">
+        <v-chart [forceFit]="forceFit" [height]="height" [data]="data2">
 
-<nz-card  nzTitle="优化范围设置">
-  <div nz-row >
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <nz-form-item>
-        <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">上限</nz-form-label>
-        <nz-form-control nzSpan="24">
-          <nz-input-group  nzAddOnAfter="台" style="width:80%">
-            <input type="text" name="battery_upper_limit" id="wind_turbines_upper_limit" [(ngModel)]="result_data.data.wind_turbines_upper_limit" nz-input placeholder="0.00">
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
+          <v-tooltip></v-tooltip>
+          <v-axis dataKey="xaxis" [title]="chart_title_a"></v-axis>
+          <v-axis dataKey="yaxis" [title]="chart_title_b"></v-axis>
+          <v-legend></v-legend>
+          <v-line position="xaxis*yaxis"></v-line>
+          <v-point position="xaxis*yaxis" [size]="4" [style]="style" shape="circle"></v-point>
+        </v-chart>
+      </div>
     </div>
-    <div nz-col [nzXs]="24" [nzMd]="8">
-      <nz-form-item>
-        <nz-form-label nzSpan="24"  nzFor="battery_lower_limit">下限</nz-form-label>
-        <nz-form-control nzSpan="24">
-          <nz-input-group  nzAddOnAfter="台" style="width:80%">
-            <input type="text" name="battery_lower_limit" id="wind_turbines_lower_limit" [(ngModel)]="result_data.data.wind_turbines_lower_limit" nz-input placeholder="0.00">
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
+  </nz-card>
+
+
+  <div nz-col [nzXs]="24" [nzMd]="24">
+    <nz-card  nzTitle="约束范围">
+      <div nz-row>
+        <div nz-col [nzXs]="24" [nzMd]="8">
+          <nz-form-item>
+            <nz-form-label nzSpan="24"  nzFor="upper_limit">规模上限(台)</nz-form-label>
+            <nz-form-control nzSpan="24">
+              <nz-input-group  nzAddOnAfter="串" style="width:80%">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.upper_limit" nz-input placeholder="0.00">
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzMd]="8">
+          <nz-form-item>
+            <nz-form-label nzSpan="24"  nzFor="lower_limit">规模上限(台)</nz-form-label>
+            <nz-form-control nzSpan="24">
+              <nz-input-group  nzAddOnAfter="串" style="width:80%">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.lower_limit" nz-input placeholder="0.00">
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-card>
   </div>
-</nz-card>
+
+
+</div>

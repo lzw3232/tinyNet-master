@@ -4,10 +4,10 @@ import { _HttpClient } from '@delon/theme';
 import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-device-wind-generator-detail-view',
+  selector: 'app-device-wind-turbines-detail-view',
   templateUrl: './view.component.html',
 })
-export class DeviceWindGeneratorDetailViewComponent implements OnInit {
+export class DeviceWindTurbinesDetailViewComponent implements OnInit {
   record: any = {};
   i: any;
 

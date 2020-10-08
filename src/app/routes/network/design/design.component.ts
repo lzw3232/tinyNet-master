@@ -34,40 +34,40 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   checkOptions = {
     checkOptionsOne_load: [
-      { label: '电负荷', value: '1_1', checked: true, disabled: true },
+      { label: '电负荷', value: '1_1', checked: true, disabled: true},
       { label: '冷负荷', value: '1_2', checked: false, disabled: true },
       { label: '热水负荷', value: '1_3', checked: false, disabled: true },
       { label: '蒸汽负荷', value: '1_4', checked: false, disabled: true }
     ],
     checkOptionsOne_renewable_energy: [
-      { label: '风力发电机', value: '2_1', checked: false, disabled: false },
-      { label: '光伏发电系统', value: '2_2', checked: false, disabled: false },
-      { label: '水力发电机', value: '2_3', checked: false, disabled: false }
+      { label: '风力发电机', value: '2_1', checked: false, disabled: false, name: "wind_turbines"},
+      { label: '光伏发电系统', value: '2_2', checked: false, disabled: false, name: "photovoltaic" },
+      { label: '水力发电机', value: '2_3', checked: false, disabled: false, name: "turbine" }
     ],
     checkOptionsOne_stored_energy: [
-      { label: '蓄冰空调', value: '3_1', checked: false, disabled: true },
-      { label: '电池储能系统', value: '3_2', checked: false, disabled: false },
-      { label: '储热装置', value: '3_3', checked: false, disabled: true }
+      { label: '蓄冰空调', value: '3_1', checked: false, disabled: true, name: "ice_storage" },
+      { label: '电池储能系统', value: '3_2', checked: false, disabled: false, name: "battery" },
+      { label: '储热装置', value: '3_3', checked: false, disabled: true, name: "heat_storage" }
     ],
     checkOptionsOne_component: [
-      { label: '热泵', value: '4_1', checked: false, disabled: true },
-      { label: '燃气热水锅炉', value: '4_2', checked: false, disabled: true },
-      { label: '电锅炉', value: '4_3', checked: false, disabled: true },
-      { label: '余热锅炉', value: '4_4', checked: false, disabled: true },
-      { label: '涡旋式电制冷机', value: '4_5', checked: false, disabled: true },
-      { label: '溴化锂空调', value: '4_6', checked: false, disabled: true },
-      { label: '螺杆式电制冷机', value: '4_7', checked: false, disabled: true },
-      { label: '离心式电制冷机', value: '4_8', checked: false, disabled: true },
-      { label: '板式换热器', value: '4_9', checked: false, disabled: true },
-      { label: '燃气蒸汽锅炉', value: '4_10', checked: false, disabled: true },
-      { label: '直燃型溴化锂空调', value: '4_11', checked: false, disabled: true },
-      { label: '市政蒸汽', value: '4_12', checked: false, disabled: true },
+      { label: '热泵', value: '4_1', checked: false, disabled: true, name: "heat_pump" },
+      { label: '燃气热水锅炉', value: '4_2', checked: false, disabled: true, name: "gas_boiler" },
+      { label: '电锅炉', value: '4_3', checked: false, disabled: true, name: "electric_boiler" },
+      { label: '余热锅炉', value: '4_4', checked: false, disabled: true, name: "residual_heat" },
+      { label: '涡旋式电制冷机', value: '4_5', checked: false, disabled: true, name: "scroll" },
+      { label: '溴化锂空调', value: '4_6', checked: false, disabled: true, name: "lithium_bromide" },
+      { label: '螺杆式电制冷机', value: '4_7', checked: false, disabled: true, name: "screw" },
+      { label: '离心式电制冷机', value: '4_8', checked: false, disabled: true, name: "centrifugal" },
+      { label: '板式换热器', value: '4_9', checked: false, disabled: true, name: "plate_heat" },
+      { label: '燃气蒸汽锅炉', value: '4_10', checked: false, disabled: true, name: "gas_steam" },
+      { label: '直燃型溴化锂空调', value: '4_11', checked: false, disabled: true, name: "direct_fired_lithium_bromide" },
+      { label: '市政蒸汽', value: '4_12', checked: false, disabled: true, },
     ],
     checkOptionsOne_electric_generator: [
-      { label: '燃气轮机', value: '5_1', checked: false, disabled: true },
-      { label: '常规发电机', value: '5_2', checked: false, disabled: false },
-      { label: '燃气内燃机', value: '5_3', checked: false, disabled: true },
-      { label: '核电机组', value: '5_4', checked: false, disabled: true },
+      { label: '燃气轮机', value: '5_1', checked: false, disabled: true, name: "gas_turbine" },
+      { label: '常规发电机', value: '5_2', checked: false, disabled: false, name: "generator" },
+      { label: '燃气内燃机', value: '5_3', checked: false, disabled: true, name: "gas_engine" },
+      { label: '核电机组', value: '5_4', checked: false, disabled: true, name: "nuclear" },
     ],
   };
 
@@ -125,6 +125,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   }
 
   condition() {
+    console.log(this.checkOptions);
     //负荷解锁条件 电负荷无条件
     this.checkOptions.checkOptionsOne_load[1].disabled = !(this.radioValue == "B");
     this.checkOptions.checkOptionsOne_load[2].disabled = !(this.radioValue == "B");

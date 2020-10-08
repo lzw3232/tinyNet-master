@@ -6,11 +6,16 @@ import {SFSchema} from "@delon/form";
 import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-network-select-photovoltaic',
-  templateUrl: './photovoltaic.component.html',
+  selector: 'app-network-select-wind-generator',
+  templateUrl: './wind-turbines.component.html',
   styleUrls:['../modal.component.css']
 })
-export class NetworkSelectPhotovoltaicComponent implements OnInit {
+
+
+
+
+export class NetworkSelectWindTurbinesComponent implements OnInit {
+
   @Input() public title;
   @Input() public result;
   forceFit = true; // 宽度自适应
@@ -38,27 +43,17 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
 
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
-    { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '额定容量', type: 'number', index: 'edrl' },
-    { title: '降噪因数', type: 'number', index: 'jeys' },
-    { title: '光伏阵列太阳能吸收率(%)', type: 'number', index: 'gfzltynxsl' },
-    { title: '光伏发电效率(%)', type: 'number', index: 'gffdxl' },
-    { title: 'noct环境温度(°C)', type: 'number', index: 'noctwd' },
-    { title: '寿命(年)', type: 'number', index: 'life' },
-    { title: '温度系数(%/°C)', type: 'number', index: 'wdxs' },
-    { title: 'noct光照强度(kWh/m2/d)', type: 'number', index: 'noctgz' },
-    { title: '光伏板标准温度(°C)', type: 'number', index: 'gfbbzwd' },
-    { title: 'stcPV电池温度(°C)', type: 'number', index: 'stcwd' },
-    { title: '制造商', index: 'factory', width: '150px' },
-    { title: '类型', index: 'type', width: '100px',render:'custom'},
+    { title: '型号名称', index: 'name', fixed: 'left', width: '120px' },
+    { title: '制造商', index: 'factory', fixed: 'left', width: '150px' },
+    { title: '额定功率(kW)', index: 'edgl', type: 'number' },
+    { title: '风机轮毂高度(米)', index: 'fjlggd', type: 'number' },
+    { title: '功率曲线绘制点个数', index: 'glqxnum', type: 'number' },
+    { title: '寿命(年)', index: 'life', type: 'number' },
+    { title: '类型', index: 'type', render:'custom' },
   ];
 
   result_data = {
     id : null,
-    ground_reflection : '0.00',
-    angle_1 : '0.00',
-    angle_2 : '0.00',
-    solar_transmittance : '0.00',
     upper_limit : '1.00',
     lower_limit : '10.00'
   };
@@ -73,9 +68,6 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
   ngOnInit(): void {
     this.result_data=this.result;
     this.getlist(this.params.pi);
-  }
-
-  ngAfterViewInit() {
   }
 
   close() {

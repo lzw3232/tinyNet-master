@@ -28,17 +28,17 @@
   <div nz-row>
     <div nz-col nzSpan="23">
       <v-chart [forceFit]="forceFit" [height]="height" [data]="data1">
-      
+
         <v-tooltip></v-tooltip> <!--下拉条-->
         <!--v-scale x :tick-count="3" />
         <v-tooltip :show-item-marker="false" show-x-value />
         <v-line /-->
-        <v-axis dataKey="yaxis" [title]="chart_title_a"></v-axis>
-        <v-axis dataKey="zaxis" [title]="chart_title_b"></v-axis>
+        <v-axis dataKey="xaxis" [title]="chart_title_a"></v-axis>
+        <v-axis dataKey="yaxis" [title]="chart_title_b"></v-axis>
         <v-legend></v-legend>
-        <v-line position="yaxis*zaxis"></v-line>
-        <v-point position="yaxis*zaxis" [size]="4" [style]="style" shape="circle"></v-point>
-       
+        <v-line position="xaxis*yaxis"></v-line>
+        <v-point position="xaxis*yaxis" [size]="4" [style]="style" shape="circle"></v-point>
+
 
       </v-chart>
     </div>

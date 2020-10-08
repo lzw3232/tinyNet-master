@@ -74,7 +74,15 @@ export class NetworkGenerateProjectComponent implements OnInit {
     // }
 
     if ( this.current === 0) {
-      const temp_checkOption = this.networkDesignComponent.current_checkOptions;
+      this.checkOptions = this.networkDesignComponent.checkOptions;
+      const temp_checkOption = new Set();
+      for(let i in this.checkOptions){
+        for(let j=0;j<this.checkOptions[i].length;j++){
+          if(this.checkOptions[i][j].checked==true){
+            temp_checkOption.add(this.checkOptions[i][j].value);
+          }
+        }
+      }
       const temp_radioValue = this.networkDesignComponent.radioValue;
       if(!temp_checkOption.has('1_1')){
         this.modalService.error({
@@ -107,7 +115,6 @@ export class NetworkGenerateProjectComponent implements OnInit {
           return;
         }
       }
-
       if (temp_checkOption.has('5_1')||temp_checkOption.has('5_3')) {
         if ( !temp_checkOption.has('4_6')) {
           this.modalService.error({

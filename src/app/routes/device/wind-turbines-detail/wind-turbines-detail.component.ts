@@ -3,15 +3,15 @@ import { _HttpClient, ModalHelper } from '@delon/theme';
 import {STChange, STColumn, STComponent, STPage} from '@delon/abc';
 import { SFSchema } from '@delon/form';
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
-import {DeviceWindGeneratorDetailViewComponent} from "./view/view.component";
-import {DeviceWindGeneratorDetailEditComponent} from "./edit/edit.component";
+import {DeviceWindTurbinesDetailViewComponent} from "./view/view.component";
+import {DeviceWindTurbinesDetailEditComponent} from "./edit/edit.component";
 import {DevicesService} from "../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-device-wind-generator-detail',
-  templateUrl: './wind-generator-detail.component.html',
+  selector: 'app-device-wind-turbines-detail',
+  templateUrl: './wind-turbines-detail.component.html',
 })
-export class DeviceWindGeneratorDetailComponent implements OnInit {
+export class DeviceWindTurbinesDetailComponent implements OnInit {
   data : any;
   pi : Number;
   ps : Number;
@@ -45,10 +45,10 @@ export class DeviceWindGeneratorDetailComponent implements OnInit {
       fixed: 'right', width: '120px',
       buttons: [
         { text: '<i class="anticon anticon-file-text"></i>', type: 'static',
-          component: DeviceWindGeneratorDetailViewComponent,
+          component: DeviceWindTurbinesDetailViewComponent,
         },
         { text: '<i class="anticon anticon-edit"></i>',
-          type: 'static', component: DeviceWindGeneratorDetailEditComponent,
+          type: 'static', component: DeviceWindTurbinesDetailEditComponent,
           click: (record, _modal, comp) => {
             this.getlist(this.pi);
           }
@@ -98,7 +98,7 @@ export class DeviceWindGeneratorDetailComponent implements OnInit {
 
   add() {
     this.modal
-      .createStatic(DeviceWindGeneratorDetailEditComponent, { i: { id: 0 } })
+      .createStatic(DeviceWindTurbinesDetailEditComponent, { i: { id: 0 } })
       .subscribe(res=>{
         if(res){
           this.getlist(this.pi);

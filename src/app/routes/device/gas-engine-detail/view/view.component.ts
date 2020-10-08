@@ -57,70 +57,20 @@ export class GasEngineDetailViewComponent implements OnInit {
         this.data = data;
 
 
-         //this.j = res["data"]["data"];
-         this.j = res["data"]["data"]["data"];
-         //console.log(this.j.outPower[1]);
-         // let y:number[]=[];
-         let y:number[]=[];
-         let z:number[]=[];
-         //var z:any[]=[];
-         let k = 0;
-         let k1 = 0;
-         let account = 0;
-         let account1 = 0;
-         //分离这个字符串并且转换为数组
-         for(let i=0;i<this.j.outPower.length;i++){
-           k++;
-           if(this.j.outPower[i]==','){
-             var y1="";
-             for(let m=i-k+1;m<i;m++){
-               y1=y1+this.j.outPower[m];
-               //y=Number(y1);
-             }
-             account = account + 1;
-             y[account] = Number(y1);
-             console.log(y);
-             k=0;
-           }
-         }
-         //分离这个字符串并且转换为数组
-         for(let i1=0;i1<this.j.fuelUse.length;i1++){
-           k1++;
-           if(this.j.fuelUse[i1]==','){
-             var z1="";
-             for(let m1=i1-k1+1;m1<i1;m1++){
-               z1=z1+this.j.fuelUse[m1];
-               //y=Number(y1);
-             }
-             account1 = account1 + 1;
-             z[account1] = Number(z1);
-             console.log(z);
-             k1=0;
-           }
-         }
-         
-      
-         
-    
-        
-         const sourceData1: any[] = [  ];      
-           
-       
-       
-         for(var i=0;i<account;i++){
-           var ttt2 = "{"+'"'+"yaxis"+'"'+":"+y[i+1]+","+'"'+"zaxis"+'"'+":"+z[i+1]+"}";
-           var ttt3 = JSON.parse(ttt2);
-           sourceData1.push(ttt3);
-           
-         }
-         
-         
-         console.log("测试6"+sourceData1);
-         const dv1 = new DataSet.View().source(sourceData1);
-         const data1 = dv1.rows;
-         console.log(data1);
-         this.data1 = data1;
-        
+        let x = this.i.outPower.split(",");
+        let y = this.i.fuelUse.split(",");
+        if(x.length>1) x.pop();
+        if(y.length>1) y.pop();
+        const sourceData2: any[] = [  ];
+        for(var i=0;i<x.length;i++){
+          var tt2 = {"xaxis":x[i],"yaxis":y[i]};
+          sourceData2.push(tt2);
+        }
+        const dv1 = new DataSet.View().source(sourceData2);
+        const data1 = dv1.rows;
+        console.log(data1);
+        this.data1 = data1;
+
       }
       else if(res["errno"]=="2"){
         this.devicesService.tologin();
@@ -131,7 +81,7 @@ export class GasEngineDetailViewComponent implements OnInit {
       this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
   }
-  
+
   close() {
     this.modal.destroy();
   }

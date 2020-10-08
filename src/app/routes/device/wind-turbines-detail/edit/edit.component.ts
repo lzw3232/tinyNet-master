@@ -5,10 +5,10 @@ import { SFSchema, SFUISchema } from '@delon/form';
 import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-device-wind-generator-detail-edit',
+  selector: 'app-device-wind-turbines-detail-edit',
   templateUrl: './edit.component.html',
 })
-export class DeviceWindGeneratorDetailEditComponent implements OnInit {
+export class DeviceWindTurbinesDetailEditComponent implements OnInit {
   record: any = {};
   i: any;
   schema: SFSchema = {

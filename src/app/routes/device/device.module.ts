@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { DeviceRoutingModule } from './device-routing.module';
 import { DeviceBatteryDetailComponent } from './battery-detail/battery-detail.component';
-import { DeviceWindGeneratorDetailComponent } from './wind-generator-detail/wind-generator-detail.component';
+import { DeviceWindTurbinesDetailComponent } from './wind-turbines-detail/wind-turbines-detail.component';
 import { DeviceBatteryDetailViewComponent } from './battery-detail/view/view.component';
 import { DeviceBatteryDetailEditComponent } from './battery-detail/edit/edit.component';
 import { ViserModule } from 'viser-ng';
-import { DeviceWindGeneratorDetailViewComponent } from './wind-generator-detail/view/view.component';
-import { DeviceWindGeneratorDetailEditComponent } from './wind-generator-detail/edit/edit.component';
+import { DeviceWindTurbinesDetailViewComponent } from './wind-turbines-detail/view/view.component';
+import { DeviceWindTurbinesDetailEditComponent } from './wind-turbines-detail/edit/edit.component';
 import { DeviceTurbineDetailComponent } from './turbine-detail/turbine-detail.component';
 import { DeviceTurbineDetailViewComponent } from './turbine-detail/view/view.component';
 import { DeviceTurbineDetailEditComponent } from './turbine-detail/edit/edit.component';
@@ -71,7 +71,7 @@ import { NuclearDetailEditComponent } from './nuclear-detail/edit/edit.component
 
 const COMPONENTS = [
   DeviceBatteryDetailComponent,
-  DeviceWindGeneratorDetailComponent
+  DeviceWindTurbinesDetailComponent
 ,
   DeviceTurbineDetailComponent,
   DevicePhotovoltaicDetailComponent,
@@ -79,8 +79,8 @@ const COMPONENTS = [
 const COMPONENTS_NOROUNT = [
   DeviceBatteryDetailViewComponent,
   DeviceBatteryDetailEditComponent,
-  DeviceWindGeneratorDetailViewComponent,
-  DeviceWindGeneratorDetailEditComponent,
+  DeviceWindTurbinesDetailViewComponent,
+  DeviceWindTurbinesDetailEditComponent,
   DeviceTurbineDetailViewComponent,
   DeviceTurbineDetailEditComponent,
   DevicePhotovoltaicDetailViewComponent,

@@ -76,3 +76,22 @@ svg .color7 path{
   stroke: #94A0B6;
 }
 
+.list-item{
+  flex: auto;
+  cursor: pointer;
+  padding: 8px 35px;
+}
+
+.list-item:hover {
+  background-color: #eee;
+}
+.list-item:hover + .list-item-delete{
+  background-color: #eee;
+}
+
+.list-item-delete{
+  flex: none;
+  padding: 8px 15px;
+}
+
+

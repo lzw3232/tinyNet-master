@@ -1,0 +1,8 @@
+:host ::ng-deep .ant-card-head {
+  background-color: #eee;
+}
+
+:host ::ng-deep .ant-table-thead th{
+  background-color: #eee;
+
+}
