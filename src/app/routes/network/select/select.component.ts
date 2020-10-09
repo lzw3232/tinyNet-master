@@ -46,12 +46,10 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   @Input() defaultSelectDeviceData: any;
 
-  @Input() defaultListData: any;
-
   @Output() selectDeviceDataEmitter = new EventEmitter<any>();
 
   @Output() listDataEmitter = new EventEmitter<any>();
-
+  list_data=[];
   lines=[];
 
   default_select_device_data = {
@@ -204,7 +202,6 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   };
 
   loading = false;
-  list_data = [];
 
   i = 1;
 
@@ -217,6 +214,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
     console.log('NetworkSelectComponent init');
     console.log(this.radioValue);
     console.log(this.checkOptions);
+    console.log(this.defaultSelectDeviceData);
     // if (this.defaultListData.length > 0) {
     //   this.list_data = this.defaultListData;
     //   this.select_device_data = this.defaultSelectDeviceData;
@@ -234,9 +232,15 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
         }
       })
     }
-    this.select_device_data = data;
+    if(!this.defaultSelectDeviceData){
+      this.select_device_data = data;
+    }
+    else{
+      this.select_device_data = this.defaultSelectDeviceData;
+    }
     console.log(this.list_data);
     console.log(this.select_device_data);
+    console.log(this.checkOptions);
 
     this.lines[0] = this.checkOptions.checkOptionsOne_load[0].checked
       ||this.checkOptions.checkOptionsOne_renewable_energy[0].checked
@@ -246,8 +250,6 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       ||this.checkOptions.checkOptionsOne_electric_generator[1].checked
       ||(this.radioValue=="B")
     ;
-    console.log(this.lines[0]);
-    console.log(this.checkOptions.checkOptionsOne_load[0].checked);
     this.lines[1]=this.checkOptions.checkOptionsOne_load[1].checked;
     this.lines[2]=this.checkOptions.checkOptionsOne_load[2].checked;
     this.lines[3]=this.checkOptions.checkOptionsOne_electric_generator[0].checked||this.checkOptions.checkOptionsOne_electric_generator[2].checked||this.checkOptions.checkOptionsOne_component[9].checked;
@@ -259,7 +261,6 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.selectDeviceDataEmitter.emit(this.select_device_data);
-    this.listDataEmitter.emit(this.list_data);
     console.log('NetworkSelectComponent Destroy');
   }
 

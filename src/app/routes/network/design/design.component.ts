@@ -12,19 +12,15 @@ import {NzModalService} from 'ng-zorro-antd';
 })
 export class NetworkDesignComponent implements OnInit, OnDestroy {
 
-  @Input() default_checkOptions: Set<string>;
+  @Input() default_checkOptions: any;
 
   @Input() default_radioValue: any;
-
-  @Input() default_checkOptions_object: any;
 
   @Output() checkOptionsEmitter = new EventEmitter<Set<string>>();
 
   @Output() radioValueEmitter = new EventEmitter<string>();
 
   @Output() allCheckOptionsEmitter = new EventEmitter<any>();
-
-  current_checkOptions = new Set();
 
   zoomSvg: any;
 
@@ -71,14 +67,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     ],
   };
 
-  checkOptionsMapping = [
-    'checkOptionsOne_load',
-    'checkOptionsOne_renewable_energy',
-    'checkOptionsOne_stored_energy',
-    'checkOptionsOne_component',
-    'checkOptionsOne_electric_generator',
-  ];
-
   constructor(private http: _HttpClient,
               private modal: ModalHelper,
               private modalService: NzModalService
@@ -95,9 +83,8 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
       dblClickZoomEnabled: false
     });
     if(this.default_radioValue){
-      this.checkOptions=this.default_checkOptions_object;
+      this.checkOptions=this.default_checkOptions;
       this.radioValue=this.default_radioValue;
-      this.current_checkOptions=this.default_checkOptions;
     }
     else{
       this.radioValue="A";
@@ -107,8 +94,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log(this.current_checkOptions);
-    this.checkOptionsEmitter.emit(this.current_checkOptions);
     this.radioValueEmitter.emit(this.radioValue);
     this.allCheckOptionsEmitter.emit(this.checkOptions);
     // console.log('NetworkDesignComponent Destroy');
@@ -215,14 +200,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     this.lines[5]=this.checkOptions.checkOptionsOne_load[3].checked;
     this.lines[6]=this.checkOptions.checkOptionsOne_component[5].checked||this.checkOptions.checkOptionsOne_component[8].checked;
 
-
-    for(let i in this.checkOptions){
-      this.checkOptions[i].map(res=>{
-        if(res.checked==true){
-          this.current_checkOptions.add(res.value);
-        }
-      })
-    }
 
   }
 

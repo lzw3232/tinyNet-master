@@ -28,26 +28,23 @@
 <div class="steps-content" *ngIf="current == 0">
   <app-network-design [default_checkOptions]="checkOptions"
                       [default_radioValue]="radioValue"
-                      [default_checkOptions_object]="allCheckOptions"
                       (checkOptionsEmitter)="getCheckOptions($event)"
-                      (radioValueEmitter)="getRadioValue($event)"
-                      (allCheckOptionsEmitter)="getAllCheckOptions($event)">
+                      (radioValueEmitter)="getRadioValue($event)">
   </app-network-design>
 </div>
 
 <div class="steps-content" *ngIf="current == 1">
   <app-network-select [radioValue]="radioValue"
-                      [checkOptions]="allCheckOptions"
-                      [defaultSelectDeviceData]="selectDeviceData"
-                      [defaultListData]="listData"
-                      (selectDeviceDataEmitter)="getSelectDeviceData($event)"
-                      (listDataEmitter)="getListData($event)">
+                      [checkOptions]="checkOptions"
+                      [defaultSelectDeviceData]="data.selectDeviceData"
+                      (selectDeviceDataEmitter)="getSelectDeviceData($event)">
 
   </app-network-select>
 </div>
 
 <div class="steps-content" *ngIf="current == 2">
   <app-network-control [radioValue]="radioValue"
+                       [controlFormData]="data.controlFormData"
                        (controlFormDataEmitter)="getControlFormData($event)">
 
   </app-network-control>

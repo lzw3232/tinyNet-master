@@ -3,6 +3,7 @@ import { _HttpClient } from '@delon/theme';
 
 
 import { NetworkDesignComponent } from '../design/design.component';
+import { NetworkSelectComponent } from '../select/select.component';
 import { ReuseTabService } from '@delon/abc';
 import {NzModalService} from "ng-zorro-antd";
 import {NetworkControlComponent} from "../control/control.component";
@@ -17,23 +18,20 @@ import {NetworkResultComponent} from "../result/result.component";
 export class NetworkGenerateProjectComponent implements OnInit {
 
   @ViewChild(NetworkDesignComponent) networkDesignComponent: NetworkDesignComponent;
+  @ViewChild(NetworkSelectComponent) NetworkSelectComponent: NetworkSelectComponent;
   @ViewChild(NetworkControlComponent) networkControlComponent: NetworkControlComponent;
   @ViewChild(NetworkResultComponent) networkResultComponent: NetworkResultComponent;
 
   // design页面 Emitter 传来的参数
   checkOptions: any;
   radioValue: any;
-  allCheckOptions: any;
-
   result:any;
 
-  // select页面 Emitter 传来的参数
-  selectDeviceData: any;
-  listData = [];
-
-  // control界面 Emitter 传来的参数
-  controlFormData: any;
-
+  //最终传向后台的数据
+  data = {
+    selectDeviceData: null, // select页面 Emitter 传来的参数
+    controlFormData: null, // control界面 Emitter 传来的参数
+  }
   current = 0;
 
   index = 'First-content';
@@ -65,7 +63,7 @@ export class NetworkGenerateProjectComponent implements OnInit {
       但是由于该组件在步骤条切换时会 destroy 及重新 init，
       故可以使用生命周期方法ngOnDestroy()，在组件destroy时将设置参数发送到父组件，
       因此该方法留以备用
-      但是因为选择设备不够不切换使就不能通过destroy来获得
+      但是因为选择设备不够不切换使就不能通过destroy来获得,能通过ViewChildren获得
      */
     // if (this.current === 0) {
     //   this.checkOptions = this.networkDesignComponent.current_checkOptions;
@@ -144,27 +142,28 @@ export class NetworkGenerateProjectComponent implements OnInit {
   done(): void {
     // this.changeContent();
     const data = {
-      deviceData : this.selectDeviceData,
+      radioValue : this.radioValue,
+      deviceData : this.data.selectDeviceData,
       formData : this.networkControlComponent.form_data
     };
     console.log('方案创建完成');
-    console.log(JSON.stringify(data));
-    this.projectService.action().subscribe((res=>{
-      console.log(res);
-      if(res["errno"]=="0"){
-        this.result["isdone"]=true;
-      }
-      else if(res["errno"]=="2"){
-        this.projectService.tologin();
-      }
-      else{
-        this.result["isdone"]=false;
-        this.result["msg"] = res["errmsg"];
-      }
-      this.projectService.setCookie("token",res["data"]["data"]["token"]);
-      this.current += 1;
-      this.changeContent();
-    }))
+    console.log(data);
+    // this.projectService.action().subscribe((res=>{
+    //   console.log(res);
+    //   if(res["errno"]=="0"){
+    //     this.result["isdone"]=true;
+    //   }
+    //   else if(res["errno"]=="2"){
+    //     this.projectService.tologin();
+    //   }
+    //   else{
+    //     this.result["isdone"]=false;
+    //     this.result["msg"] = res["errmsg"];
+    //   }
+    //   this.projectService.setCookie("token",res["data"]["data"]["token"]);
+    //   this.current += 1;
+    //   this.changeContent();
+    // }))
 
   }
 
@@ -199,29 +198,17 @@ export class NetworkGenerateProjectComponent implements OnInit {
     // console.log(this.radioValue);
   }
 
-  getAllCheckOptions(event) {
-    this.allCheckOptions = event;
-  }
-
   getSelectDeviceData(event) {
     if (this.current === 0) {
-      this.selectDeviceData = null;
+      this.data.selectDeviceData = null;
     } else {
-      this.selectDeviceData = event;
+      this.data.selectDeviceData = event;
       // console.log('NetworkGenerateProjectComponent - ');
       // console.log(this.selectDeviceData);
     }
   }
 
-  getListData(event) {
-    if (this.current === 0) {
-      this.listData = [];
-    } else {
-      this.listData = event;
-    }
-  }
-
   getControlFormData(event) {
-    this.controlFormData = event;
+    this.data.controlFormData = event;
   }
 }
