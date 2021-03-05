@@ -592,6 +592,12 @@
 
   <nz-card nzTitle="结构设计"  style="margin-left: 540px" [nzBordered]="false" [nzExtra]="extraTemplate">
 
+    <div nz-row>
+      <div nz-col  nzXl="24" nzLg="24">
+        <label class="name-label">方案名称:</label>
+        <input type="text" name="name" class="name" placeholder="方案名称" autofocus="autofocus" [(ngModel)]="name"  (blur)="checkName()" />
+      </div>
+    </div>
     <div class="diy-card">
       <p style="font-size:14px;color:rgba(0, 0, 0, 0.85);font-weight: 500;">
         微网运行模式

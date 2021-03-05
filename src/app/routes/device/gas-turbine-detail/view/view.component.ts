@@ -78,15 +78,7 @@ export class GasTurbineDetailViewComponent implements OnInit {
         const data1 = dv1.rows;
         console.log(data1);
         this.data1 = data1;
-        ;
       }
-      else if(res["errno"]=="2"){
-        this.devicesService.tologin();
-      }
-      else{
-        this.msgSrv.create('error', `error`);
-      }
-      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
 
   }

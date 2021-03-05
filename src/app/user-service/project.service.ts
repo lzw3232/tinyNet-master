@@ -34,12 +34,24 @@ export class ProjectService {
   //     'Something bad happened; please try again later.');
   // };
 
-  action():Observable<any>{
+  add(value:object):Observable<any>{
+    let serverurl = this.url+"/tinyNet/record/add";
+    let token = this.api.getCookie("token");
+    let data={
+      "token":token,
+      record:value,
+    };
+    // @ts-ignore
+    return this.http.post(serverurl, data, this.api.getHeaders());
+  }
+
+  action(value:object):Observable<any>{
     let serverurl = this.url+"/tinyNet/record/action";
     let token = this.api.getCookie("token");
     let data={
       "token":token,
-      "recordname":"lzw",
+      record:value,
+
     };
     // @ts-ignore
     return this.http.post(serverurl, data, this.api.getHeaders());

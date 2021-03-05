@@ -20,15 +20,15 @@ export class GasEngineDetailEditComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
-      
+
       ratedPower: { type: 'string', title: '额定功率', default: 0, minimum: 0, ui: {
         // widget: 'string',
         addOnAfter: 'kW',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      
+
       mLoadRate: { type: 'string', title: '最小负载率(0-1)', default: 0, minimum: 0, ui: {
-        
+
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^((0)\.[0-9]+)$'},
 
@@ -45,7 +45,7 @@ export class GasEngineDetailEditComponent implements OnInit {
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
 
-      
+
       number1: { type: 'number', title: '个数1',  default: 0, minimum: 0 },
       fBuildCost1: { type: 'number', title: '初建成本1',  default: 0, minimum: 0 },
       rBuildCost1: { type: 'number', title: '替换成本1',  default: 0, minimum: 0 },
@@ -62,9 +62,9 @@ export class GasEngineDetailEditComponent implements OnInit {
       fBuildCost4: { type: 'number', title: '初建成本4',  default: 1000000, minimum: 0 },
       rBuildCost4: { type: 'number', title: '替换成本4',  default: 1000000, minimum: 0 },
       operCost4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
-      
+
     },
-    required: ['name', 'ratedPower', 'mLoadRate', 'coWaterPowerRatio','gasEleRatio', 'lifetime', 
+    required: ['name', 'ratedPower', 'mLoadRate', 'coWaterPowerRatio','gasEleRatio', 'lifetime',
     'number1', 'fBuildCost1', 'rBuildCost1', 'operCost1',
     'number2', 'fBuildCost2', 'rBuildCost2', 'operCost2',
     'number3', 'fBuildCost3', 'rBuildCost3', 'operCost3',
@@ -93,7 +93,7 @@ export class GasEngineDetailEditComponent implements OnInit {
     '$fBuildCost4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
     '$rBuildCost4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
     '$operCost4': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    
+
   };
   constructor(
     private modal: NzModalRef,
@@ -123,13 +123,6 @@ export class GasEngineDetailEditComponent implements OnInit {
               }
             }
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -152,13 +145,6 @@ export class GasEngineDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"gas_engine").subscribe((res)=>{
@@ -167,13 +153,6 @@ export class GasEngineDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
   }
@@ -185,10 +164,10 @@ export class GasEngineDetailEditComponent implements OnInit {
         value1:0,
         value2:0
       });
-      
+
       this.n = this.n + 1;
       console.log(this.shiyan);
-      
+
     }
   //删除数据函数，利用.splice
 

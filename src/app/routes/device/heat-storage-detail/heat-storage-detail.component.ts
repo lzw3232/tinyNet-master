@@ -68,13 +68,6 @@ export class HeatStorageDetailComponent implements OnInit {
                         if(res["errno"]=="0"){
                           this.msgSrv.success(`成功删除 ${record.name}`);
                         }
-                        else if(res["errno"]=="2"){
-                          this.devicesService.tologin();
-                        }
-                        else{
-                          this.msgSrv.create('error', `error`);
-                        }
-                        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
                         // comp.removeRow(record);
                         this.getlist(this.pi);
                       });

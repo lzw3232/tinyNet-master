@@ -92,12 +92,7 @@ export class NetworkSelectTurbineComponent implements OnInit {
 
         }
 
-      } else if (res["errno"] == "2") {
-        this.devicesService.tologin();
-      } else {
-        this.msgSrv.create('error', `error`);
       }
-      this.devicesService.setCookie("token", res["data"]["data"]["token"]);
     })
   }
   submit(value:any){

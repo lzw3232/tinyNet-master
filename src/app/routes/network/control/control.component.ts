@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 
 @Component({
@@ -15,7 +15,7 @@ export class NetworkControlComponent implements OnInit, OnDestroy {
 
   form_data =  {
     system : {
-      strategy_radioValue : (this.radioValue=="A")?"strategy1":"strategy0", //运行策略 0:并网调度策略  1:离网硬充电策略  2:离网平滑功率策略
+      strategy_radioValue : "", //运行策略 0:并网调度策略  1:离网硬充电策略  2:离网平滑功率策略
       strategy_internal_rate : [true,'100.0'], //内部收益率
       strategy_pollution_rate : [true,'100.0'], //污染排放量
       buy_constraint_1 : '0.00',//购电上限
@@ -69,6 +69,8 @@ export class NetworkControlComponent implements OnInit, OnDestroy {
   constructor(private http: _HttpClient) { }
 
   ngOnInit() {
+    this.form_data.system.strategy_radioValue=(this.radioValue=="A")?"strategy1":"strategy0";
+
     if(this.controlFormData){
       this.form_data = this.controlFormData;
     }

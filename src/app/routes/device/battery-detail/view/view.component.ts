@@ -53,13 +53,6 @@ export class DeviceBatteryDetailViewComponent implements OnInit {
         const data = dv.rows;
         this.data = data;
       }
-      else if(res["errno"]=="2"){
-        this.devicesService.tologin();
-      }
-      else{
-        this.msgSrv.create('error', `error`);
-      }
-      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
     // this.http
     //   .post('/tinyNet/device/battery/select', {id : this.record.id})

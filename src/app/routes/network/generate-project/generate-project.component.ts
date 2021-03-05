@@ -26,6 +26,7 @@ export class NetworkGenerateProjectComponent implements OnInit {
   checkOptions: any;
   radioValue: any;
   result:any;
+  name:string;
 
   //最终传向后台的数据
   data = {
@@ -142,28 +143,25 @@ export class NetworkGenerateProjectComponent implements OnInit {
   done(): void {
     // this.changeContent();
     const data = {
+      name : this.name,
       radioValue : this.radioValue,
       deviceData : this.data.selectDeviceData,
       formData : this.networkControlComponent.form_data
     };
     console.log('方案创建完成');
     console.log(data);
-    // this.projectService.action().subscribe((res=>{
-    //   console.log(res);
-    //   if(res["errno"]=="0"){
-    //     this.result["isdone"]=true;
-    //   }
-    //   else if(res["errno"]=="2"){
-    //     this.projectService.tologin();
-    //   }
-    //   else{
-    //     this.result["isdone"]=false;
-    //     this.result["msg"] = res["errmsg"];
-    //   }
-    //   this.projectService.setCookie("token",res["data"]["data"]["token"]);
-    //   this.current += 1;
-    //   this.changeContent();
-    // }))
+    this.projectService.add(data).subscribe((res=>{
+      console.log(res);
+      if(res["errno"]=="0"){
+        // this.result["isdone"]=true;
+      }
+      else{
+        // this.result["isdone"]=false;
+        // this.result["msg"] = res["errmsg"];
+      }
+      // this.current += 1;
+      // this.changeContent();
+    }))
 
   }
 
@@ -195,6 +193,11 @@ export class NetworkGenerateProjectComponent implements OnInit {
 
   getRadioValue(event) {
     this.radioValue = event;
+    // console.log(this.radioValue);
+  }
+
+  getName(event) {
+    this.name = event;
     // console.log(this.radioValue);
   }
 

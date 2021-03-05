@@ -75,7 +75,7 @@ export class LithiumBromideDetailEditComponent implements OnInit {
         validator: val => (!String(val).match(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/)) ? [{ keyword: 'required', message: '至多为两位小数' }] : []
       },},
     },
-    required: ['name', 'heatingEnergyEfficiencyRatio', 'refrigerationEnergyEfficiencyRatio', 
+    required: ['name', 'heatingEnergyEfficiencyRatio', 'refrigerationEnergyEfficiencyRatio',
     'ratedHeatingFlueGasPower', 'ratedCoolingFlueGasPower', 'life', 'manufacturer',
       'numberOfUnits1', 'initialConstructionCost1', 'updateCost1', 'operationAndMaintenanceCosts1',
       'numberOfUnits2', 'initialConstructionCost2', 'updateCost2', 'operationAndMaintenanceCosts2',
@@ -125,13 +125,6 @@ export class LithiumBromideDetailEditComponent implements OnInit {
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -146,13 +139,6 @@ export class LithiumBromideDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"lithium_bromide").subscribe((res)=>{
@@ -161,13 +147,6 @@ export class LithiumBromideDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
 

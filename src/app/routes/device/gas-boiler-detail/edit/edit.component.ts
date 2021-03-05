@@ -14,25 +14,25 @@ export class GasBoilerDetailEditComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
-      
+
       ratedPower: { type: 'string', title: '额定功率', default: 0, minimum: 0, ui: {
         // widget: 'string',
         addOnAfter: 'kW',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      
+
       eff: { type: 'string', title: '效率(0-1)', default: 0, minimum: 0, ui: {
-        
+
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^((0)\.[0-9]+)$'},
       //}, format: 'regex', pattern: '^0[1-9]$|^[1-9][0-9]?$|^00?\.(?:0[1-9]|[1-9][0-9]?)$|^(?:0[1-9]|[1-9][0-9]?)\.[0-9]$'},
-     
+
       lifetime: { type: 'string', title: '寿命', default: 0, minimum: 0, ui: {
         addOnAfter: '年',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
       factory: { type: 'string', title: '制造商', maxLength: 140 },
-      
+
       number1: { type: 'number', title: '个数1',  default: 0, minimum: 0 },
       fBuildCost1: { type: 'number', title: '初建成本1',  default: 0, minimum: 0 },
       rBuildCost1: { type: 'number', title: '替换成本1',  default: 0, minimum: 0 },
@@ -49,7 +49,7 @@ export class GasBoilerDetailEditComponent implements OnInit {
       fBuildCost4: { type: 'number', title: '初建成本4',  default: 1000000, minimum: 0 },
       rBuildCost4: { type: 'number', title: '替换成本4',  default: 1000000, minimum: 0 },
       operCost4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
-      
+
     },
     required: ['name', 'ratedPower', 'eff', 'lifetime', 'factory',
       'number1', 'fBuildCost1', 'rBuildCost1', 'operCost1',
@@ -85,7 +85,7 @@ export class GasBoilerDetailEditComponent implements OnInit {
     '$fBuildCost4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
     '$rBuildCost4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
     '$operCost4': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    
+
   };
   constructor(
     private modal: NzModalRef,
@@ -106,16 +106,9 @@ export class GasBoilerDetailEditComponent implements OnInit {
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
-  
+
   }
   save(value: any) {
     //如果存在 record 记录，则做更新操作，否则为新建操作
@@ -127,13 +120,6 @@ export class GasBoilerDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"gas_boiler").subscribe((res)=>{
@@ -142,13 +128,6 @@ export class GasBoilerDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
   }

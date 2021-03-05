@@ -28,8 +28,10 @@
 <div class="steps-content" *ngIf="current == 0">
   <app-network-design [default_checkOptions]="checkOptions"
                       [default_radioValue]="radioValue"
+                      [default_name]="name"
                       (checkOptionsEmitter)="getCheckOptions($event)"
-                      (radioValueEmitter)="getRadioValue($event)">
+                      (radioValueEmitter)="getRadioValue($event)"
+                      (nameEmitter)="getName($event)">
   </app-network-design>
 </div>
 

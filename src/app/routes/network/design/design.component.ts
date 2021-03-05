@@ -16,11 +16,17 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   @Input() default_radioValue: any;
 
+  @Input() default_name: any;
+
   @Output() checkOptionsEmitter = new EventEmitter<Set<string>>();
 
   @Output() radioValueEmitter = new EventEmitter<string>();
 
   @Output() allCheckOptionsEmitter = new EventEmitter<any>();
+
+  @Output() nameEmitter = new EventEmitter<any>();
+
+  name="";
 
   zoomSvg: any;
 
@@ -89,12 +95,16 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     else{
       this.radioValue="A";
     }
+    if(this.default_name){
+      this.name = this.default_name;
+    }
     this.condition()
     //this.setDefaultValues();
   }
 
   ngOnDestroy() {
     this.radioValueEmitter.emit(this.radioValue);
+    this.nameEmitter.emit(this.name);
     this.allCheckOptionsEmitter.emit(this.checkOptions);
     // console.log('NetworkDesignComponent Destroy');
   }
@@ -262,16 +272,20 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     return [a, b];
   }
 
+  checkName(){
+    console.log(this.name);
+  }
+
   /**
    * 须知
    */
   getModalKnowledge() {
     this.modalService.info({
       nzTitle: '您应该了解',
-      nzContent: '<p>1. 在离网模式下，<b>电池储能系统</b>与<b>常规发电机</b>至少包含一个。</p>' +
-                 '<p>2. 在并网模式下，<b>电池储能系统</b>、<b>蓄冰装置</b>、<b>储热装置</b>与<b>常规发电机</b>至少包含一个。</p>' +
-                 '<p>3. 在选择冷负荷下，<b>电制冷机</b>与<b>吸收式制冷机</b>至少包含一个</p>' +
-                 '<p>4. 在选择热负荷下，<b>燃气锅炉</b>、<b>热泵</b>、<b>电锅炉</b>与<b>热交换装置</b>至少包含一个</p>',
+      nzContent: '<p>1. 在离网模式下，<b>电池储能系统</b>、<b>常规发电机</b>至少包含一个。</p>' +
+                 '<p>2. 在选择冷负荷下，<b>蓄冰空调</b>、<b>热泵</b>、<b>涡旋式电制冷机</b>、<b>螺杆式电制冷机</b>、<b>离心式电制冷机</b>与<b>直燃型溴化锂空调</b>至少包含一个</p>' +
+                 '<p>3. 在选择热水负荷下，<b>燃气热水锅炉</b>、<b>热泵</b>、<b>直燃型溴化锂空调</b>与<b>储热装置</b>至少包含一个</p>'+
+                  '<p>4. 在选择燃气轮机或燃气内燃机，<b>溴化锂空调必须包含</b></p>',
       nzWidth: '650'
     });
   }

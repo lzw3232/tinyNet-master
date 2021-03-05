@@ -88,3 +88,54 @@ svg .color7 path{
   stroke: #94A0B6;
 }
 
+.name-label{
+  width: 80px;
+  display: inline-block;
+  margin-left: 24px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
+
+.name{
+  box-sizing: border-box;
+  border: none;
+  font-variant: tabular-nums;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  position: relative;
+  display: inline-block;
+  width: 30%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-image: none;
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 2px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  outline: none;
+}
+
+.name:focus{
+  border-bottom: 1px solid #1890ff;
+  width: 40%;
+}
+.name::-webkit-input-placeholder{
+  color:rgba(0, 0, 0, 0.25);
+}
+.name::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:rgba(0, 0, 0, 0.25);
+}
+.name:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:rgba(0, 0, 0, 0.25);
+}
+.name:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+  color:rgba(0, 0, 0, 0.25);
+}
+
+

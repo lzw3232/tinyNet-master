@@ -14,20 +14,20 @@ export class IceStorageDetailEditComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
-      iceStorageEfficiency: { type: 'string', title: '蓄热效率', default: 0, minimum: 0, ui: {
+      iceStorageEfficiency: { type: 'string', title: '蓄冰效率', default: 0, minimum: 0, ui: {
         addOnAfter: '%',
         placeholder: '请输入数字',
         validator: val => ((Number(val) > 100) ? [{ keyword: 'required', message: '请输入100以内的数' }] : [])
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
-      iceReleaseEfficiency: { type: 'string', title: '放热效率', default: 0, minimum: 0, ui: {
+      iceReleaseEfficiency: { type: 'string', title: '放冰效率', default: 0, minimum: 0, ui: {
         addOnAfter: '%',
         placeholder: '请输入数字',
         validator: val => ((Number(val) > 100) ? [{ keyword: 'required', message: '请输入100以内的数' }] : [])
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
-      maximumIceStorageRate: { type: 'string', title: '最大蓄热倍率', default: 0, minimum: 0,ui: {
+      maximumIceStorageRate: { type: 'string', title: '最大蓄冰倍率', default: 0, minimum: 0,ui: {
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
-      maximumIceReleaseRate: { type: 'string', title: '最大放热倍率', default: 0, minimum: 0, ui: {
+      maximumIceReleaseRate: { type: 'string', title: '最大放冰倍率', default: 0, minimum: 0, ui: {
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
       selfLossRate: { type: 'string', title: '自损耗率', default: 0, minimum: 0, ui: {
@@ -129,13 +129,6 @@ export class IceStorageDetailEditComponent implements OnInit {
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -150,13 +143,6 @@ export class IceStorageDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"ice_storage").subscribe((res)=>{
@@ -165,13 +151,6 @@ export class IceStorageDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
 

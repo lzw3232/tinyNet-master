@@ -94,13 +94,6 @@ export class PlateHeatDetailEditComponent implements OnInit {
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -115,13 +108,6 @@ export class PlateHeatDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"plate_heat").subscribe((res)=>{
@@ -130,13 +116,6 @@ export class PlateHeatDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
 

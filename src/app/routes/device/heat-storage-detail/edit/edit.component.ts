@@ -21,7 +21,7 @@ export class HeatStorageDetailEditComponent implements OnInit {
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
       heatReleaseEfficiency: { type: 'string', title: '放热效率', default: 0, minimum: 0, ui: {
         addOnAfter: '%',
-        placeholder: '请输入数字',  
+        placeholder: '请输入数字',
         validator: val => ((Number(val) > 100) ? [{ keyword: 'required', message: '请输入100以内的数' }] : [])
       }, format: 'regex', pattern: '^\\d+(\\.\\d+)?$'},
       maximumHeatStorageRate: { type: 'string', title: '最大蓄热倍率', default: 0, minimum: 0,ui: {
@@ -80,7 +80,7 @@ export class HeatStorageDetailEditComponent implements OnInit {
         validator: val => (!String(val).match(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/)) ? [{ keyword: 'required', message: '至多为两位小数' }] : []
       },},
     },
-    required: ['name', 'heatStorageEfficiency', 'heatReleaseEfficiency', 
+    required: ['name', 'heatStorageEfficiency', 'heatReleaseEfficiency',
     'maximumHeatStorageRate', 'maximumHeatReleaseRate', 'selfLossRate', 'life', 'manufacturer',
       'capacity1', 'initialConstructionCost1', 'updateCost1', 'operationAndMaintenanceCosts1',
       'capacity2', 'initialConstructionCost2', 'updateCost2', 'operationAndMaintenanceCosts2',
@@ -129,13 +129,6 @@ export class HeatStorageDetailEditComponent implements OnInit {
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
           }
-          else if(res["errno"]=="2"){
-            this.devicesService.tologin();
-          }
-          else{
-            this.msgSrv.create('error', `error`);
-          }
-          this.devicesService.setCookie("token",res["data"]["data"]["token"]);
         });
     }
   }
@@ -150,13 +143,6 @@ export class HeatStorageDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
       this.devicesService.add(value,"heat_storage").subscribe((res)=>{
@@ -165,13 +151,6 @@ export class HeatStorageDetailEditComponent implements OnInit {
           this.modal.destroy("true");
           this.msgSrv.create('success', `success`);
         }
-        else if(res["errno"]=="2"){
-          this.devicesService.tologin();
-        }
-        else{
-          this.msgSrv.create('error', `error`);
-        }
-        this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     }
 

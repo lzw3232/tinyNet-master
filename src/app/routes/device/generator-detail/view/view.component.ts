@@ -52,20 +52,21 @@ export class DeviceGeneratorDetailViewComponent implements OnInit {
         const data = dv.rows;
         this.data = data;
 
-        const sourceData1: any[] = [];
-        for (let j = 1; j <= 3; j++) {
-          sourceData1.push({x : j, cost_type : '输出功率(kW)', cost_number : this.i['scgl' + j]});
-          sourceData1.push({x : j, cost_type : '燃料消耗(L/kW)', cost_number : this.i['rlxh' + j]});
+
+        let x = this.i.outPower.split(",");
+        let y = this.i.fuelUse.split(",");
+        if(x.length>1) x.pop();
+        if(y.length>1) y.pop();
+        const sourceData2: any[] = [  ];
+        for(var i=0;i<x.length;i++){
+          var tt2 = {"xaxis":x[i],"yaxis":y[i]};
+          sourceData2.push(tt2);
         }
-        this.data2 = sourceData1;
+        const dv1 = new DataSet.View().source(sourceData2);
+        const data1 = dv1.rows;
+        console.log(data1);
+        this.data2 = data1;
       }
-      else if(res["errno"]=="2"){
-        this.devicesService.tologin();
-      }
-      else{
-        this.msgSrv.create('error', `error`);
-      }
-      this.devicesService.setCookie("token",res["data"]["data"]["token"]);
     })
   }
 
