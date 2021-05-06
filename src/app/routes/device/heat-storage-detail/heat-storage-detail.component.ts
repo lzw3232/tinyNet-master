@@ -35,12 +35,12 @@ export class HeatStorageDetailComponent implements OnInit {
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '蓄热效率(%)', type: 'number', index: 'heatStorageEfficiency' },
-    { title: '放热效率(%)', type: 'number', index: 'heatReleaseEfficiency' },
-    { title: '最大蓄热倍率', type: 'number', index: 'maximumHeatStorageRate' },
-    { title: '最大放热倍率', type: 'number', index: 'maximumHeatReleaseRate' },
-    { title: '自损耗率', type: 'number', index: 'selfLossRate' },
-    { title: '寿命(年)', type: 'number', index: 'life' },
+    { title: '蓄热效率(%)', type: 'number', index: 'efficiencycharge' },
+    { title: '放热效率(%)', type: 'number', index: 'efficiencydischarge' },
+    { title: '最大蓄热倍率', type: 'number', index: 'maxchargerate' },
+    { title: '最大放热倍率', type: 'number', index: 'maxdischargerate' },
+    { title: '自损耗率', type: 'number', index: 'decay' },
+    { title: '寿命(年)', type: 'number', index: 'lifeTime' },
     { title: '制造商', index: 'manufacturer' },
     {
       title: '',

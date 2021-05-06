@@ -8,77 +8,77 @@ import {DevicesService} from "../../../../user-service/devicesService";
   selector: 'app-device-photovoltaic-detail-edit',
   templateUrl: './edit.component.html',
 })
-export class DevicePhotovoltaicDetailEditComponent implements OnInit {
+export class PhotovoltaicDetailEditComponent implements OnInit {
   record: any = {};
   i: any;
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
-      edrl: { type: 'string', title: '额定容量', default: 0, minimum: 0,
+      deratingFactor: { type: 'string', title: '额定容量', default: 0, minimum: 0,
         format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      jeys: { type: 'string', title: '降噪因数', default: 0, minimum: 0,
+      decayFactor: { type: 'string', title: '降噪因数', default: 0, minimum: 0,
         format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      gfzltynxsl: { type: 'string', title: '光伏阵列太阳能吸收率', default: 0, minimum: 0, ui: {
+      absorptivity: { type: 'string', title: '光伏阵列太阳能吸收率', default: 0, minimum: 0, ui: {
         addOnAfter: '%',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      gffdxl: { type: 'string', title: '光伏发电效率', default: 0, minimum: 0, ui: {
+      efficiency: { type: 'string', title: '光伏发电效率', default: 0, minimum: 0, ui: {
         addOnAfter: '%',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      noctWd: { type: 'string', title: 'noct环境温度', default: 0, minimum: 0, ui: {
+      noctEnvirTemper: { type: 'string', title: 'noct环境温度', default: 0, minimum: 0, ui: {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      life: { type: 'string', title: '寿命', default: 0, minimum: 0, ui: {
+      lifeTime: { type: 'string', title: '寿命', default: 0, minimum: 0, ui: {
         addOnAfter: '年',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      wdxs: { type: 'string', title: '温度系数',  default: 0, minimum: 0, ui: {
+      temperatureCoefficient: { type: 'string', title: '温度系数',  default: 0, minimum: 0, ui: {
         addOnAfter: '%/°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      noctGz: { type: 'string', title: 'noct光照强度', default: 0, minimum: 0, ui: {
+      noctRadiation: { type: 'string', title: 'noct光照强度', default: 0, minimum: 0, ui: {
         addOnAfter: 'kWh/m2/d',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      gfbbzwd: { type: 'string', title: '光伏板标准温度',  default: 0, minimum: 0, ui: {
+      nominalOperatingCellTemperature: { type: 'string', title: '光伏板标准温度',  default: 0, minimum: 0, ui: {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      stcWd: { type: 'string', title: 'stcPV电池温度',  default: 0, minimum: 0, ui: {
+      batteryTemperInStc: { type: 'string', title: 'stcPV电池温度',  default: 0, minimum: 0, ui: {
         addOnAfter: '°C',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      factory: { type: 'string', title: '制造商', maxLength: 140 },
-      type: {
+      manufacturer: { type: 'string', title: '制造商', maxLength: 140 },
+      dAtype: {
         type: 'string',
         title: '类型',
         enum: [ { label: '交流', value: 0 }, { label: '直流', value: 1 } ],
         default: 0 },
-      capacity1: { type: 'number', title: '个数1',  default: 0, minimum: 0 },
-      cjcb1: { type: 'number', title: '初建成本1',  default: 0, minimum: 0 },
-      gxcb1: { type: 'number', title: '替换成本1',  default: 0, minimum: 0 },
-      yxwhcb1: { type: 'number', title: '运维成本1',  default: 0, minimum: 0 },
-      capacity2: { type: 'number', title: '个数2',  default: 1, minimum: 0 },
-      cjcb2: { type: 'number', title: '初建成本2',  default: 1, minimum: 0 },
-      gxcb2: { type: 'number', title: '替换成本2',  default: 1, minimum: 0 },
-      yxwhcb2: { type: 'number', title: '运维成本2',  default: 1, minimum: 0 },
-      capacity3: { type: 'number', title: '个数3',  default: 100, minimum: 0 },
-      cjcb3: { type: 'number', title: '初建成本3',  default: 10000, minimum: 0 },
-      gxcb3: { type: 'number', title: '替换成本3',  default: 10000, minimum: 0 },
-      yxwhcb3: { type: 'number', title: '运维成本3',  default: 10000, minimum: 0 },
-      capacity4: { type: 'number', title: '个数4',  default: 10000, minimum: 0 },
-      cjcb4: { type: 'number', title: '初建成本4',  default: 1000000, minimum: 0 },
-      gxcb4: { type: 'number', title: '替换成本4',  default: 1000000, minimum: 0 },
-      yxwhcb4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
+      numberOrCapacity1: { type: 'number', title: '个数1',  default: 0, minimum: 0 },
+      capitalCurve1: { type: 'number', title: '初建成本1',  default: 0, minimum: 0 },
+      replacementCost1: { type: 'number', title: '替换成本1',  default: 0, minimum: 0 },
+      maintainCost1: { type: 'number', title: '运维成本1',  default: 0, minimum: 0 },
+      numberOrCapacity2: { type: 'number', title: '个数2',  default: 1, minimum: 0 },
+      capitalCurve2: { type: 'number', title: '初建成本2',  default: 1, minimum: 0 },
+      replacementCost2: { type: 'number', title: '替换成本2',  default: 1, minimum: 0 },
+      maintainCost2: { type: 'number', title: '运维成本2',  default: 1, minimum: 0 },
+      numberOrCapacity3: { type: 'number', title: '个数3',  default: 100, minimum: 0 },
+      capitalCurve3: { type: 'number', title: '初建成本3',  default: 10000, minimum: 0 },
+      replacementCost3: { type: 'number', title: '替换成本3',  default: 10000, minimum: 0 },
+      maintainCost3: { type: 'number', title: '运维成本3',  default: 10000, minimum: 0 },
+      numberOrCapacity4: { type: 'number', title: '个数4',  default: 10000, minimum: 0 },
+      capitalCurve4: { type: 'number', title: '初建成本4',  default: 1000000, minimum: 0 },
+      replacementCost4: { type: 'number', title: '替换成本4',  default: 1000000, minimum: 0 },
+      maintainCost4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
     },
-    required: ['name', 'edrl', 'jeys', 'gfzltynxsl', 'gffdxl', 'noctWd', 'life',
-      'wdxs', 'noctGz', 'gfbbzwd', 'stcWd', 'factory', 'type',
-      'capacity1', 'cjcb1', 'gxcb1', 'yxwhcb1',
-      'capacity2', 'cjcb2', 'gxcb2', 'yxwhcb2',
-      'capacity3', 'cjcb3', 'gxcb3', 'yxwhcb3',
-      'capacity4', 'cjcb4', 'gxcb4', 'yxwhcb4'],
+    required: ['name', 'deratingFactor', 'decayFactor', 'absorptivity', 'efficiency', 'noctEnvirTemper', 'lifeTime',
+      'temperatureCoefficient', 'noctRadiation', 'nominalOperatingCellTemperature', 'batteryTemperInStc', 'manufacturer', 'dAtype',
+      'numberOrCapacity1', 'capitalCurve1', 'replacementCost1', 'maintainCost1',
+      'numberOrCapacity2', 'capitalCurve2', 'replacementCost2', 'maintainCost2',
+      'numberOrCapacity3', 'capitalCurve3', 'replacementCost3', 'maintainCost3',
+      'numberOrCapacity4', 'capitalCurve4', 'replacementCost4', 'maintainCost4'],
   };
   ui: SFUISchema = {
     '*': {
@@ -86,23 +86,23 @@ export class DevicePhotovoltaicDetailEditComponent implements OnInit {
       spanLabel : 10,
       spanControl : 14
     },
-    '$type': {grid: { span: 24 }, spanLabel : 5, spanControl : 7},
-    '$capacity1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$cjcb1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$gxcb1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
-    '$yxwhcb1': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$capacity2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$cjcb2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$gxcb2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
-    '$yxwhcb2': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$capacity3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$cjcb3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$gxcb3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
-    '$yxwhcb3': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$capacity4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$cjcb4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
-    '$gxcb4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
-    '$yxwhcb4': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$dAtype': {grid: { span: 24 }, spanLabel : 5, spanControl : 7},
+    '$numberOrCapacity1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$capitalCurve1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$replacementCost1': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
+    '$maintainCost1': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$numberOrCapacity2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$capitalCurve2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$replacementCost2': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
+    '$maintainCost2': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$numberOrCapacity3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$capitalCurve3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$replacementCost3': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
+    '$maintainCost3': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$numberOrCapacity4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$capitalCurve4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12},
+    '$replacementCost4': {grid: { span: 6 }, spanLabel : 12, spanControl : 12 },
+    '$maintainCost4': { grid: { span: 6 }, spanLabel : 12, spanControl : 12},
   };
 
   constructor(

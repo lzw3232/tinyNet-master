@@ -4,18 +4,18 @@
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
 <sv-container col="3" *ngIf="i">
   <sv label="型号名称">{{ i.name }}</sv>
-  <sv label="额定容量">{{ i.edrl }}</sv>
-  <sv label="降噪因数">{{ i.jeys }}</sv>
-  <sv label="光伏阵列太阳能吸收率(%)">{{ i.gfzltynxsl }}</sv>
-  <sv label="光伏发电效率(%)">{{ i.gffdxl }}</sv>
-  <sv label="noct环境温度(°C)">{{ i.noctwd }}</sv>
-  <sv label="寿命(年)">{{ i.life }}</sv>
-  <sv label="温度系数(%/°C)">{{ i.wdxs }}</sv>
-  <sv label="noct光照强度(kWh/m2/d)">{{ i.noctgz }}</sv>
-  <sv label="光伏板标准温度(°C)">{{ i.gfbbzwd }}</sv>
-  <sv label="stcPV电池温度(°C)">{{ i.stcwd }}</sv>
-  <sv label="制造商">{{ i.factory }}</sv>
-  <sv label="类型">{{ i.type }}</sv>
+  <sv label="额定容量">{{ i.deratingFactor }}</sv>
+  <sv label="降噪因数">{{ i.decayFactor }}</sv>
+  <sv label="光伏阵列太阳能吸收率(%)">{{ i.absorptivity }}</sv>
+  <sv label="光伏发电效率(%)">{{ i.efficiency }}</sv>
+  <sv label="noct环境温度(°C)">{{ i.noctEnvirTemper }}</sv>
+  <sv label="寿命(年)">{{ i.lifeTime }}</sv>
+  <sv label="温度系数(%/°C)">{{ i.temperatureCoefficient }}</sv>
+  <sv label="noct光照强度(kWh/m2/d)">{{ i.noctRadiation }}</sv>
+  <sv label="光伏板标准温度(°C)">{{ i.nominalOperatingCellTemperature }}</sv>
+  <sv label="stcPV电池温度(°C)">{{ i.batteryTemperInStc }}</sv>
+  <sv label="制造商">{{ i.manufacturer }}</sv>
+  <sv label="类型">{{ i.dAtype }}</sv>
 </sv-container>
 <nz-card style="width:100%" nzTitle="经济曲线" *ngIf="i" style="margin-top: 24px;">
   <div nz-row>

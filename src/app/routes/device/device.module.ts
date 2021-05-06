@@ -1,145 +1,145 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { DeviceRoutingModule } from './device-routing.module';
-import { DeviceBatteryDetailComponent } from './battery-detail/battery-detail.component';
-import { DeviceWindTurbinesDetailComponent } from './wind-turbines-detail/wind-turbines-detail.component';
-import { DeviceBatteryDetailViewComponent } from './battery-detail/view/view.component';
-import { DeviceBatteryDetailEditComponent } from './battery-detail/edit/edit.component';
+import { BatteryDetailComponent } from './battery-detail/battery-detail.component';
+import { BatteryDetailViewComponent } from './battery-detail/view/view.component';
+import { BatteryDetailEditComponent } from './battery-detail/edit/edit.component';
 import { ViserModule } from 'viser-ng';
-import { DeviceWindTurbinesDetailViewComponent } from './wind-turbines-detail/view/view.component';
-import { DeviceWindTurbinesDetailEditComponent } from './wind-turbines-detail/edit/edit.component';
-import { DeviceTurbineDetailComponent } from './turbine-detail/turbine-detail.component';
-import { DeviceTurbineDetailViewComponent } from './turbine-detail/view/view.component';
-import { DeviceTurbineDetailEditComponent } from './turbine-detail/edit/edit.component';
-import { DevicePhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
-import { DevicePhotovoltaicDetailViewComponent } from './photovoltaic-detail/view/view.component';
-import { DevicePhotovoltaicDetailEditComponent } from './photovoltaic-detail/edit/edit.component';
-import { DeviceGeneratorDetailComponent } from './generator-detail/generator-detail.component';
-import { DeviceGeneratorDetailViewComponent } from './generator-detail/view/view.component';
-import { DeviceGeneratorDetailEditComponent } from './generator-detail/edit/edit.component';
+import { HydroTurbineDetailComponent } from './hydro-turbine-detail/hydro-turbine-detail.component';
+import { HydroTurbineDetailViewComponent } from './hydro-turbine-detail/view/view.component';
+import { HydroTurbineDetailEditComponent } from './hydro-turbine-detail/edit/edit.component';
+import { PhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
+import { PhotovoltaicDetailViewComponent } from './photovoltaic-detail/view/view.component';
+import { PhotovoltaicDetailEditComponent } from './photovoltaic-detail/edit/edit.component';
+import { DieselDetailComponent } from './diesel-detail/diesel-detail.component';
+import { DieselDetailViewComponent } from './diesel-detail/view/view.component';
+import { DieselDetailEditComponent } from './diesel-detail/edit/edit.component';
 import { GasTurbineDetailComponent } from './gas-turbine-detail/gas-turbine-detail.component';
 import { GasTurbineDetailViewComponent } from './gas-turbine-detail/view/view.component';
 import { GasTurbineDetailEditComponent } from './gas-turbine-detail/edit/edit.component';
-import { GasEngineDetailComponent } from './gas-engine-detail/gas-engine-detail.component';
-import { GasEngineDetailViewComponent } from './gas-engine-detail/view/view.component';
-import { GasEngineDetailEditComponent } from './gas-engine-detail/edit/edit.component';
-import { ElectricBoilerDetailComponent } from './electric-boiler-detail/electric-boiler-detail.component';
-import { ElectricBoilerDetailViewComponent } from './electric-boiler-detail/view/view.component';
-import { ElectricBoilerDetailEditComponent } from './electric-boiler-detail/edit/edit.component';
+import { InternalGasTurbineDetailComponent } from './internal-gas-turbine-detail/internal-gas-turbine-detail.component';
+import { InternalGasTurbineDetailViewComponent } from './internal-gas-turbine-detail/view/view.component';
+import { InternalGasTurbineDetailEditComponent } from './internal-gas-turbine-detail/edit/edit.component';
+import { ElecBoilerDetailComponent } from './elec-boiler-detail/elec-boiler-detail.component';
+import { ElecBoilerDetailViewComponent } from './elec-boiler-detail/view/view.component';
+import { ElecBoilerDetailEditComponent } from './elec-boiler-detail/edit/edit.component';
 import { GasBoilerDetailComponent } from './gas-boiler-detail/gas-boiler-detail.component';
 import { GasBoilerDetailViewComponent } from './gas-boiler-detail/view/view.component';
 import { GasBoilerDetailEditComponent } from './gas-boiler-detail/edit/edit.component';
-import { GasSteamDetailComponent } from './gas-steam-detail/gas-steam-detail.component';
-import { GasSteamDetailViewComponent } from './gas-steam-detail/view/view.component';
-import { GasSteamDetailEditComponent } from './gas-steam-detail/edit/edit.component';
-import { HeatPumpDetailComponent } from './heat-pump-detail/heat-pump-detail.component';
-import { HeatPumpDetailViewComponent } from './heat-pump-detail/view/view.component';
-import { HeatPumpDetailEditComponent } from './heat-pump-detail/edit/edit.component';
-import { ScrollDetailComponent } from './scroll-detail/scroll-detail.component';
-import { ScrollDetailViewComponent } from './scroll-detail/view/view.component';
-import { ScrollDetailEditComponent } from './scroll-detail/edit/edit.component';
-import { ScrewDetailComponent } from './screw-detail/screw-detail.component';
-import { ScrewDetailViewComponent } from './screw-detail/view/view.component';
-import { ScrewDetailEditComponent } from './screw-detail/edit/edit.component';
-import { CentrifugalDetailComponent } from './centrifugal-detail/centrifugal-detail.component';
-import { CentrifugalDetailViewComponent } from './centrifugal-detail/view/view.component';
-import { CentrifugalDetailEditComponent } from './centrifugal-detail/edit/edit.component';
-import { LithiumBromideDetailComponent } from './lithium-bromide-detail/lithium-bromide-detail.component';
-import { LithiumBromideDetailViewComponent } from './lithium-bromide-detail/view/view.component';
-import { LithiumBromideDetailEditComponent } from './lithium-bromide-detail/edit/edit.component';
-import { DirectFiredLithiumBromideDetailComponent } from './direct-fired-lithium-bromide-detail/direct-fired-lithium-bromide-detail.component';
-import { DirectFiredLithiumBromideDetailViewComponent } from './direct-fired-lithium-bromide-detail/view/view.component';
-import { DirectFiredLithiumBromideDetailEditComponent } from './direct-fired-lithium-bromide-detail/edit/edit.component';
-import { HostDetailComponent } from './host-detail/host-detail.component';
-import { HostDetailViewComponent } from './host-detail/view/view.component';
-import { HostDetailEditComponent } from './host-detail/edit/edit.component';
+import { GasSteamBoilerDetailComponent } from './gas-steam-boiler-detail/gas-steam-boiler-detail.component';
+import { GasSteamBoilerDetailViewComponent } from './gas-steam-boiler-detail/view/view.component';
+import { GasSteamBoilerDetailEditComponent } from './gas-steam-boiler-detail/edit/edit.component';
+import { ElectricitychillerDetailComponent } from './electricitychiller-detail/electricitychiller-detail.component';
+import { ElectricitychillerDetailViewComponent } from './electricitychiller-detail/view/view.component';
+import { ElectricitychillerDetailEditComponent } from './electricitychiller-detail/edit/edit.component';
+import { CentrifugalElectricitychillerDetailComponent } from './centrifugal-electricitychiller-detail/centrifugal-electricitychiller-detail.component';
+import { CentrifugalElectricitychillerDetailViewComponent } from './centrifugal-electricitychiller-detail/view/view.component';
+import { CentrifugalElectricitychillerDetailEditComponent } from './centrifugal-electricitychiller-detail/edit/edit.component';
+import { AbschilleDetailComponent } from './abschille-detail/abschille-detail.component';
+import { AbschilleDetailViewComponent } from './abschille-detail/view/view.component';
+import { AbschilleDetailEditComponent } from './abschille-detail/edit/edit.component';
+import { GasAbschilleDetailComponent } from './gas-abschille-detail/gas-abschille-detail.component';
+import { GasAbschilleDetailViewComponent } from './gas-abschille-detail/view/view.component';
+import { GasAbschilleDetailEditComponent } from './gas-abschille-detail/edit/edit.component';
+import { ElecairconditionDetailComponent } from './elecaircondition-detail/elecaircondition-detail.component';
+import { ElecairconditionDetailViewComponent } from './elecaircondition-detail/view/view.component';
+import { ElecairconditionDetailEditComponent } from './elecaircondition-detail/edit/edit.component';
 import { HeatStorageDetailComponent } from './heat-storage-detail/heat-storage-detail.component';
 import { HeatStorageDetailViewComponent } from './heat-storage-detail/view/view.component';
 import { HeatStorageDetailEditComponent } from './heat-storage-detail/edit/edit.component';
-import { IceStorageDetailComponent } from './ice-storage-detail/ice-storage-detail.component';
-import { IceStorageDetailViewComponent } from './ice-storage-detail/view/view.component';
-import { IceStorageDetailEditComponent } from './ice-storage-detail/edit/edit.component';
-import { ResidualHeatDetailComponent } from './residual-heat-detail/residual-heat-detail.component';
-import { ResidualHeatDetailViewComponent } from './residual-heat-detail/view/view.component';
-import { ResidualHeatDetailEditComponent } from './residual-heat-detail/edit/edit.component';
-import { PlateHeatDetailComponent } from './plate-heat-detail/plate-heat-detail.component';
-import { PlateHeatDetailViewComponent } from './plate-heat-detail/view/view.component';
-import { PlateHeatDetailEditComponent } from './plate-heat-detail/edit/edit.component';
-import { NuclearDetailComponent } from './nuclear-detail/nuclear-detail.component';
-import { NuclearDetailViewComponent } from './nuclear-detail/view/view.component';
-import { NuclearDetailEditComponent } from './nuclear-detail/edit/edit.component';
+import { CoolStorageDetailComponent } from './cool-storage-detail/cool-storage-detail.component';
+import { CoolStorageDetailViewComponent } from './cool-storage-detail/view/view.component';
+import { CoolStorageDetailEditComponent } from './cool-storage-detail/edit/edit.component';
+import { HeatExchangerDetailComponent } from './heat-exchanger-detail/heat-exchanger-detail.component';
+import { HeatExchangerDetailViewComponent } from './heat-exchanger-detail/view/view.component';
+import { HeatExchangerDetailEditComponent } from './heat-exchanger-detail/edit/edit.component';
+import { NuclearPowerDetailComponent } from './nuclear-power-detail/nuclear-power-detail.component';
+import { NuclearPowerDetailViewComponent } from './nuclear-power-detail/view/view.component';
+import { NuclearPowerDetailEditComponent } from './nuclear-power-detail/edit/edit.component';
+import {WasteHeatBoilerDetailComponent} from "./waste-heat-boiler-detail/waste-heat-boiler-detail.component";
+import {WasteHeatBoilerDetailViewComponent} from "./waste-heat-boiler-detail/view/view.component";
+import {WasteHeatBoilerDetailEditComponent} from "./waste-heat-boiler-detail/edit/edit.component";
+import {PumpDetailViewComponent} from "./pump-detail/view/view.component";
+import {PumpDetailEditComponent} from "./pump-detail/edit/edit.component";
+import {PumpDetailComponent} from "./pump-detail/pump-detail.component";
+import {ScrewElectricitychillerDetailViewComponent} from "./screw-electricitychiller-detail/view/view.component";
+import {ScrewElectricitychillerDetailEditComponent} from "./screw-electricitychiller-detail/edit/edit.component";
+import {ScrewElectricitychillerDetailComponent} from "./screw-electricitychiller-detail/screw-electricitychiller-detail.component";
+import {WindTurbineDetailViewComponent} from "./wind-turbine-detail/view/view.component";
+import {WindTurbineDetailEditComponent} from "./wind-turbine-detail/edit/edit.component";
+import {WindTurbineDetailComponent} from "./wind-turbine-detail/wind-turbine-detail.component";
 
 const COMPONENTS = [
-  DeviceBatteryDetailComponent,
-  DeviceWindTurbinesDetailComponent
-,
-  DeviceTurbineDetailComponent,
-  DevicePhotovoltaicDetailComponent,
-  DeviceGeneratorDetailComponent];
-const COMPONENTS_NOROUNT = [
-  DeviceBatteryDetailViewComponent,
-  DeviceBatteryDetailEditComponent,
-  DeviceWindTurbinesDetailViewComponent,
-  DeviceWindTurbinesDetailEditComponent,
-  DeviceTurbineDetailViewComponent,
-  DeviceTurbineDetailEditComponent,
-  DevicePhotovoltaicDetailViewComponent,
-  DevicePhotovoltaicDetailEditComponent,
-  DeviceGeneratorDetailViewComponent,
-  DeviceGeneratorDetailEditComponent,
-  GasTurbineDetailComponent,
-  GasTurbineDetailViewComponent,
-  GasTurbineDetailEditComponent,
-  GasEngineDetailComponent,
-  GasEngineDetailViewComponent,
-  GasEngineDetailEditComponent,
-  ElectricBoilerDetailComponent,
-  ElectricBoilerDetailViewComponent,
-  ElectricBoilerDetailEditComponent,
+  AbschilleDetailComponent,
+  BatteryDetailComponent,
+  CentrifugalElectricitychillerDetailComponent,
+  CoolStorageDetailComponent,
+  DieselDetailComponent,
+  ElecairconditionDetailComponent,
+  ElecBoilerDetailComponent,
+  ElectricitychillerDetailComponent,
+  GasAbschilleDetailComponent,
   GasBoilerDetailComponent,
+  GasSteamBoilerDetailComponent,
+  GasTurbineDetailComponent,
+  HeatExchangerDetailComponent,
+  HeatStorageDetailComponent,
+  HydroTurbineDetailComponent,
+  InternalGasTurbineDetailComponent,
+  NuclearPowerDetailComponent,
+  PhotovoltaicDetailComponent,
+  PumpDetailComponent,
+  ScrewElectricitychillerDetailComponent,
+  WasteHeatBoilerDetailComponent,
+  WindTurbineDetailComponent,
+
+];
+
+const COMPONENTS_NOROUNT = [
+  AbschilleDetailEditComponent,
+  AbschilleDetailViewComponent,
+  BatteryDetailViewComponent,
+  BatteryDetailEditComponent,
+  CentrifugalElectricitychillerDetailViewComponent,
+  CentrifugalElectricitychillerDetailEditComponent,
+  CoolStorageDetailViewComponent,
+  CoolStorageDetailEditComponent,
+  DieselDetailViewComponent,
+  DieselDetailEditComponent,
+  ElecairconditionDetailViewComponent,
+  ElecairconditionDetailEditComponent,
+  ElecBoilerDetailViewComponent,
+  ElecBoilerDetailEditComponent,
+  ElectricitychillerDetailViewComponent,
+  ElectricitychillerDetailEditComponent,
+  GasAbschilleDetailViewComponent,
+  GasAbschilleDetailEditComponent,
   GasBoilerDetailViewComponent,
   GasBoilerDetailEditComponent,
-  GasSteamDetailComponent,
-  GasSteamDetailViewComponent,
-  GasSteamDetailEditComponent,
-  HeatPumpDetailComponent,
-  HeatPumpDetailViewComponent,
-  HeatPumpDetailEditComponent,
-  ScrollDetailComponent,
-  ScrollDetailViewComponent,
-  ScrollDetailEditComponent,
-  ScrewDetailComponent,
-  ScrewDetailViewComponent,
-  ScrewDetailEditComponent,
-  CentrifugalDetailComponent,
-  CentrifugalDetailViewComponent,
-  CentrifugalDetailEditComponent,
-  LithiumBromideDetailComponent,
-  LithiumBromideDetailViewComponent,
-  LithiumBromideDetailEditComponent,
-  DirectFiredLithiumBromideDetailComponent,
-  DirectFiredLithiumBromideDetailViewComponent,
-  DirectFiredLithiumBromideDetailEditComponent,
-  HostDetailComponent,
-  HostDetailViewComponent,
-  HostDetailEditComponent,
-  HeatStorageDetailComponent,
+  GasSteamBoilerDetailViewComponent,
+  GasSteamBoilerDetailEditComponent,
+  GasTurbineDetailViewComponent,
+  GasTurbineDetailEditComponent,
+  HeatExchangerDetailViewComponent,
+  HeatExchangerDetailEditComponent,
   HeatStorageDetailViewComponent,
   HeatStorageDetailEditComponent,
-  IceStorageDetailComponent,
-  IceStorageDetailViewComponent,
-  IceStorageDetailEditComponent,
-  ResidualHeatDetailComponent,
-  ResidualHeatDetailViewComponent,
-  ResidualHeatDetailEditComponent,
-  PlateHeatDetailComponent,
-  PlateHeatDetailViewComponent,
-  PlateHeatDetailEditComponent,
-  NuclearDetailComponent,
-  NuclearDetailViewComponent,
-  NuclearDetailEditComponent,
-
-
+  HydroTurbineDetailViewComponent,
+  HydroTurbineDetailEditComponent,
+  InternalGasTurbineDetailViewComponent,
+  InternalGasTurbineDetailEditComponent,
+  NuclearPowerDetailViewComponent,
+  NuclearPowerDetailEditComponent,
+  PhotovoltaicDetailViewComponent,
+  PhotovoltaicDetailEditComponent,
+  PumpDetailViewComponent,
+  PumpDetailEditComponent,
+  ScrewElectricitychillerDetailViewComponent,
+  ScrewElectricitychillerDetailEditComponent,
+  WasteHeatBoilerDetailViewComponent,
+  WasteHeatBoilerDetailEditComponent,
+  WindTurbineDetailViewComponent,
+  WindTurbineDetailEditComponent,
 
 ];
 
@@ -154,7 +154,6 @@ const COMPONENTS_NOROUNT = [
         ...COMPONENTS_NOROUNT
     ],
     exports: [
-        DeviceBatteryDetailComponent
     ],
     entryComponents: COMPONENTS_NOROUNT
 })

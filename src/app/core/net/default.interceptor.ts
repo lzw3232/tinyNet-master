@@ -43,7 +43,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     // 业务处理：一些通用操作
     switch (event.status) {
       case 200:
-        console.log(event['body']);
+        // console.log(event['body']);
         let res=event['body'];
         if(res["errno"]=="0"){
         }

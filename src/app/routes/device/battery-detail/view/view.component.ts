@@ -10,7 +10,7 @@ const DataSet = require('@antv/data-set');
   selector: 'app-device-battery-detail-view',
   templateUrl: './view.component.html',
 })
-export class DeviceBatteryDetailViewComponent implements OnInit {
+export class BatteryDetailViewComponent implements OnInit {
   record: any = {};
   i: any;
 
@@ -37,10 +37,10 @@ export class DeviceBatteryDetailViewComponent implements OnInit {
       if(res["errno"]=="0"){
         this.i = res["data"]["data"]["data"];
         const sourceData: any[] = [
-          {x : this.i.capacity1, 初建成本 : this.i.cjcb1, 替换成本 : this.i.gxcb1, 运维成本 : this.i.yxwhcb1},
-          {x : this.i.capacity2, 初建成本 : this.i.cjcb2, 替换成本 : this.i.gxcb2, 运维成本 : this.i.yxwhcb2},
-          {x : this.i.capacity3, 初建成本 : this.i.cjcb3, 替换成本 : this.i.gxcb3, 运维成本 : this.i.yxwhcb3},
-          {x : this.i.capacity4, 初建成本 : this.i.cjcb4, 替换成本 : this.i.gxcb4, 运维成本 : this.i.yxwhcb4},
+          {x : this.i.numberOrnumberOrCapacity1, 初建成本 : this.i.capitalCurve1, 替换成本 : this.i.replacementCost1, 运维成本 : this.i.maintainCost1},
+          {x : this.i.numberOrnumberOrCapacity2, 初建成本 : this.i.capitalCurve2, 替换成本 : this.i.replacementCost2, 运维成本 : this.i.maintainCost2},
+          {x : this.i.numberOrnumberOrCapacity3, 初建成本 : this.i.capitalCurve3, 替换成本 : this.i.replacementCost3, 运维成本 : this.i.maintainCost3},
+          {x : this.i.numberOrnumberOrCapacity4, 初建成本 : this.i.capitalCurve4, 替换成本 : this.i.replacementCost4, 运维成本 : this.i.maintainCost4},
         ];
 
         const dv = new DataSet.View().source(sourceData);
@@ -59,10 +59,10 @@ export class DeviceBatteryDetailViewComponent implements OnInit {
     //   .subscribe(res => {
     //     this.i = res;
     //     const sourceData: any[] = [
-    //       {x : this.i.capacity1, 初建成本 : this.i.cjcb1, 替换成本 : this.i.gxcb1, 运维成本 : this.i.yxwhcb1},
-    //       {x : this.i.capacity2, 初建成本 : this.i.cjcb2, 替换成本 : this.i.gxcb2, 运维成本 : this.i.yxwhcb2},
-    //       {x : this.i.capacity3, 初建成本 : this.i.cjcb3, 替换成本 : this.i.gxcb3, 运维成本 : this.i.yxwhcb3},
-    //       {x : this.i.capacity4, 初建成本 : this.i.cjcb4, 替换成本 : this.i.gxcb4, 运维成本 : this.i.yxwhcb4},
+    //       {x : this.i.numberOrnumberOrCapacity1, 初建成本 : this.i.capitalCurve11, 替换成本 : this.i.replacementCost1, 运维成本 : this.i.maintainCost1},
+    //       {x : this.i.numberOrnumberOrCapacity2, 初建成本 : this.i.capitalCurve12, 替换成本 : this.i.replacementCost2, 运维成本 : this.i.maintainCost2},
+    //       {x : this.i.numberOrnumberOrCapacity3, 初建成本 : this.i.capitalCurve13, 替换成本 : this.i.replacementCost3, 运维成本 : this.i.maintainCost3},
+    //       {x : this.i.numberOrnumberOrCapacity4, 初建成本 : this.i.capitalCurve14, 替换成本 : this.i.replacementCost4, 运维成本 : this.i.maintainCost4},
     //     ];
     //
     //     const dv = new DataSet.View().source(sourceData);

@@ -35,9 +35,9 @@ export class GasBoilerDetailComponent implements OnInit {
   columns: STColumn[] = [
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
     { title: '额定功率(kW)', type: 'number', index: 'ratedPower' },
-    { title: '效率(0-1)', type: 'number', index: 'eff' },
-    { title: '寿命(年)', type: 'number', index: 'lifetime' },
-    { title: '制造商',  index: 'factory' },
+    { title: '燃气锅炉效率', type: 'number', index: 'efficiency' },
+    { title: '寿命(年)', type: 'number', index: 'lifeTime' },
+    { title: '制造商',  index: 'manufacturer' },
     {
       title: '',
       fixed: 'right', width: '120px',

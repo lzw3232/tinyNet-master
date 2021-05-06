@@ -8,7 +8,7 @@
   <st #st [data]="data" [page]="pages" [total]="total" [columns]="columns" [scroll]="{x: '1600px'}" [pi]="pi" [ps]="ps" (change)="change($event)">
 
     <ng-template st-row="custom"  let-item let-index="type" let-column="column" >
-      {{ (item.type == 1)?"直流":"交流"}}
+      {{ (item.dAtype == 1)?"直流":"交流"}}
     </ng-template>
 
   </st>

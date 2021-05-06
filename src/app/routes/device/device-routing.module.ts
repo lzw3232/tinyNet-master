@@ -1,53 +1,54 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from "../../user-service/login-guard.service";
-import { DeviceBatteryDetailComponent } from './battery-detail/battery-detail.component';
-import { DeviceWindTurbinesDetailComponent } from './wind-turbines-detail/wind-turbines-detail.component';
-import { DeviceTurbineDetailComponent } from './turbine-detail/turbine-detail.component';
-import { DevicePhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
-import { DeviceGeneratorDetailComponent } from './generator-detail/generator-detail.component';
+import { BatteryDetailComponent } from './battery-detail/battery-detail.component';
+import { HydroTurbineDetailComponent } from './hydro-turbine-detail/hydro-turbine-detail.component';
+import { PhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
+import { DieselDetailComponent } from './diesel-detail/diesel-detail.component';
 import {GasTurbineDetailComponent} from "./gas-turbine-detail/gas-turbine-detail.component";
-import {GasEngineDetailComponent} from "./gas-engine-detail/gas-engine-detail.component";
-import {ElectricBoilerDetailComponent} from "./electric-boiler-detail/electric-boiler-detail.component";
+import {InternalGasTurbineDetailComponent} from "./internal-gas-turbine-detail/internal-gas-turbine-detail.component";
+import {ElecBoilerDetailComponent} from "./elec-boiler-detail/elec-boiler-detail.component";
 import {GasBoilerDetailComponent} from "./gas-boiler-detail/gas-boiler-detail.component";
-import {GasSteamDetailComponent} from "./gas-steam-detail/gas-steam-detail.component";
-import {HeatPumpDetailComponent} from "./heat-pump-detail/heat-pump-detail.component";
-import {ScrollDetailComponent} from "./scroll-detail/scroll-detail.component";
-import {ScrewDetailComponent} from "./screw-detail/screw-detail.component";
-import {CentrifugalDetailComponent} from "./centrifugal-detail/centrifugal-detail.component";
-import {LithiumBromideDetailComponent} from "./lithium-bromide-detail/lithium-bromide-detail.component";
-import {DirectFiredLithiumBromideDetailComponent} from "./direct-fired-lithium-bromide-detail/direct-fired-lithium-bromide-detail.component";
-import {HostDetailComponent} from "./host-detail/host-detail.component";
+import {GasSteamBoilerDetailComponent} from "./gas-steam-boiler-detail/gas-steam-boiler-detail.component";
+import {ElectricitychillerDetailComponent} from "./electricitychiller-detail/electricitychiller-detail.component";
+import {CentrifugalElectricitychillerDetailComponent} from "./centrifugal-electricitychiller-detail/centrifugal-electricitychiller-detail.component";
+import {AbschilleDetailComponent} from "./abschille-detail/abschille-detail.component";
+import {GasAbschilleDetailComponent} from "./gas-abschille-detail/gas-abschille-detail.component";
+import {ElecairconditionDetailComponent} from "./elecaircondition-detail/elecaircondition-detail.component";
 import {HeatStorageDetailComponent} from "./heat-storage-detail/heat-storage-detail.component";
-import {IceStorageDetailComponent} from "./ice-storage-detail/ice-storage-detail.component";
-import {ResidualHeatDetailComponent} from "./residual-heat-detail/residual-heat-detail.component";
-import {PlateHeatDetailComponent} from "./plate-heat-detail/plate-heat-detail.component";
-import {NuclearDetailComponent} from "./nuclear-detail/nuclear-detail.component";
+import {CoolStorageDetailComponent} from "./cool-storage-detail/cool-storage-detail.component";
+import {HeatExchangerDetailComponent} from "./heat-exchanger-detail/heat-exchanger-detail.component";
+import {NuclearPowerDetailComponent} from "./nuclear-power-detail/nuclear-power-detail.component";
+import {PumpDetailComponent} from "./pump-detail/pump-detail.component";
+import {ScrewElectricitychillerDetailComponent} from "./screw-electricitychiller-detail/screw-electricitychiller-detail.component";
+import {WasteHeatBoilerDetailComponent} from "./waste-heat-boiler-detail/waste-heat-boiler-detail.component";
+import {WindTurbineDetailComponent} from "./wind-turbine-detail/wind-turbine-detail.component";
 
 const routes: Routes = [
-  { path: 'batteryDetail', component: DeviceBatteryDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'windGeneratorDetail', component: DeviceWindTurbinesDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'turbineDetail', component: DeviceTurbineDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'photovoltaicDetail', component: DevicePhotovoltaicDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'generatorDetail', component: DeviceGeneratorDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'gasTurbineDetail', component: GasTurbineDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'GasEngineDetail', component: GasEngineDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'electricBoilerDetail', component: ElectricBoilerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'abschilleDetail', component: AbschilleDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'batteryDetail', component: BatteryDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'centrifugalElectricitychillerDetail', component: CentrifugalElectricitychillerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'coolStorageDetail', component: CoolStorageDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'dieselDetail', component: DieselDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'elecairconditionDetail', component: ElecairconditionDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'elecBoilerDetail', component: ElecBoilerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'electricitychillerDetail', component: ElectricitychillerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'gasAbschilleDetail', component: GasAbschilleDetailComponent ,canActivate:[AuthGuard]},
   { path: 'gasBoilerDetail', component: GasBoilerDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'gasSteamDetail', component: GasSteamDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'heatPumpDetail', component: HeatPumpDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'scrollDetail', component: ScrollDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'screwDetail', component: ScrewDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'centrifugalDetail', component: CentrifugalDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'lithiumBromideDetail', component: LithiumBromideDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'DirectFiredLithiumBromideDetail', component: DirectFiredLithiumBromideDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'hostDetail', component: HostDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'gasSteamBoilerDetail', component: GasSteamBoilerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'gasTurbineDetail', component: GasTurbineDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'heatexchangerDetail', component: HeatExchangerDetailComponent ,canActivate:[AuthGuard]},
   { path: 'heatStorageDetail', component: HeatStorageDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'iceStorageDetail', component: IceStorageDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'residualHeatDetail', component: ResidualHeatDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'plateHeatDetail', component: PlateHeatDetailComponent ,canActivate:[AuthGuard]},
-  { path: 'nuclearDetail', component: NuclearDetailComponent ,canActivate:[AuthGuard]},
-  ];
+  { path: 'hydroTurbineDetail', component: HydroTurbineDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'internalGasturbineDetail', component: InternalGasTurbineDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'nuclearPowerDetail', component: NuclearPowerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'photovoltaicDetail', component: PhotovoltaicDetailComponent ,canActivate:[AuthGuard]},
+
+  { path: 'pumpDetail', component: PumpDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'screwElectricitychillerDetail', component: ScrewElectricitychillerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'wasteHeatBoilerDetail', component: WasteHeatBoilerDetailComponent ,canActivate:[AuthGuard]},
+  { path: 'windTurbineDetail', component:  WindTurbineDetailComponent ,canActivate:[AuthGuard]},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

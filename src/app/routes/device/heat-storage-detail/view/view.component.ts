@@ -37,10 +37,10 @@ export class HeatStorageDetailViewComponent implements OnInit {
       if(res["errno"]=="0"){
         this.i = res["data"]["data"]["data"];
         const sourceData: any[] = [
-          {x : this.i.capacity1, 初建成本 : this.i.initialConstructionCost1, 替换成本 : this.i.updateCost1, 运维成本 : this.i.operationAndMaintenanceCosts1},
-          {x : this.i.capacity2, 初建成本 : this.i.initialConstructionCost2, 替换成本 : this.i.updateCost2, 运维成本 : this.i.operationAndMaintenanceCosts2},
-          {x : this.i.capacity3, 初建成本 : this.i.initialConstructionCost3, 替换成本 : this.i.updateCost3, 运维成本 : this.i.operationAndMaintenanceCosts3},
-          {x : this.i.capacity4, 初建成本 : this.i.initialConstructionCost4, 替换成本 : this.i.updateCost4, 运维成本 : this.i.operationAndMaintenanceCosts4},
+          {x : this.i.numberOrCapacity1, 初建成本 : this.i.capitalCurve1, 替换成本 : this.i.replacementCost1, 运维成本 : this.i.maintainCost1},
+          {x : this.i.numberOrCapacity2, 初建成本 : this.i.capitalCurve2, 替换成本 : this.i.replacementCost2, 运维成本 : this.i.maintainCost2},
+          {x : this.i.numberOrCapacity3, 初建成本 : this.i.capitalCurve3, 替换成本 : this.i.replacementCost3, 运维成本 : this.i.maintainCost3},
+          {x : this.i.numberOrCapacity4, 初建成本 : this.i.capitalCurve4, 替换成本 : this.i.replacementCost4, 运维成本 : this.i.maintainCost4},
         ];
 
         const dv = new DataSet.View().source(sourceData);

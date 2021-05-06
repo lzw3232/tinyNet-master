@@ -6,11 +6,11 @@
 <!--查看栅格系统，链接：https://ng-alain.com/components/sv/zh-->
 <sv-container col="3" *ngIf="i">
   <sv label="型号名称">{{i.name}}</sv>
-  <sv label="额定功率(kW)">{{ i.ratedPower }}</sv>
-  <sv label="最小负载率(0-1)">{{ i.mLoadRate }}</sv>
-  <sv label="燃气轮机效率(%)">{{ i.gasTurbineEff }}</sv>
-  <sv label="燃机电热比">{{ i.gasCogRatio }}</sv>
-  <sv label="寿命(年)">{{ i.lifetime }}</sv>
+  <sv label="额定功率(kW)">{{ i.ratedCapacity }}</sv>
+  <sv label="最小负载率(0-1)">{{ i.minimumLoadRate }}</sv>
+  <sv label="燃气轮机效率(%)">{{ i.efficiency }}</sv>
+  <sv label="燃机电热比">{{ i.smoke }}</sv>
+  <sv label="寿命(年)">{{ i.lifeTime }}</sv>
 
 </sv-container>
 <!--第一个卡片，显示经济曲线图像，*ngIf判断是否有数据，没有数据不显示-->

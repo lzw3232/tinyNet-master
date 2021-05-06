@@ -159,8 +159,8 @@ export class NetworkGenerateProjectComponent implements OnInit {
         // this.result["isdone"]=false;
         // this.result["msg"] = res["errmsg"];
       }
-      // this.current += 1;
-      // this.changeContent();
+      this.current += 1;
+      this.changeContent();
     }))
 
   }

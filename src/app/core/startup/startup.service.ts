@@ -146,12 +146,12 @@ export class StartupService {
               },
               {
                 text: '风机',
-                link: '/device/windGeneratorDetail',
+                link: '/device/windTurbineDetail',
                 // reuse: false,
               },
               {
                 text: '水轮机',
-                link: '/device/turbineDetail',
+                link: '/device/hydroTurbineDetail',
                 // reuse: false,
               },
               {
@@ -161,7 +161,7 @@ export class StartupService {
               },
               {
                 text: '发电机',
-                link: '/device/generatorDetail',
+                link: '/device/dieselDetail',
                 // reuse: false,
               },
               {
@@ -171,12 +171,12 @@ export class StartupService {
               },
               {
                 text: '燃气内燃机',
-                link: '/device/GasEngineDetail',
+                link: '/device/internalGasturbineDetail',
                 // reuse: false,
               },
               {
                 text: '电锅炉',
-                link: '/device/electricBoilerDetail',
+                link: '/device/elecBoilerDetail',
                 // reuse: false,
               },
               {
@@ -186,12 +186,12 @@ export class StartupService {
               },
               {
                 text: '燃气蒸汽锅炉',
-                link: '/device/gasSteamDetail',
+                link: '/device/gasSteamBoilerDetail',
                 // reuse: false,
               },
               {
                 text: '热泵',
-                link: '/device/heatPumpDetail',
+                link: '/device/pumpDetail',
                 // reuse: false,
               },
               {
@@ -200,17 +200,17 @@ export class StartupService {
                 children: [
                   {
                     text: '涡旋式电制冷机',
-                    link: '/device/scrollDetail',
+                    link: '/device/electricitychillerDetail',
                     // reuse: false,
                   },
                   {
                     text: '螺杆式电制冷机',
-                    link: '/device/screwDetail',
+                    link: '/device/screwElectricitychillerDetail',
                     // reuse: false,
                   },
                   {
                     text: '离心式电制冷机',
-                    link: '/device/centrifugalDetail',
+                    link: '/device/centrifugalElectricitychillerDetail',
                     // reuse: false,
                   },
                   ]
@@ -218,17 +218,17 @@ export class StartupService {
               },
               {
                 text: '溴化锂空调',
-                link: '/device/lithiumBromideDetail',
+                link: '/device/abschilleDetail',
                 // reuse: false,
               },
               {
                 text: '直燃型溴化锂空调',
-                link: '/device/DirectFiredLithiumBromideDetail',
+                link: '/device/gasAbschilleDetail',
                 // reuse: false,
               },
               {
                 text: '双工况主机',
-                link: '/device/hostDetail',
+                link: '/device/elecairconditionDetail',
                 // reuse: false,
               },
               {
@@ -238,22 +238,22 @@ export class StartupService {
               },
               {
                 text: '蓄冰装置',
-                link: '/device/iceStorageDetail',
+                link: '/device/coolStorageDetail',
                 // reuse: false,
               },
               {
                 text: '余热锅炉',
-                link: '/device/residualHeatDetail',
+                link: '/device/wasteHeatBoilerDetail',
                 // reuse: false,
               },
               {
                 text: '板式换热器',
-                link: '/device/plateHeatDetail',
+                link: '/device/heatexchangerDetail',
                 // reuse: false,
               },
               {
                 text: '核电机组',
-                link: '/device/nuclearDetail',
+                link: '/device/nuclearPowerDetail',
                 // reuse: false,
               },
             ]

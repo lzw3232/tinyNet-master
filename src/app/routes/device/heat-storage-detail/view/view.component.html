@@ -4,12 +4,12 @@
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
 <sv-container col="3" *ngIf="i">
   <sv label="型号名称">{{ i.name }}</sv>
-  <sv label="蓄热效率(%)">{{ i.heatStorageEfficiency }}</sv>
-  <sv label="放热效率(%)">{{ i.heatReleaseEfficiency }}</sv>
-  <sv label="最大蓄热倍率">{{ i.maximumHeatStorageRate }}</sv>
-  <sv label="最大放热倍率">{{ i.maximumHeatReleaseRate }}</sv>
-  <sv label="自损耗率">{{ i.selfLossRate }}</sv>
-  <sv label="寿命(年)">{{ i.life }}</sv>
+  <sv label="蓄热效率(%)">{{ i.efficiencycharge }}</sv>
+  <sv label="放热效率(%)">{{ i.efficiencydischarge }}</sv>
+  <sv label="最大蓄热倍率">{{ i.maxchargerate }}</sv>
+  <sv label="最大放热倍率">{{ i.maxdischargerate }}</sv>
+  <sv label="自损耗率">{{ i.decay }}</sv>
+  <sv label="寿命(年)">{{ i.lifeTime }}</sv>
   <sv label="制造商">{{ i.manufacturer }}</sv>
 </sv-container>
 <nz-card style="width:100%" nzTitle="经济曲线" *ngIf="i" style="margin-top: 24px;">

@@ -123,10 +123,10 @@ export class NetworkSelectPlateHeatComponent implements OnInit {
 
   showChart(value){
     const sourceData: any[] = [
-      {x : value.capacity1, 初建成本 : value.cjcb1, 替换成本 : value.gxcb1, 运维成本 : value.yxwhcb1},
-      {x : value.capacity2, 初建成本 : value.cjcb2, 替换成本 : value.gxcb2, 运维成本 : value.yxwhcb2},
-      {x : value.capacity3, 初建成本 : value.cjcb3, 替换成本 : value.gxcb3, 运维成本 : value.yxwhcb3},
-      {x : value.capacity4, 初建成本 : value.cjcb4, 替换成本 : value.gxcb4, 运维成本 : value.yxwhcb4},
+      {x : value.numberOrCapacity1, 初建成本 : value.capitalCurve1, 替换成本 : value.replacementCost1, 运维成本 : value.maintainCost1},
+      {x : value.numberOrCapacity2, 初建成本 : value.capitalCurve2, 替换成本 : value.replacementCost2, 运维成本 : value.maintainCost2},
+      {x : value.numberOrCapacity3, 初建成本 : value.capitalCurve3, 替换成本 : value.replacementCost3, 运维成本 : value.maintainCost3},
+      {x : value.numberOrCapacity4, 初建成本 : value.capitalCurve4, 替换成本 : value.replacementCost4, 运维成本 : value.maintainCost4},
     ];
 
     const dv = new DataSet.View().source(sourceData);

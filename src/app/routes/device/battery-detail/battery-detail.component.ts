@@ -2,16 +2,16 @@ import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {_HttpClient, MenuService, ModalHelper} from '@delon/theme';
 import {STChange, STColumn, STComponent, STPage} from '@delon/abc';
 import { SFSchema } from '@delon/form';
-import {DeviceBatteryDetailViewComponent} from './view/view.component';
+import {BatteryDetailViewComponent} from './view/view.component';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
-import {DeviceBatteryDetailEditComponent} from './edit/edit.component'
+import {BatteryDetailEditComponent} from './edit/edit.component'
 import {DevicesService} from "../../../user-service/devicesService";
 
 @Component({
   selector: 'app-device-battery-detail',
   templateUrl: './battery-detail.component.html',
 })
-export class DeviceBatteryDetailComponent implements OnInit {
+export class BatteryDetailComponent implements OnInit {
 
   data : any;
   pi : Number;
@@ -35,26 +35,26 @@ export class DeviceBatteryDetailComponent implements OnInit {
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '额定电压(V)', type: 'number', index: 'eddy' },
-    { title: '循环充放电效率(%)', type: 'number', index: 'xhcfdxl' },
-    { title: '最大充电速率', type: 'number', index: 'zdcdsl' },
-    { title: '最大充电电流(A)', type: 'number', index: 'zdcddl' },
-    { title: '最大放电速率', type: 'number', index: 'zdfdsl' },
-    { title: '电池容量(Ah)', type: 'number', index: 'dcrl' },
-    { title: '寿命(年)', type: 'number', index: 'life' },
-    { title: '全寿命放电量(kWh)', type: 'number', index: 'qsmfd' },
-    { title: '串联个数', type: 'number', index: 'clgs' },
-    { title: '制造商', index: 'factory' },
-    { title: '类型', index: 'type', render: "custom"},
+    { title: '额定电压(V)', type: 'number', index: 'ratedVoltage' },
+    { title: '循环充放电效率(%)', type: 'number', index: 'roundTridEfficiency' },
+    { title: '最大充电速率', type: 'number', index: 'maximumChargeRate' },
+    { title: '最大充电电流(A)', type: 'number', index: 'maximumChargeCurrent' },
+    { title: '最大放电速率', type: 'number', index: 'constRate' },
+    { title: '电池容量(Ah)', type: 'number', index: 'maximumnumberOrCapacity' },
+    { title: '寿命(年)', type: 'number', index: 'floatLife' },
+    { title: '全寿命放电量(kWh)', type: 'number', index: 'lifeTimeThroughput' },
+    { title: '串联个数', type: 'number', index: 'numberofBattery' },
+    { title: '制造商', index: 'manufacturer' },
+    { title: '类型', index: 'dAtype', render: "custom"},
     {
       title: '',
       fixed: 'right', width: '120px',
       buttons: [
         { text: '<i class="anticon anticon-file-text"></i>', type: 'static',
-          component: DeviceBatteryDetailViewComponent,
+          component: BatteryDetailViewComponent,
         },
         { text: '<i class="anticon anticon-edit"></i>',
-          type: 'static', component: DeviceBatteryDetailEditComponent,
+          type: 'static', component: BatteryDetailEditComponent,
           click: (record, _modal, comp) => {
               this.getlist(this.pi);
           }
@@ -101,7 +101,7 @@ export class DeviceBatteryDetailComponent implements OnInit {
 
   add() {
     this.modal
-      .create(DeviceBatteryDetailEditComponent, { i: { id: 0 } })
+      .create(BatteryDetailEditComponent, { i: { id: 0 } })
       .subscribe(res=>{
         if(res){
           this.getlist(this.pi);
