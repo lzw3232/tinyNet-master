@@ -148,6 +148,10 @@ export class GasTurbineDetailEditComponent implements OnInit {
 
     var fGasPower="";
     var gasConsumption="";
+    if(this.shiyan.length<3){
+      this.msgSrv.create('error', `功率曲线不少于三个`);
+      return;
+    }
     for(let i=0;i<this.shiyan.length;i++){
       fGasPower=fGasPower+this.shiyan[i].value1+",";
       gasConsumption=gasConsumption+this.shiyan[i].value2+",";
@@ -179,13 +183,11 @@ export class GasTurbineDetailEditComponent implements OnInit {
 
   //每点击一次增加,n+1,MVVM,传入数据
   add() {
-
       this.shiyan.push({
         checked:false,
         value1:0,
         value2:0
       });
-
       console.log(this.shiyan);
 
     }
@@ -193,12 +195,7 @@ export class GasTurbineDetailEditComponent implements OnInit {
 
   delete1(){
     console.log(this.shiyan);
-    for(let i=0;i<this.shiyan.length;i++){
-      if(this.shiyan[i].checked==true){
-        this.shiyan.splice(i,1);
-        i--;
-      }
-    }
+    this.shiyan = this.shiyan.filter(item=>item.checked==false);
   }
   close() {
     this.modal.destroy(false);

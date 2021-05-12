@@ -14,27 +14,28 @@ import {NetworkProjectDetailsCardComponent} from "./project-details/project-deta
 // import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
 import { NetworkSelectBatteryComponent } from './select/battery/battery.component';
-import { NetworkSelectTurbineComponent } from './select/turbine/turbine.component';
-import { NetworkSelectWindTurbinesComponent } from './select/wind-turbines/wind-turbines.component';
-import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
-import { NetworkSelectGeneratorComponent } from './select/generator/generator.component';
-import { NetworkSelectCentrifugalComponent } from './select/centrifugal/centrifugal.component';
-import {NetworkSelectDirectFiredLithiumBromideComponent} from './select/direct-fired-lithium-bromide/direct-fired-lithium-bromide.component';
-import {NetworkSelectElectricBoilerComponent} from './select/electric-boiler/electric-boiler.component';
+import { NetworkSelectDieselComponent } from './select/diesel/diesel.component';
+import { NetworkSelectCentrifugalElectricitychillerComponent } from './select/centrifugal-electricitychiller/centrifugal-electricitychiller.component';
+import {NetworkSelectGasAbschilleComponent} from './select/gas-abschille/gas-abschille.component';
+import {NetworkSelectElecBoilerComponent} from './select/elec-boiler/elec-boiler.component';
 import {NetworkSelectGasBoilerComponent} from './select/gas-boiler/gas-boiler.component';
-import {NetworkSelectGasEngineComponent} from './select/gas-engine/gas-engine.component';
-import { NetworkSelectGasSteamComponent } from './select/gas-steam/gas-steam.component';
+import { NetworkSelectGasSteamBoilerComponent } from './select/gas-steam-boiler/gas-steam-boiler.component';
 import {NetworkSelectGasTurbineComponent} from './select/gas-turbine/gas-turbine.component';
-import { NetworkSelectHeatPumpComponent } from './select/heat-pump/heat-pump.component';
+import { NetworkSelectElecairconditionComponent } from './select/elecaircondition/elecaircondition.component';
+import { NetworkSelectCoolStorageComponent } from './select/cool-storage/cool-storage.component';
+import { NetworkSelectAbschilleComponent } from './select/abschille/abschille.component';
+
+import { NetworkSelectHeatExchangerComponent } from './select/heat-exchanger/heat-exchanger.component';
 import { NetworkSelectHeatStorageComponent } from './select/heat-storage/heat-storage.component';
-import { NetworkSelectHostComponent } from './select/host/host.component';
-import { NetworkSelectIceStorageComponent } from './select/ice-storage/ice-storage.component';
-import { NetworkSelectLithiumBromideComponent } from './select/lithium-bromide/lithium-bromide.component';
-import { NetworkSelectNuclearComponent } from './select/nuclear/nuclear.component';
-import { NetworkSelectPlateHeatComponent } from './select/plate-heat/plate-heat.component';
-import { NetworkSelectResidualHeatComponent } from './select/residual-heat/residual-heat.component';
-import { NetworkSelectScrewComponent } from './select/screw/screw.component';
-import { NetworkSelectScrollComponent } from './select/scroll/scroll.component';
+import { NetworkSelectHydroTurbineComponent } from './select/hydro-turbine/hydro-turbine.component';
+import { NetworkSelectInternalGasTurbineComponent } from './select/internal-gas-turbine/internal-gas-turbine.component';
+import { NetworkSelectNuclearPowerComponent } from './select/nuclear-power/nuclear-power.component';
+import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
+import { NetworkSelectPumpComponent } from './select/pump/pump.component';
+import { NetworkSelectScrewElectricitychillerComponent } from './select/screw-electricitychiller/screw-electricitychiller.component';
+import { NetworkSelectWasteHeatBoilerComponent } from './select/waste-heat-boiler/waste-heat-boiler.component';
+import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-turbine.component';
+import {  NetworkSelectElectricitychillerComponent  } from './select/electricitychiller/electricitychiller.component';
 
 
 const COMPONENTS = [
@@ -48,28 +49,28 @@ const COMPONENTS = [
 const COMPONENTS_NOROUNT = [
   NetworkSelectBatteryComponent,
   // NetworkSelectBatteryLinechartComponent,
-  NetworkSelectTurbineComponent,
-  NetworkSelectWindTurbinesComponent,
+  NetworkSelectHeatExchangerComponent,
+  NetworkSelectHydroTurbineComponent,
   NetworkSelectPhotovoltaicComponent,
-  NetworkSelectGeneratorComponent,
+  NetworkSelectDieselComponent,
   NetworkProjectDetailsCardComponent,
-  NetworkSelectCentrifugalComponent,
-  NetworkSelectDirectFiredLithiumBromideComponent,
-  NetworkSelectElectricBoilerComponent,
+  NetworkSelectCentrifugalElectricitychillerComponent,
+  NetworkSelectGasAbschilleComponent,
+  NetworkSelectElecBoilerComponent,
   NetworkSelectGasBoilerComponent,
-  NetworkSelectGasEngineComponent,
-  NetworkSelectGasSteamComponent,
+  NetworkSelectInternalGasTurbineComponent,
+  NetworkSelectGasSteamBoilerComponent,
   NetworkSelectGasTurbineComponent,
-  NetworkSelectHeatPumpComponent,
+  NetworkSelectNuclearPowerComponent,
   NetworkSelectHeatStorageComponent,
-  NetworkSelectHostComponent,
-  NetworkSelectIceStorageComponent,
-  NetworkSelectLithiumBromideComponent,
-  NetworkSelectNuclearComponent,
-  NetworkSelectPlateHeatComponent,
-  NetworkSelectResidualHeatComponent,
-  NetworkSelectScrewComponent,
-  NetworkSelectScrollComponent,
+  NetworkSelectElecairconditionComponent,
+  NetworkSelectCoolStorageComponent,
+  NetworkSelectAbschilleComponent,
+  NetworkSelectPumpComponent,
+  NetworkSelectScrewElectricitychillerComponent,
+  NetworkSelectWasteHeatBoilerComponent,
+  NetworkSelectWindTurbineComponent,
+  NetworkSelectElectricitychillerComponent,
 ];
 
 @NgModule({

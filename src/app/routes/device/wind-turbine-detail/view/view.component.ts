@@ -10,7 +10,8 @@ import {DevicesService} from "../../../../user-service/devicesService";
 export class WindTurbineDetailViewComponent implements OnInit {
   record: any = {};
   i: any;
-
+  j: any;
+  data1;
   data;
   forceFit = true;
   width = 400;
@@ -18,6 +19,8 @@ export class WindTurbineDetailViewComponent implements OnInit {
   style = { stroke: '#fff', lineWidth: 1 };
   chart_title_x = {text: '个数', textStyle: {fill: '#515151'} };
   chart_title_y = {text: '成本(元)', textStyle: {fill: '#515151'}};
+  chart_title_a = {text: '输出功率(kW)', textStyle: {fill: '#515151'} };
+  chart_title_b = {text: '燃料消耗(m^3)', textStyle: {fill: '#515151'}};
 
   data2;
 
@@ -52,12 +55,19 @@ export class WindTurbineDetailViewComponent implements OnInit {
         const data = dv.rows;
         this.data = data;
 
-        const sourceData1: any[] = [];
-        for (let j = 1; j <= 20; j++) {
-          sourceData1.push({x : j, cost_type : '风速', cost_number : this.i['fs' + j]});
-          sourceData1.push({x : j, cost_type : '功率', cost_number : this.i['gl' + j]});
+        let x = this.i.fWindSpeed.split(",");
+        let y = this.i.fPower.split(",");
+        if(x.length>1) x.pop();
+        if(y.length>1) y.pop();
+        const sourceData2: any[] = [  ];
+        for(var i=0;i<x.length;i++){
+          var tt2 = {"xaxis":x[i],"yaxis":y[i]};
+          sourceData2.push(tt2);
         }
-        this.data2 = sourceData1;
+        const dv1 = new DataSet.View().source(sourceData2);
+        const data1 = dv1.rows;
+        console.log(data1);
+        this.data1 = data1;
       }
       else if(res["errno"]=="2"){
         this.devicesService.tologin();

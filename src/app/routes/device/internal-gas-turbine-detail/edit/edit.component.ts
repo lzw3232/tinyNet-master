@@ -130,12 +130,17 @@ export class InternalGasTurbineDetailEditComponent implements OnInit {
     var res=value;
     var fInternalGasPower="";
     var internalgasConsumption="";
+    if(this.shiyan.length<3){
+      this.msgSrv.create('error', `功率曲线不少于三个`);
+      return;
+    }
     for(let i=0;i<this.shiyan.length;i++){
       fInternalGasPower=fInternalGasPower+this.shiyan[i].value1+",";
       internalgasConsumption=internalgasConsumption+this.shiyan[i].value2+",";
     }
     res["fInternalGasPower"]=fInternalGasPower;
     res["internalgasConsumption"]=internalgasConsumption;
+
     if (this.record.id) {
       this.devicesService.update(value,"internal_gas_turbine").subscribe((res)=>{
         console.log(res);
@@ -171,12 +176,7 @@ export class InternalGasTurbineDetailEditComponent implements OnInit {
 
   delete1(){
     console.log(this.shiyan);
-    for(let i=0;i<this.shiyan.length;i++){
-      if(this.shiyan[i].checked==true){
-        this.shiyan.splice(i,1);
-        i--;
-      }
-    }
+    this.shiyan = this.shiyan.filter(item=>item.checked==false);
   }
   close() {
     this.modal.destroy(false);

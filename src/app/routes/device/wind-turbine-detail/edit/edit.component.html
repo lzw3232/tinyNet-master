@@ -4,6 +4,31 @@
 </div>
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
 <sf *ngIf="i" #sf mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">
+
+  <nz-card style="width:100%" *ngIf="i" style="margin-bottom: 24px;">
+
+    <!--点击新建按钮添加,删除按钮进行数据删除-->
+    <div >
+      <button nz-button (click)="add()" nzType="primary" style="margin-bottom:10px" >添加输出功率与燃料消耗</button>
+      <button nz-button (click)="delete1()" nzType="primary" style="margin-bottom:10px" >选中删除</button>
+
+    </div>
+    <!--建立一个表格-->
+    <table class="outPower">
+      <tr class="title">
+        <td style="width: 65px;">编号</td>
+        <td>风速(m/s)</td>
+        <td>风机发电功率(kW)</td>
+      </tr>
+      <tr *ngFor = "let item of shiyan">
+        <td class="border"><label nz-checkbox [(ngModel)]="item.checked" ></label></td>
+        <td><input type="text" [(ngModel)]="item.value1"></td>
+        <td><input type="text" [(ngModel)]="item.value2"></td>
+      </tr>
+    </table>
+
+
+  </nz-card>
   <div class="modal-footer">
     <button nz-button type="button" (click)="close()">关闭</button>
     <button nz-button type="submit" [nzType]="'primary'" (click)="save(sf.value)" [disabled]="!sf.valid" [nzLoading]="http.loading">保存</button>

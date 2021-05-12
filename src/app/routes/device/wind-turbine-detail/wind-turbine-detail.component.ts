@@ -34,12 +34,12 @@ export class WindTurbineDetailComponent implements OnInit {
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
     { title: '型号名称', index: 'name', fixed: 'left', width: '120px' },
-    { title: '制造商', index: 'manufacturer', fixed: 'left', width: '150px' },
     { title: '额定功率(kW)', index: 'ratedPower', type: 'number' },
     { title: '风机轮毂高度(米)', index: 'hubHeight', type: 'number' },
     { title: '衰减系数(%)', index: 'decayFactor', type: 'number' },
     { title: '寿命(年)', index: 'lifeTime', type: 'number' },
     { title: '类型', index: 'dAtype', render:'custom' },
+    { title: '制造商', index: 'manufacturer', fixed: 'left', width: '150px' },
     {
       title: '',
       fixed: 'right', width: '120px',

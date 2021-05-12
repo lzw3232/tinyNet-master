@@ -6,11 +6,15 @@ import {SFSchema} from "@delon/form";
 import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-network-select-photovoltaic',
-  templateUrl: './photovoltaic.component.html',
+  selector: 'app-network-select-internal-gas-turbine',
+  templateUrl: './internal-gas-turbine.component.html',
   styleUrls:['../modal.component.css']
 })
-export class NetworkSelectPhotovoltaicComponent implements OnInit {
+
+
+
+
+export class NetworkSelectInternalGasTurbineComponent implements OnInit {
   @Input() public title;
   @Input() public result;
   forceFit = true; // 宽度自适应
@@ -36,29 +40,22 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
   chart_title_x = {text: '个数', textStyle: {fill: '#515151'} };
   chart_title_y1 = {text: '初建成本(元)', textStyle: {fill: '#515151'}};
 
+  chart_title_a = {text: '输出功率(kW)', textStyle: {fill: '#515151'} };
+  chart_title_b = {text: '燃料消耗(m^3)', textStyle: {fill: '#515151'}};
+
+  data2;
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '额定容量', type: 'number', index: 'deratingFactor' },
-    { title: '降噪因数', type: 'number', index: 'decayFactor' },
-    { title: '光伏阵列太阳能吸收率(%)', type: 'number', index: 'absorptivity' },
-    { title: '光伏发电效率(%)', type: 'number', index: 'efficiency' },
-    { title: 'noct环境温度(°C)', type: 'number', index: 'noctEnvirTemper' },
+    { title: '额定功率(kW)', type: 'number', index: 'ratedCapacity' },
+    { title: '最小负载率(%)', type: 'number', index: 'minimumLoadRate' },
+    { title: '冷却水电比', type: 'number', index: 'water' },
+    { title: '烟气电比', type: 'number', index: 'smoke' },
     { title: '寿命(年)', type: 'number', index: 'lifeTime' },
-    { title: '温度系数(%/°C)', type: 'number', index: 'temperatureCoefficient' },
-    { title: 'noct光照强度(kWh/m2/d)', type: 'number', index: 'noctRadiation' },
-    { title: '光伏板标准温度(°C)', type: 'number', index: 'nominalOperatingCellTemperature' },
-    { title: 'stcPV电池温度(°C)', type: 'number', index: 'batteryTemperInStc' },
-    { title: '制造商', index: 'manufacturer', width: '150px' },
-    { title: '类型', index: 'dAtype', width: '100px',render:'custom'},
   ];
 
   result_data = {
     id : null,
-    ground_reflection : '0.00',
-    angle_1 : '0.00',
-    angle_2 : '0.00',
-    solar_transmittance : '0.00',
     upper_limit : '1.00',
     lower_limit : '10.00'
   };
@@ -73,9 +70,6 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
   ngOnInit(): void {
     this.result_data=this.result;
     this.getlist(this.params.pi);
-  }
-
-  ngAfterViewInit() {
   }
 
   close() {
@@ -147,5 +141,19 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
     const data1 = dv.rows;
     this.data1 = data1;
     this.result_data.id = value.id;
+
+    let x = value.outPower.split(",");
+    let y = value.fuelUse.split(",");
+    if(x.length>1) x.pop();
+    if(y.length>1) y.pop();
+    const sourceData2: any[] = [  ];
+    for(var i=0;i<x.length;i++){
+      var tt2 = {"xaxis":x[i],"yaxis":y[i]};
+      sourceData2.push(tt2);
+    }
+    const dv1 = new DataSet.View().source(sourceData2);
+    const data2 = dv1.rows;
+    console.log(data2);
+    this.data2 = data2;
   }
 }

@@ -47,11 +47,11 @@ export class NetworkSelectGasTurbineComponent implements OnInit {
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '额定功率(kW)', type: 'number', index: 'ratedPower' },
-    { title: '最小负载率', type: 'number', index: 'mLoadRate' },
-    { title: '燃气轮机效率(%)', type: 'number', index: 'gasTurbineEff' },
-    { title: '燃机电热比', type: 'number', index: 'gasCogRatio' },
-    { title: '寿命(年)', type: 'number', index: 'lifetime' },
+    { title: '额定功率(kW)', type: 'number', index: 'ratedCapacity' },
+    { title: '最小负载率', type: 'number', index: 'minimumLoadRate' },
+    { title: '燃气轮机效率(%)', type: 'number', index: 'efficiency' },
+    { title: '燃机电热比', type: 'number', index: 'smoke' },
+    { title: '寿命(年)', type: 'number', index: 'lifeTime' },
   ];
 
   result_data = {

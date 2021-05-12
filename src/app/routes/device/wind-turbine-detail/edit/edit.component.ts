@@ -7,10 +7,12 @@ import {DevicesService} from "../../../../user-service/devicesService";
 @Component({
   selector: 'app-device-wind-turbine-detail-edit',
   templateUrl: './edit.component.html',
+  styleUrls : ['./edit.component.css']
 })
 export class WindTurbineDetailEditComponent implements OnInit {
   record: any = {};
   i: any;
+  public shiyan:any[] = [];
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
@@ -53,7 +55,7 @@ export class WindTurbineDetailEditComponent implements OnInit {
       maintainCost4: { type: 'number', title: '运维成本4',  default: 1000000, minimum: 0 },
 
     },
-    required: ['name', 'edgl', 'fjlggd', 'decayFactor', 'life', 'factory', 'type',
+    required: ['name', 'ratedPower', 'hubHeight', 'decayFactor', 'lifeTime', 'manufacturer', 'dAtype',
       'numberOrCapacity1', 'capitalCurve1', 'replacementCost1', 'maintainCost1',
       'numberOrCapacity2', 'capitalCurve2', 'replacementCost2', 'maintainCost2',
       'numberOrCapacity3', 'capitalCurve3', 'replacementCost3', 'maintainCost3',
@@ -103,6 +105,17 @@ export class WindTurbineDetailEditComponent implements OnInit {
           console.log(res);
           if(res["errno"]=="0"){
             this.i = res["data"]["data"]["data"];
+
+            //将动态数据进行显示
+            var fWindSpeed="";
+            var fPower="";
+            if(this.i["fWindSpeed"].length>=2){
+              fWindSpeed=this.i["fWindSpeed"].substr(0,this.i["fWindSpeed"].length-1).split(",");
+              fPower=this.i["fPower"].substr(0,this.i["fPower"].length-1).split(",");
+              for(let i=0;i<fWindSpeed.length;i++){
+                this.shiyan.push({checked:false,value1:fWindSpeed[i],value2:fPower[i]});
+              }
+            }
           }
           else if(res["errno"]=="2"){
             this.devicesService.tologin();
@@ -118,8 +131,24 @@ export class WindTurbineDetailEditComponent implements OnInit {
   save(value: any) {
     //如果存在 record 记录，则做更新操作，否则为新建操作
     console.log(value);
+
+    var res=value;
+
+    var fWindSpeed="";
+    var fPower="";
+    if(this.shiyan.length<3){
+      this.msgSrv.create('error', `功率曲线不少于三个`);
+      return;
+    }
+    for(let i=0;i<this.shiyan.length;i++){
+      fWindSpeed=fWindSpeed+this.shiyan[i].value1+",";
+      fPower=fPower+this.shiyan[i].value2+",";
+    }
+    res["fWindSpeed"]=fWindSpeed;
+    res["fPower"]=fPower;
+
     if (this.record.id) {
-      this.devicesService.update(value,"wind_turbine").subscribe((res)=>{
+      this.devicesService.update(res,"wind_turbine").subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
           this.modal.destroy("true");
@@ -134,7 +163,7 @@ export class WindTurbineDetailEditComponent implements OnInit {
         this.devicesService.setCookie("token",res["data"]["data"]["token"]);
       })
     } else {
-      this.devicesService.add(value,"wind_turbine").subscribe((res)=>{
+      this.devicesService.add(res,"wind_turbine").subscribe((res)=>{
         console.log(res);
         if(res["errno"]=="0"){
           this.modal.destroy("true");
@@ -150,8 +179,25 @@ export class WindTurbineDetailEditComponent implements OnInit {
       })
     }
   }
+  add() {
 
+    this.shiyan.push({
+      checked:false,
+      value1:0,
+      value2:0
+    });
+
+    console.log(this.shiyan);
+
+  }
+  //删除数据函数，利用.splice
+
+  delete1(){
+    console.log(this.shiyan);
+    this.shiyan = this.shiyan.filter(item=>item.checked==false);
+  }
   close() {
     this.modal.destroy(false);
   }
+
 }

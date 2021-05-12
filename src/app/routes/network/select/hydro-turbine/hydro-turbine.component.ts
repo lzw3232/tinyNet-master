@@ -1,16 +1,17 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import {STChange, STColumn, STData, STPage} from '@delon/abc';
+import {STChange, STColumn, STData, STPage} from "@delon/abc";
 import {SFSchema} from "@delon/form";
 import {DevicesService} from "../../../../user-service/devicesService";
 
 @Component({
-  selector: 'app-network-select-photovoltaic',
-  templateUrl: './photovoltaic.component.html',
+  selector: 'app-network-select-hydro-turbine',
+  templateUrl: './hydro-turbine.component.html',
   styleUrls:['../modal.component.css']
 })
-export class NetworkSelectPhotovoltaicComponent implements OnInit {
+export class NetworkSelectHydroTurbineComponent implements OnInit {
+
   @Input() public title;
   @Input() public result;
   forceFit = true; // 宽度自适应
@@ -39,26 +40,16 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
-    { title: '额定容量', type: 'number', index: 'deratingFactor' },
-    { title: '降噪因数', type: 'number', index: 'decayFactor' },
-    { title: '光伏阵列太阳能吸收率(%)', type: 'number', index: 'absorptivity' },
-    { title: '光伏发电效率(%)', type: 'number', index: 'efficiency' },
-    { title: 'noct环境温度(°C)', type: 'number', index: 'noctEnvirTemper' },
+    { title: '额定水头(m)', type: 'number', index: 'netWaterhead' },
+    { title: '额定功率(kW)', type: 'number', index: 'ratedPower' },
+    { title: '水轮机效率(%)', type: 'number', index: 'hTefficiency' },
+    { title: '发电机效率(%)', type: 'number', index: 'generatorefficiency' },
     { title: '寿命(年)', type: 'number', index: 'lifeTime' },
-    { title: '温度系数(%/°C)', type: 'number', index: 'temperatureCoefficient' },
-    { title: 'noct光照强度(kWh/m2/d)', type: 'number', index: 'noctRadiation' },
-    { title: '光伏板标准温度(°C)', type: 'number', index: 'nominalOperatingCellTemperature' },
-    { title: 'stcPV电池温度(°C)', type: 'number', index: 'batteryTemperInStc' },
-    { title: '制造商', index: 'manufacturer', width: '150px' },
-    { title: '类型', index: 'dAtype', width: '100px',render:'custom'},
+    { title: '制造商', index: 'manufacturer' },
   ];
 
   result_data = {
     id : null,
-    ground_reflection : '0.00',
-    angle_1 : '0.00',
-    angle_2 : '0.00',
-    solar_transmittance : '0.00',
     upper_limit : '1.00',
     lower_limit : '10.00'
   };
@@ -73,9 +64,6 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
   ngOnInit(): void {
     this.result_data=this.result;
     this.getlist(this.params.pi);
-  }
-
-  ngAfterViewInit() {
   }
 
   close() {

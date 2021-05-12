@@ -44,9 +44,9 @@ export class NetworkSelectGasBoilerComponent implements OnInit {
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
     { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
     { title: '额定功率(kW)', type: 'number', index: 'ratedPower' },
-    { title: '效率(0-1)', type: 'number', index: 'eff' },
-    { title: '寿命(年)', type: 'number', index: 'lifetime' },
-    { title: '制造商',  index: 'factory' },
+    { title: '燃气锅炉效率', type: 'number', index: 'efficiency' },
+    { title: '寿命(年)', type: 'number', index: 'lifeTime' },
+    { title: '制造商',  index: 'manufacturer' },
   ];
 
   result_data = {

@@ -10,27 +10,27 @@ import {
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import {NzModalService} from 'ng-zorro-antd';
 import { NetworkSelectBatteryComponent } from './battery/battery.component';
-import {NetworkSelectTurbineComponent} from './turbine/turbine.component';
-import {NetworkSelectWindTurbinesComponent} from './wind-turbines/wind-turbines.component';
-import {NetworkSelectPhotovoltaicComponent} from './photovoltaic/photovoltaic.component';
-import {NetworkSelectGeneratorComponent} from './generator/generator.component';
-import { NetworkSelectCentrifugalComponent } from './centrifugal/centrifugal.component';
-import {NetworkSelectDirectFiredLithiumBromideComponent} from './direct-fired-lithium-bromide/direct-fired-lithium-bromide.component';
-import {NetworkSelectElectricBoilerComponent} from './electric-boiler/electric-boiler.component';
+import {NetworkSelectDieselComponent} from './diesel/diesel.component';
+import { NetworkSelectCentrifugalElectricitychillerComponent } from './centrifugal-electricitychiller/centrifugal-electricitychiller.component';
+import {NetworkSelectGasAbschilleComponent} from './gas-abschille/gas-abschille.component';
+import {NetworkSelectElecBoilerComponent} from './elec-boiler/elec-boiler.component';
 import {NetworkSelectGasBoilerComponent} from './gas-boiler/gas-boiler.component';
-import {NetworkSelectGasEngineComponent} from './gas-engine/gas-engine.component';
-import { NetworkSelectGasSteamComponent } from './gas-steam/gas-steam.component';
+import { NetworkSelectGasSteamBoilerComponent } from './gas-steam-boiler/gas-steam-boiler.component';
 import {NetworkSelectGasTurbineComponent} from './gas-turbine/gas-turbine.component';
-import { NetworkSelectHeatPumpComponent } from './heat-pump/heat-pump.component';
+import { NetworkSelectElecairconditionComponent } from './elecaircondition/elecaircondition.component';
+import { NetworkSelectCoolStorageComponent } from './cool-storage/cool-storage.component';
+import { NetworkSelectAbschilleComponent } from './abschille/abschille.component';
+import { NetworkSelectHeatExchangerComponent } from './heat-exchanger/heat-exchanger.component';
 import { NetworkSelectHeatStorageComponent } from './heat-storage/heat-storage.component';
-import { NetworkSelectHostComponent } from './host/host.component';
-import { NetworkSelectIceStorageComponent } from './ice-storage/ice-storage.component';
-import { NetworkSelectLithiumBromideComponent } from './lithium-bromide/lithium-bromide.component';
-import { NetworkSelectNuclearComponent } from './nuclear/nuclear.component';
-import { NetworkSelectPlateHeatComponent } from './plate-heat/plate-heat.component';
-import { NetworkSelectResidualHeatComponent } from './residual-heat/residual-heat.component';
-import { NetworkSelectScrewComponent } from './screw/screw.component';
-import { NetworkSelectScrollComponent } from './scroll/scroll.component';
+import { NetworkSelectHydroTurbineComponent } from './hydro-turbine/hydro-turbine.component';
+import { NetworkSelectInternalGasTurbineComponent } from './internal-gas-turbine/internal-gas-turbine.component';
+import { NetworkSelectNuclearPowerComponent } from './nuclear-power/nuclear-power.component';
+import { NetworkSelectPhotovoltaicComponent } from './photovoltaic/photovoltaic.component';
+import { NetworkSelectPumpComponent } from './pump/pump.component';
+import { NetworkSelectScrewElectricitychillerComponent } from './screw-electricitychiller/screw-electricitychiller.component';
+import { NetworkSelectWasteHeatBoilerComponent } from './waste-heat-boiler/waste-heat-boiler.component';
+import { NetworkSelectWindTurbineComponent } from './wind-turbine/wind-turbine.component';
+import {  NetworkSelectElectricitychillerComponent  } from './electricitychiller/electricitychiller.component';
 
 
 @Component({
@@ -62,28 +62,28 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       back_flow : '0.00',
       upper_limit : '1.00',
       lower_limit : '10.00'},
-    centrifugal : {
+    centrifugal_electricitychiller : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    direct_fired_lithium_bromide : {
+    gas_abschille : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    electric_boiler : { data : null },
+    elec_boiler : { data : null },
     gas_boiler : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    gas_engine : {
+    internal_gas_turbine : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    gas_steam : {
+    gas_steam_boiler : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
@@ -93,12 +93,12 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    generator : {
+    diesel : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    heat_pump :  {
+    pump :  {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
@@ -111,12 +111,12 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    host : {
+    elecaircondition : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    ice_storage : {
+    cool_storage : {
       id : null,
       soc_1 : '0.00',
       soc_2 : '0.00',
@@ -124,12 +124,12 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    lithium_bromide : {
+    abschille : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    nuclear : { data : null },
+    nuclear_power : { data : null },
     photovoltaic : {
       id : null,
       ground_reflection : '0.00',
@@ -139,7 +139,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    plate_heat : {
+    heat_exchanger : {
       id : null,
       soc_1 : '0.00',
       soc_2 : '0.00',
@@ -147,27 +147,27 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    residual_heat : {
+    waste_heat_boiler : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    screw : {
+    screw_electricitychiller : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    scroll : {
+    electricitychiller : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    turbine : {
+    hydro_turbine : {
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
     },
-    wind_turbines :{
+    wind_turbine :{
       id : null,
       upper_limit : '1.00',
       lower_limit : '10.00'
@@ -178,27 +178,27 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   toComponent = {
     battery : NetworkSelectBatteryComponent,
-    centrifugal : NetworkSelectCentrifugalComponent,
-    direct_fired_lithium_bromide : NetworkSelectDirectFiredLithiumBromideComponent,
-    electric_boiler : NetworkSelectElectricBoilerComponent,
+    centrifugal_electricitychiller : NetworkSelectCentrifugalElectricitychillerComponent,
+    gas_abschille : NetworkSelectGasAbschilleComponent,
+    elec_boiler : NetworkSelectElecBoilerComponent,
     gas_boiler : NetworkSelectGasBoilerComponent,
-    gas_engine : NetworkSelectGasEngineComponent,
-    gas_steam : NetworkSelectGasSteamComponent,
+    internal_gas_turbine : NetworkSelectInternalGasTurbineComponent,
+    gas_steam_boiler : NetworkSelectGasSteamBoilerComponent,
     gas_turbine : NetworkSelectGasTurbineComponent,
-    generator : NetworkSelectGeneratorComponent,
-    heat_pump : NetworkSelectHeatPumpComponent,
+    diesel : NetworkSelectDieselComponent,
+    pump : NetworkSelectPumpComponent,
     heat_storage : NetworkSelectHeatStorageComponent,
-    host : NetworkSelectHostComponent,
-    ice_storage : NetworkSelectIceStorageComponent,
-    lithium_bromide : NetworkSelectLithiumBromideComponent,
-    nuclear : NetworkSelectNuclearComponent,
+    elecaircondition : NetworkSelectElecairconditionComponent,
+    cool_storage : NetworkSelectCoolStorageComponent,
+    abschille : NetworkSelectAbschilleComponent,
+    nuclear_power : NetworkSelectNuclearPowerComponent,
     photovoltaic : NetworkSelectPhotovoltaicComponent,
-    plate_heat :NetworkSelectPlateHeatComponent,
-    residual_heat : NetworkSelectResidualHeatComponent,
-    screw : NetworkSelectScrewComponent,
-    scroll : NetworkSelectScrollComponent,
-    turbine : NetworkSelectTurbineComponent,
-    wind_turbines : NetworkSelectWindTurbinesComponent,
+    heat_exchanger :NetworkSelectHeatExchangerComponent,
+    waste_heat_boiler : NetworkSelectWasteHeatBoilerComponent,
+    screw_electricitychiller : NetworkSelectScrewElectricitychillerComponent,
+    electricitychiller : NetworkSelectElectricitychillerComponent,
+    hydro_turbine : NetworkSelectHydroTurbineComponent,
+    wind_turbine : NetworkSelectWindTurbineComponent,
   };
 
   loading = false;
@@ -225,9 +225,9 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
         if(res.checked===true&&res.name){
           this.list_data.push({label:res.label,name:res.name});
           data[res.name]=this.default_select_device_data[res.name];
-          if(res.name=="ice_storage"){
-            this.list_data.push({label:"双工况主机",name:"host"});
-            data["host"]=this.default_select_device_data["host"];
+          if(res.name=="cool_storage"){
+            this.list_data.push({label:"双工况主机",name:"elecaircondition"});
+            data["elecaircondition"]=this.default_select_device_data["elecaircondition"];
           }
         }
       })
@@ -297,7 +297,7 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   }
 
   hello(name) {
-    // console.log(name);
+    console.log(name);
     let temp = this.toComponent[name];
 
     const modal = this.modalService.create({

@@ -43,18 +43,18 @@ export class NetworkSelectBatteryComponent implements OnInit{
 
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'radio', fixed: 'left', width: '80px' },
-    { title: '名称', index: 'name', fixed: 'left', width: '120px' },
-    { title: '制造商', index: 'factory', fixed: 'left', width: '150px' },
-    { title: '额定电压(V)', index: 'eddy', type: 'number' },
-    { title: '循环充放电效率(%)', index: 'xhcfdxl', type: 'number' },
-    { title: '最大充电速率', index: 'zdcdsl', type: 'number' },
-    { title: '最大充电电流(A)', index: 'zdcddl', type: 'number' },
-    { title: '最大放电速率', index: 'zdfdsl', type: 'number' },
-    { title: '电池容量', index: 'dcrl', type: 'number' },
-    { title: '寿命', index: 'life', type: 'number' },
-    { title: '全寿命放电量', index: 'qsmfd', type: 'number' },
-    { title: '类型', index: 'type' },
-    { title: '串联个数', index: 'clgs', type: 'number' },
+    { title: '型号名称', index: 'name' , fixed: 'left', width: '100px'},
+    { title: '额定电压(V)', type: 'number', index: 'ratedVoltage' },
+    { title: '循环充放电效率(%)', type: 'number', index: 'roundTridEfficiency' },
+    { title: '最大充电速率', type: 'number', index: 'maximumChargeRate' },
+    { title: '最大充电电流(A)', type: 'number', index: 'maximumChargeCurrent' },
+    { title: '最大放电速率', type: 'number', index: 'constRate' },
+    { title: '电池容量(Ah)', type: 'number', index: 'maximumnumberOrCapacity' },
+    { title: '寿命(年)', type: 'number', index: 'floatLife' },
+    { title: '全寿命放电量(kWh)', type: 'number', index: 'lifeTimeThroughput' },
+    { title: '串联个数', type: 'number', index: 'numberofBattery' },
+    { title: '制造商', index: 'manufacturer' },
+    { title: '类型', index: 'dAtype', render: "custom"},
   ];
 
   result_data = {
