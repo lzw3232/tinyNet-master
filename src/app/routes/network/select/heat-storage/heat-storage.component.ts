@@ -54,11 +54,11 @@ export class NetworkSelectHeatStorageComponent implements OnInit {
 
   result_data = {
     id : null,
-    soc_1 : '0.00',
-    soc_2 : '0.00',
-    soc_3 : '0.00',
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    currentSOC : '0.00',
+    minimumSOC : '0.00',
+    maximumSOC : '0.00',
+    capacityofHeatstorageMinimum : '1.00',
+    capacityofHeatstorageMaximum : '10.00'
   };
 
   constructor(

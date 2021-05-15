@@ -51,8 +51,8 @@ export class NetworkSelectCentrifugalElectricitychillerComponent implements OnIn
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofCentrifugalElectricitychillerMinimum : '1.00',
+    numberofCentrifugalElectricitychillerMaximum : '10.00'
   };
 
   constructor(

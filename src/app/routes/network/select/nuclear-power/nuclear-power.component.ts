@@ -56,8 +56,8 @@ export class NetworkSelectNuclearPowerComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    capacityofNuclearPowerMinimum : '1.00',
+    capacityofNuclearPowerMaximum : '10.00'
   };
 
   constructor(

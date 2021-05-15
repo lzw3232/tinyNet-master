@@ -55,12 +55,12 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
 
   result_data = {
     id : null,
-    ground_reflection : '0.00',
-    angle_1 : '0.00',
-    angle_2 : '0.00',
-    solar_transmittance : '0.00',
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    groundReflectance : '0.00',
+    slope : '0.00',
+    azimuth : '0.00',
+    transmissivity : '0.00',
+    capacityofPVMinimum : '1.00',
+    capacityofPVMaximum : '10.00'
   };
 
   constructor(

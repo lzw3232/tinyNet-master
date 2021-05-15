@@ -11,10 +11,10 @@
       <div nz-row >
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
-            <nz-form-label nzSpan="24"  nzFor="upper_limit">规模上限(台)</nz-form-label>
+            <nz-form-label nzSpan="24"  nzFor="upper_limit">规模下限(台)</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.upper_limit" nz-input placeholder="0.00">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.numberofhydroTurbineMinimum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -24,7 +24,7 @@
             <nz-form-label nzSpan="24"  nzFor="lower_limit">规模上限(台)</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.lower_limit" nz-input placeholder="0.00">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.numberofhydroTurbineMaximum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

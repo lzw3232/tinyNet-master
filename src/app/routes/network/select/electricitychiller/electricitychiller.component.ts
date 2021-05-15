@@ -53,8 +53,8 @@ export class NetworkSelectElectricitychillerComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofElectricitychillerMinimum : '1.00',
+    numberofElectricitychillerMaximum : '10.00'
   };
 
   constructor(

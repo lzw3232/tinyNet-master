@@ -48,11 +48,8 @@ export class NetworkSelectHeatExchangerComponent implements OnInit {
 
   result_data = {
     id : null,
-    soc_1 : '0.00',
-    soc_2 : '0.00',
-    soc_3 : '0.00',
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofHeatexchangerMinimum : '1.00',
+    numberofHeatexchangerMaximum : '10.00'
   };
 
   constructor(

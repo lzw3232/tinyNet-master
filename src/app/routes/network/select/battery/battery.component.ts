@@ -59,13 +59,13 @@ export class NetworkSelectBatteryComponent implements OnInit{
 
   result_data = {
       id : null,
-      soc_1 : '0.00',
-      soc_2 : '0.00',
-      soc_3 : '0.00',
-      total_flow : '0.00',
-      back_flow : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      currentSOC : '0.00',
+      maximumSOC : '0.00',
+      minimumSOC : '0.00',
+      convEfficiency : '0.00',
+      invEfficiency : '0.00',
+      numberofBatteryMinimum : '1.00',
+      numberofBatteryMaximum : '10.00',
   };
 
   constructor(

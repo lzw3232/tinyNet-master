@@ -14,7 +14,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_1">初始SOC</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  style="width:80%">
-                <input type="text" name="soc_1" id="soc_1" [(ngModel)]="result_data.soc_1" nz-input placeholder="0.00">
+                <input type="text" name="soc_1" id="soc_1" [(ngModel)]="result_data.currentSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -24,7 +24,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_2">SOC上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group   style="width:80%">
-                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.soc_2" nz-input placeholder="0.00">
+                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.minimumSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -34,7 +34,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_3">SOC下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group   style="width:80%">
-                <input type="text" name="soc_3" id="soc_3" [(ngModel)]="result_data.soc_3" nz-input placeholder="0.00">
+                <input type="text" name="soc_3" id="soc_3" [(ngModel)]="result_data.maximumSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -46,20 +46,20 @@
       <div nz-row >
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
-            <nz-form-label nzSpan="24"  nzFor="upper_limit">上限</nz-form-label>
+            <nz-form-label nzSpan="24"  nzFor="upper_limit">下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.upper_limit" nz-input placeholder="0.00">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.capacityofHeatstorageMinimum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
-            <nz-form-label nzSpan="24"  nzFor="lower_limit">下限</nz-form-label>
+            <nz-form-label nzSpan="24"  nzFor="lower_limit">上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.lower_limit" nz-input placeholder="0.00">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.capacityofHeatstorageMaximum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

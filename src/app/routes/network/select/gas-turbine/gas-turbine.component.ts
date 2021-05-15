@@ -56,8 +56,8 @@ export class NetworkSelectGasTurbineComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofGasturebineMinimum : '1.00',
+    numberofGasturebineMaximum : '10.00'
   };
 
   constructor(

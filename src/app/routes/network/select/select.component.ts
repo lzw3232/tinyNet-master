@@ -53,124 +53,130 @@ export class NetworkSelectComponent implements OnInit, OnDestroy {
   lines=[];
 
   default_select_device_data = {
+    abschille : {
+      id : null,
+      numberofAbschilleMinimum : '1.00',
+      numberofAbschilleMaximum : '10.00'
+    },
     battery : {
       id : null,
-      soc_1 : '0.00',
-      soc_2 : '0.00',
-      soc_3 : '0.00',
-      total_flow : '0.00',
-      back_flow : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'},
+      currentSOC : '0.00',
+      maximumSOC : '0.00',
+      minimumSOC : '0.00',
+      convEfficiency : '0.00',
+      invEfficiency : '0.00',
+      numberofBatteryMinimum : '1.00',
+      numberofBatteryMaximum : '10.00',
+    },
     centrifugal_electricitychiller : {
       id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    gas_abschille : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    elec_boiler : { data : null },
-    gas_boiler : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    internal_gas_turbine : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    gas_steam_boiler : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    gas_turbine : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    diesel : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    pump :  {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    heat_storage : {
-      id : null,
-      soc_1 : '0.00',
-      soc_2 : '0.00',
-      soc_3 : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    elecaircondition : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofCentrifugalElectricitychillerMinimum : '1.00',
+      numberofCentrifugalElectricitychillerMaximum : '10.00'
     },
     cool_storage : {
       id : null,
-      soc_1 : '0.00',
-      soc_2 : '0.00',
-      soc_3 : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      currentSOC : '0.00',
+      minimumSOC : '0.00',
+      maximumSOC : '0.00',
+      capacityofCoolstorageMinimum : '1.00',
+      capacityofCoolstorageMaximum : '10.00'
     },
-    abschille : {
+    diesel : {
       id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofDieselMinimum : '1.00',
+      numberofDieselMaximum : '10.00'
     },
-    nuclear_power : { data : null },
-    photovoltaic : {
+    elecaircondition : {
       id : null,
-      ground_reflection : '0.00',
-      angle_1 : '0.00',
-      angle_2 : '0.00',
-      solar_transmittance : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofElecairconditionMinimum : '1.00',
+      numberofElecairconditionMaximum : '10.00'
     },
-    heat_exchanger : {
+    elec_boiler : {
       id : null,
-      soc_1 : '0.00',
-      soc_2 : '0.00',
-      soc_3 : '0.00',
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    waste_heat_boiler : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
-    },
-    screw_electricitychiller : {
-      id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofElecboilerMinimum : '1.00',
+      numberofElecboilerMaximum : '10.00'
     },
     electricitychiller : {
       id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofElectricitychillerMinimum : '1.00',
+      numberofElectricitychillerMaximum : '10.00'
+    },
+    gas_abschille : {
+      id : null,
+      numberofGasabschilleMinimum : '1.00',
+      numberofGasabschilleMaximum : '10.00'
+    },
+    gas_boiler : {
+      id : null,
+      numberofGasboilerMinimum : '1.00',
+      numberofGasboilerMaximum : '10.00'
+    },
+    gas_steam_boiler : {
+      id : null,
+      numberofSteamboilerMinimum : '1.00',
+      numberofSteamboilerMaximum : '10.00'
+    },
+    gas_turbine : {
+      id : null,
+      numberofGasturebineMinimum : '1.00',
+      numberofGasturebineMaximum : '10.00'
+    },
+    heat_exchanger : {
+      id : null,
+      numberofHeatexchangerMinimum : '1.00',
+      numberofHeatexchangerMaximum : '10.00'
+    },
+    heat_storage : {
+      id : null,
+      currentSOC : '0.00',
+      minimumSOC : '0.00',
+      maximumSOC : '0.00',
+      capacityofHeatstorageMinimum : '1.00',
+      capacityofHeatstorageMaximum : '10.00'
     },
     hydro_turbine : {
       id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofhydroTurbineMinimum : '1.00',
+      numberofhydroTurbineMaximum : '10.00'
+    },
+    internal_gas_turbine : {
+      id : null,
+      numberofInternalGasturebineMinimum : '1.00',
+      numberofInternalGasturebineMaximum : '10.00'
+    },
+    nuclear_power : {
+      data : null,
+      capacityofNuclearPowerMinimum : '1.00',
+      capacityofNuclearPowerMaximum : '10.00'
+    },
+    photovoltaic : {
+      id : null,
+      groundReflectance : '0.00',
+      slope : '0.00',
+      azimuth : '0.00',
+      transmissivity : '0.00',
+      capacityofPVMinimum : '1.00',
+      capacityofPVMaximum : '10.00'
+    },
+    pump :  {
+      id : null,
+      numberofPumpMinimum : '1.00',
+      numberofPumpMaximum : '10.00'
+    },
+    screw_electricitychiller : {
+      id : null,
+      numberofScrewElectricitychillerMinimum : '1.00',
+      numberofScrewElectricitychillerMaximum : '10.00'
+    },
+    waste_heat_boiler : {
+      id : null,
+      numberofWasteheatboilerMinimum : '1.00',
+      numberofWasteheatboilerMaximum : '10.00'
     },
     wind_turbine :{
       id : null,
-      upper_limit : '1.00',
-      lower_limit : '10.00'
+      numberofwindTurbineMinimum : '1.00',
+      numberofwindTurbineMaximum : '10.00'
     },
   }
 

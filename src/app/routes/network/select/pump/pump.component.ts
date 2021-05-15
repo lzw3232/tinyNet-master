@@ -56,8 +56,8 @@ export class NetworkSelectPumpComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofPumpMinimum : '1.00',
+    numberofPumpMaximum : '10.00'
   };
 
   constructor(

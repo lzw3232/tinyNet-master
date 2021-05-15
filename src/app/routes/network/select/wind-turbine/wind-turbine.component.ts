@@ -54,8 +54,8 @@ export class NetworkSelectWindTurbineComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofwindTurbineMinimum : '1.00',
+    numberofwindTurbineMaximum : '10.00'
   };
 
   constructor(

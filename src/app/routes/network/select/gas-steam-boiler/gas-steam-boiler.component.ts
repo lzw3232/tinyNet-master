@@ -52,8 +52,8 @@ export class NetworkSelectGasSteamBoilerComponent implements OnInit {
 
   result_data = {
     id : null,
-    upper_limit : '1.00',
-    lower_limit : '10.00'
+    numberofSteamboilerMinimum : '1.00',
+    numberofSteamboilerMaximum : '10.00'
   };
 
   constructor(
