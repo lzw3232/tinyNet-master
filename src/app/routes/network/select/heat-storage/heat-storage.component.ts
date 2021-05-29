@@ -53,12 +53,16 @@ export class NetworkSelectHeatStorageComponent implements OnInit {
   ];
 
   result_data = {
-    id : null,
-    currentSOC : '0.00',
-    minimumSOC : '0.00',
-    maximumSOC : '0.00',
-    capacityofHeatstorageMinimum : '1.00',
-    capacityofHeatstorageMaximum : '10.00'
+    par:{
+      id : null,
+      currentSOC : '0.00',
+      minimumSOC : '0.00',
+      maximumSOC : '0.00',
+    },
+    num:{
+      capacityofHeatstorageMinimum : '1.00',
+      capacityofHeatstorageMaximum : '10.00'
+    }
   };
 
   constructor(
@@ -90,14 +94,14 @@ export class NetworkSelectHeatStorageComponent implements OnInit {
         this.params.pi = pi;
         // this.ps = 10;
 
-        if(this.result_data.id==null){
-          this.result_data.id = this.data[0].id;
+        if(this.result_data.par.id==null){
+          this.result_data.par.id = this.data[0].id;
           this.data[0].checked=true;
           this.showChart(this.data[0]);
         }
         else{
           this.data.map((res)=>{
-            res.checked=(res.id===this.result_data.id);
+            res.checked=(res.id===this.result_data.par.id);
           })
 
         }
@@ -144,6 +148,6 @@ export class NetworkSelectHeatStorageComponent implements OnInit {
     });
     const data1 = dv.rows;
     this.data1 = data1;
-    this.result_data.id = value.id;
+    this.result_data.par.id = value.id;
   }
 }

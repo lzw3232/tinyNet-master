@@ -13,6 +13,7 @@ import { NetworkProjectDetailsComponent } from './project-details/project-detail
 import {NetworkProjectDetailsCardComponent} from "./project-details/project-details-card.component";
 // import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
+import { NetworkSelectElecNetComponent } from './select/elec-net/elec-net.component';
 import { NetworkSelectBatteryComponent } from './select/battery/battery.component';
 import { NetworkSelectDieselComponent } from './select/diesel/diesel.component';
 import { NetworkSelectCentrifugalElectricitychillerComponent } from './select/centrifugal-electricitychiller/centrifugal-electricitychiller.component';
@@ -36,6 +37,13 @@ import { NetworkSelectScrewElectricitychillerComponent } from './select/screw-el
 import { NetworkSelectWasteHeatBoilerComponent } from './select/waste-heat-boiler/waste-heat-boiler.component';
 import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-turbine.component';
 import {  NetworkSelectElectricitychillerComponent  } from './select/electricitychiller/electricitychiller.component';
+import {NetworkSelectElecComponent} from "./select/elec/elec.component";
+import {NetworkSelectCoolComponent} from "./select/cool/cool.component";
+import {NetworkSelectHeatComponent} from "./select/heat/heat.component";
+import {NetworkSelectSteamComponent} from "./select/steam/steam.component";
+import {NetworkSelectSolarComponent} from "./select/solar/solar.component";
+import {NetworkSelectWaterComponent} from "./select/water/water.component";
+import {NetworkSelectWindComponent} from "./select/wind/wind.component";
 
 
 const COMPONENTS = [
@@ -47,6 +55,17 @@ const COMPONENTS = [
   // BatteryLinehartHostDirective,
   NetworkProjectDetailsComponent];
 const COMPONENTS_NOROUNT = [
+
+  NetworkSelectElecComponent,
+  NetworkSelectCoolComponent,
+  NetworkSelectHeatComponent,
+  NetworkSelectSteamComponent,
+
+  NetworkSelectSolarComponent,
+  NetworkSelectWaterComponent,
+  NetworkSelectWindComponent,
+
+  NetworkSelectElecNetComponent,
   NetworkSelectBatteryComponent,
   // NetworkSelectBatteryLinechartComponent,
   NetworkSelectHeatExchangerComponent,

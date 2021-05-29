@@ -14,7 +14,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_1">初始SOC</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  style="width:80%">
-                <input type="text" name="soc_1" id="soc_1" [(ngModel)]="result_data.currentSOC" nz-input placeholder="0.00">
+                <input type="text" name="soc_1" id="soc_1" [(ngModel)]="result_data.par.currentSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -24,7 +24,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_2">SOC上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group   style="width:80%">
-                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.maximumSOC" nz-input placeholder="0.00">
+                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.par.maximumSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -34,7 +34,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_3">SOC下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group   style="width:80%">
-                <input type="text" name="soc_3" id="soc_3" [(ngModel)]="result_data.minimumSOC" nz-input placeholder="0.00">
+                <input type="text" name="soc_3" id="soc_3" [(ngModel)]="result_data.par.minimumSOC" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -49,7 +49,7 @@
             <nz-form-label nzSpan="24"  nzFor="total_flow">整流效率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="total_flow" id="total_flow" [(ngModel)]="result_data.convEfficiency" nz-input placeholder="0.00">
+                <input type="text" name="total_flow" id="total_flow" [(ngModel)]="result_data.par.convEfficiency" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -59,7 +59,7 @@
             <nz-form-label nzSpan="24"  nzFor="back_flow">逆流效率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="back_flow" id="back_flow" [(ngModel)]="result_data.invEfficiency" nz-input placeholder="0.00">
+                <input type="text" name="back_flow" id="back_flow" [(ngModel)]="result_data.par.invEfficiency" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -74,7 +74,7 @@
             <nz-form-label nzSpan="24"  nzFor="upper_limit">下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.numberofBatteryMinimum" nz-input placeholder="0.00">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.num.numberofBatteryMinimum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -84,7 +84,7 @@
             <nz-form-label nzSpan="24"  nzFor="lower_limit">上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.numberofBatteryMaximum" nz-input placeholder="0.00">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.num.numberofBatteryMaximum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

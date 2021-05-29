@@ -45,7 +45,6 @@ export class DieselDetailComponent implements OnInit {
     { title: '颗粒物(g/L)', type: 'number', index: 'percentofMatter' },
     { title: '二氧化硫(g/L)', type: 'number', index: 'percentofSO2' },
     { title: '氮氧化物(g/L)', type: 'number', index: 'percentofNO' },
-    { title: '燃油价格', type: 'number', index: 'fuelPrice' },
     { title: '制造商', index: 'manufacturer', width: '150px' },
     { title: '类型', index: 'type', width: '100px',render:'custom'},
     {

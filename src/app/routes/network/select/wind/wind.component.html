@@ -1,0 +1,53 @@
+<div nz-row>
+  <div nz-col [nzXs]="12" [nzMd]="12">
+    <table class="price">
+      <tr class="title">
+        <td>时刻</td>
+        <td>负荷(kW)</td>
+      </tr>
+      <tr *ngFor="let item of result_data.load">
+        <td class="border"><label>{{item.time}}</label></td>
+        <td><input type="number" [(ngModel)]="item.vCoolLoad"></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div nz-col [nzXs]="12" [nzMd]="12">
+    <div nz-row style="padding: 10px;">
+      <div nz-col nzSpan="23">
+        <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
+
+          <v-tooltip></v-tooltip>
+          <v-axis dataKey="time" [title]="chart_title_a"></v-axis>
+          <v-axis dataKey="load" [title]="chart_title_b"></v-axis>
+          <v-legend></v-legend>
+          <v-line position="time*load"></v-line>
+
+        </v-chart>
+      </div>
+    </div>
+
+    <div nz-row style="margin-top:18px">
+      <div nz-col [nzXs]="24" [nzMd]="24">
+        <nz-card nzTitle="冷负荷增长系数" style="border-top:none;margin-bottom: 0 !important">
+          <div nz-row>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="upper_limit">冷负荷增长系数</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="%" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.growth"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+
+</div>
+

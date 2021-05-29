@@ -7,8 +7,8 @@
           <nz-form-label nzSpan="24"  nzFor="strategy_radioValue">运行策略</nz-form-label>
           <nz-form-control nzSpan="24">
             <nz-radio-group name="strategy_radioValue" [(ngModel)]="form_data.system.intStrategy" [nzButtonStyle]="'solid'">
-              <label nz-radio-button nzValue="strategy1">硬充电策略</label>
-              <label nz-radio-button nzValue="strategy2" >平滑功率策略</label>
+              <label nz-radio-button nzValue="1">硬充电策略</label>
+              <label nz-radio-button nzValue="2" >平滑功率策略</label>
             </nz-radio-group>
           </nz-form-control>
         </nz-form-item>
@@ -21,7 +21,7 @@
           <nz-form-label nzSpan="24"  nzFor="strategy_radioValue_all">运行策略</nz-form-label>
           <nz-form-control nzSpan="24">
             <nz-radio-group name="strategy_radioValue" id="strategy_radioValue" [(ngModel)]="form_data.system.intStrategy" [nzButtonStyle]="'solid'">
-              <label nz-radio-button nzValue="strategy0" nzDisabled>调度策略</label>
+              <label nz-radio-button nzValue="1" nzDisabled>调度策略</label>
             </nz-radio-group>
           </nz-form-control>
         </nz-form-item>
@@ -33,11 +33,11 @@
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
             <nz-form-label nzSpan="24">
-              <label nz-checkbox name="strategy_internal" [(ngModel)]="form_data.system.strategy_internal_rate[0]" >内部收益率</label>
+              <label name="strategy_internal">内部收益率</label>
             </nz-form-label>
-            <nz-form-control nzSpan="24" *ngIf="form_data.system.strategy_internal_rate[0]">
+            <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" nzAddOnBefore="权重" style="width:80%">
-                <input type="text" name="strategy_internal_rate" id="strategy_internal_rate" [(ngModel)]="form_data.system.strategy_internal_rate[1]" nz-input placeholder="0.00">
+                <input type="text" name="strategy_internal_rate" id="strategy_internal_rate" [(ngModel)]="form_data.system.system.factorEconomic"  (ngModelChange)="factor('factorEmission','factorEconomic')" nz-input placeholder="100.0">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -45,11 +45,11 @@
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
             <nz-form-label nzSpan="24">
-              <label nz-checkbox name="strategy_pollution" [(ngModel)]="form_data.system.strategy_pollution_rate[0]">污染物排放</label>
+              <label name="strategy_pollution">污染物排放</label>
             </nz-form-label>
-            <nz-form-control nzSpan="24" *ngIf="form_data.system.strategy_pollution_rate[0]">
+            <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" nzAddOnBefore="权重" style="width:80%">
-                <input type="text" name="strategy_pollution_rate" id="strategy_pollution_rate" [(ngModel)]="form_data.system.strategy_pollution_rate[1]" nz-input placeholder="0.00">
+                <input type="text" name="strategy_pollution_rate" id="strategy_pollution_rate" [(ngModel)]="form_data.system.system.factorEmission" (ngModelChange)="factor('factorEconomic','factorEmission')" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -65,7 +65,7 @@
             <nz-form-label nzSpan="24"  nzFor="buy_constraint_1">购电上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="kW" style="width:80%">
-                <input type="text" name="buy_constraint_1" id="buy_constraint_1" [(ngModel)]="form_data.system.allowableGridPowerPurchase" nz-input placeholder="0.00">
+                <input type="text" name="buy_constraint_1" id="buy_constraint_1" [(ngModel)]="form_data.system.system.allowableGridPowerPurchase" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -75,7 +75,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">售电上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="kW" style="width:80%">
-                <input type="text" name="sell_constraint_2" id="sell_constraint_2" [(ngModel)]="form_data.system.allowableGridPowerSelling" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" id="sell_constraint_2" [(ngModel)]="form_data.system.system.allowableGridPowerSelling" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -90,7 +90,7 @@
             <nz-form-label nzSpan="24"  nzFor="buy_constraint_1">单位价格</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="buy_constraint_1"  [(ngModel)]="form_data.system.steamprice" nz-input placeholder="0.00">
+                <input type="text" name="buy_constraint_1"  [(ngModel)]="form_data.system.steam.steamprice" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -100,7 +100,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">蒸汽比焓</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="KJ/吨" style="width:80%">
-                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steamenthaply" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steam.steamenthaply" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -110,7 +110,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">换热效率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steamefficiency" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steam.steamefficiency" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -120,7 +120,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">购买上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="吨" style="width:80%">
-                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steammax" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steam.steammax" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -130,7 +130,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">购买下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="吨" style="width:80%">
-                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steammin" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" [(ngModel)]="form_data.system.steam.steammin" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -149,7 +149,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_1">系统固定初始投资成本</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元" style="width:80%">
-                <input type="text" name="system_economy_1" id="system_economy_1" [(ngModel)]="form_data.economy.systemCapitalCost" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_1" id="system_economy_1" [(ngModel)]="form_data.economy.system.systemCapitalCost" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -159,40 +159,40 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_2">燃气价格</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/m^3" style="width:80%">
-                <input type="text" name="system_economy_2" id="system_economy_2" [(ngModel)]="form_data.economy.system_economy_2" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_2" id="system_economy_2" [(ngModel)]="form_data.economy.system.gasprice" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
-            <nz-form-label nzSpan="24"  nzFor="system_economy_3">汽油价格</nz-form-label>
+            <nz-form-label nzSpan="24"  nzFor="system_economy_3">发电机燃料价格</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/L" style="width:80%">
-                <input type="text" name="system_economy_3" id="system_economy_3" [(ngModel)]="form_data.economy.system_economy_3" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_3" id="system_economy_3" [(ngModel)]="form_data.economy.fuelPrice" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
 
-      <div nz-row >
-        <div nz-col [nzXs]="24" [nzMd]="8">
-          <nz-form-item>
-            <nz-form-label nzSpan="24"  nzFor="system_economy_4">柴油价格</nz-form-label>
-            <nz-form-control nzSpan="24">
-              <nz-input-group  nzAddOnAfter="元/L" style="width:80%">
-                <input type="text" name="system_economy_4" id="system_economy_4" [(ngModel)]="form_data.economy.system_economy_4" nz-input placeholder="0.00">
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+<!--      <div nz-row >-->
+<!--        <div nz-col [nzXs]="24" [nzMd]="8">-->
+<!--          <nz-form-item>-->
+<!--            <nz-form-label nzSpan="24"  nzFor="system_economy_4">柴油价格</nz-form-label>-->
+<!--            <nz-form-control nzSpan="24">-->
+<!--              <nz-input-group  nzAddOnAfter="元/L" style="width:80%">-->
+<!--                <input type="text" name="system_economy_4" id="system_economy_4" [(ngModel)]="form_data.economy.fuelPrice1" nz-input placeholder="0.00">-->
+<!--              </nz-input-group>-->
+<!--            </nz-form-control>-->
+<!--          </nz-form-item>-->
+<!--        </div>-->
         <div nz-col [nzXs]="24" [nzMd]="8">
           <nz-form-item>
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">微网电价</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                <input type="text" name="system_economy_5" id="system_economy_5" [(ngModel)]="form_data.economy.system_economy_5" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5" id="system_economy_5" [(ngModel)]="form_data.economy.system.vESellingPrice" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -202,7 +202,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">变压器单位容量基本电费</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kVA" style="width:80%">
-                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.capacitycharge" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.capacitycharge" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -212,7 +212,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">变压器容量</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kVA" style="width:80%">
-                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.transcapacity" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.transcapacity" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -222,7 +222,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">蒸汽费用</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.vSteamSellingPrice" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.vSteamSellingPrice" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -232,7 +232,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">天然气低位发热量</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="KJ/m^3" style="width:80%">
-                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.caloricity" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.caloricity" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -242,20 +242,20 @@
           <nz-form-item>
             <nz-form-label nzSpan="24"  nzFor="strategy_radioValue">计价方式</nz-form-label>
             <nz-form-control nzSpan="24">
-              <nz-radio-group name="strategy_radioValue"  [(ngModel)]="form_data.economy.valuetionmethods" [nzButtonStyle]="'solid'">
+              <nz-radio-group name="strategy_radioValue"  [(ngModel)]="form_data.economy.system.valuetionmethods" [nzButtonStyle]="'solid'">
                 <label nz-radio-button nzValue="price" >按照冷/热负荷单价计价</label>
                 <label nz-radio-button nzValue="area" >按照冷/热负荷建筑面积计价</label>
               </nz-radio-group>
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div *ngIf="form_data.economy.valuetionmethods=='0'">
+        <div *ngIf="form_data.economy.system.valuetionmethods=='0'">
           <div nz-col [nzXs]="24" [nzMd]="8">
             <nz-form-item>
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">热水费用</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.vWaterSellingPrice" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.vWaterSellingPrice" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -265,20 +265,20 @@
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">取冷费用</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.vCoolSellingPrice" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.vCoolSellingPrice" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
           </div>
         </div>
 
-        <div *ngIf="form_data.economy.valuetionmethods=='1'">
+        <div *ngIf="form_data.economy.system.valuetionmethods=='1'">
           <div nz-col [nzXs]="24" [nzMd]="8">
             <nz-form-item>
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">热水供暖面积</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="m^2" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.waterarea" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.waterarea" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -288,7 +288,7 @@
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">面积热水价</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="元/m^2" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.unitwaterprice" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.unitwaterprice" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -298,7 +298,7 @@
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">供冷面积</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="m^2" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.coolingarea" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.coolingarea" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -308,15 +308,13 @@
               <nz-form-label nzSpan="24"  nzFor="system_economy_5">面积冷价</nz-form-label>
               <nz-form-control nzSpan="24">
                 <nz-input-group  nzAddOnAfter="元/m^2" style="width:80%">
-                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.unitcoolprice" nz-input placeholder="0.00">
+                  <input type="text" name="system_economy_5"[(ngModel)]="form_data.economy.system.unitcoolprice" nz-input placeholder="0.00">
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
           </div>
         </div>
 
-
-      </div>
     </nz-card>
 
     <nz-card nzTitle="工程经济参数">
@@ -326,7 +324,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_1">贴现率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_1" id="engineering_economy_1" [(ngModel)]="form_data.economy.vDiscountRate" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_1" id="engineering_economy_1" [(ngModel)]="form_data.economy.system.vDiscountRate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -336,7 +334,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_2">名义利率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_2" id="engineering_economy_2" [(ngModel)]="form_data.economy.nominalInterestRate" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_2" id="engineering_economy_2" [(ngModel)]="form_data.economy.system.nominalInterestRate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -346,7 +344,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_3">通货膨胀率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_3" id="engineering_economy_3" [(ngModel)]="form_data.economy.inflationRate" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_3" id="engineering_economy_3" [(ngModel)]="form_data.economy.system.inflationRate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -358,7 +356,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_4">项目建设期</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_4" id="engineering_economy_4" [(ngModel)]="form_data.economy.projectConstructTime" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_4" id="engineering_economy_4" [(ngModel)]="form_data.economy.system.projectConstructTime" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -368,7 +366,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_5">银行长期贷款利率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_5" id="engineering_economy_5" [(ngModel)]="form_data.economy.longterminterestrate" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_5" id="engineering_economy_5" [(ngModel)]="form_data.economy.system.longterminterestrate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -378,7 +376,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_6">初始投资资本金比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_6" id="engineering_economy_6" [(ngModel)]="form_data.economy.rateofCapital" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_6" id="engineering_economy_6" [(ngModel)]="form_data.economy.system.rateofCapital" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -391,7 +389,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_7">项目寿命周期</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_7" id="engineering_economy_7" [(ngModel)]="form_data.economy.projectLifeTime" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_7" id="engineering_economy_7" [(ngModel)]="form_data.economy.system.projectLifeTime" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -401,7 +399,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_8">银行还款期限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_8" id="engineering_economy_8" [(ngModel)]="form_data.economy.returndeadline" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_8" id="engineering_economy_8" [(ngModel)]="form_data.economy.system.returndeadline" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -518,7 +516,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_1">光伏功率备用比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_1" id="spare_constraint_1" [(ngModel)]="form_data.constraint.pvPriLoarFactor" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_1" id="spare_constraint_1" [(ngModel)]="form_data.constraint.SourceParameter.pvPriLoarFactor" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -528,7 +526,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_2">风机功率备用比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_2" id="spare_constraint_2" [(ngModel)]="form_data.constraint.wtPriLoadFactor" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_2" id="spare_constraint_2" [(ngModel)]="form_data.constraint.SourceParameter.wtPriLoadFactor" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -538,7 +536,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_3">实时负荷备用率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_3" id="spare_constraint_3" [(ngModel)]="form_data.constraint.hourlyPriLoadFactor" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_3" id="spare_constraint_3" [(ngModel)]="form_data.constraint.SourceParameter.hourlyPriLoadFactor" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -551,7 +549,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_4">峰值负荷备用率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_4" id="spare_constraint_4" [(ngModel)]="form_data.constraint.peakPriLoadFactor" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_4" id="spare_constraint_4" [(ngModel)]="form_data.constraint.SourceParameter.peakPriLoadFactor" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

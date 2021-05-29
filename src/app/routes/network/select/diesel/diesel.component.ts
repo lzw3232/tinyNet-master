@@ -50,15 +50,18 @@ export class NetworkSelectDieselComponent implements OnInit {
     { title: '颗粒物(g/L)', type: 'number', index: 'percentofMatter' },
     { title: '二氧化硫(g/L)', type: 'number', index: 'percentofSO2' },
     { title: '氮氧化物(g/L)', type: 'number', index: 'percentofNO' },
-    { title: '燃油价格', type: 'number', index: 'fuelPrice' },
     { title: '制造商', index: 'manufacturer', width: '150px' },
     { title: '类型', index: 'type', width: '100px',render:'custom'},
   ];
 
   result_data = {
-    id : null,
-    numberofDieselMinimum : '1.00',
-    numberofDieselMaximum : '10.00'
+    par:{
+      id : null,
+    },
+    num:{
+      numberofDieselMinimum : '1.00',
+      numberofDieselMaximum : '10.00'
+    }
   };
 
   constructor(
@@ -87,14 +90,14 @@ export class NetworkSelectDieselComponent implements OnInit {
         this.params.pi = pi;
         // this.ps = 10;
 
-        if(this.result_data.id==null){
-          this.result_data.id = this.data[0].id;
+        if(this.result_data.par.id==null){
+          this.result_data.par.id = this.data[0].id;
           this.data[0].checked=true;
           this.showChart(this.data[0]);
         }
         else{
           this.data.map((res)=>{
-            res.checked=(res.id===this.result_data.id);
+            res.checked=(res.id===this.result_data.par.id);
           })
 
         }
@@ -141,6 +144,6 @@ export class NetworkSelectDieselComponent implements OnInit {
     });
     const data1 = dv.rows;
     this.data1 = data1;
-    this.result_data.id = value.id;
+    this.result_data.par.id = value.id;
   }
 }

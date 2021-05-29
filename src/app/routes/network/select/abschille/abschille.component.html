@@ -14,7 +14,7 @@
             <nz-form-label nzSpan="24"  nzFor="upper_limit">规模下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="台" style="width:80%">
-                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.numberofAbschilleMinimum" nz-input placeholder="0.00">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.num.numberofAbschilleMinimum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -24,7 +24,7 @@
             <nz-form-label nzSpan="24"  nzFor="lower_limit">规模上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="台" style="width:80%">
-                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.numberofAbschilleMaximum" nz-input placeholder="0.00">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.num.numberofAbschilleMaximum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

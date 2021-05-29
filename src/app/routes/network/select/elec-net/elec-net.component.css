@@ -1,0 +1,25 @@
+.price{
+    width: 100%;
+}
+
+.price tr td{
+    border: 1px solid #eee;
+}
+.price .title td{
+    background-color: #fafafa;
+    padding: 16px;
+    text-align: right;
+}
+
+.price .border{
+  width: 100px;
+    text-align: center;
+}
+
+.price tr td input{
+    border: none;
+    outline: none;
+    padding: 8px;
+    text-align: right;
+    width: 100%;
+}

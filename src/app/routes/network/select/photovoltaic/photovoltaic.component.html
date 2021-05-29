@@ -14,7 +14,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_2">地面反射系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.groundReflectance" nz-input placeholder="0.00">
+                <input type="text" name="soc_2" id="soc_2" [(ngModel)]="result_data.par.groundReflectance" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -24,7 +24,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_3">倾斜角</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="°" style="width:80%">
-                <input type="text" name="soc_3"  [(ngModel)]="result_data.slope" nz-input placeholder="0.00">
+                <input type="text" name="soc_3"  [(ngModel)]="result_data.par.slope" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -34,7 +34,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_3">太阳能透率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group nzAddOnAfter="%"  style="width:80%">
-                <input type="text" name="soc_3" [(ngModel)]="result_data.transmissivity" nz-input placeholder="0.00">
+                <input type="text" name="soc_3" [(ngModel)]="result_data.par.transmissivity" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -44,7 +44,7 @@
             <nz-form-label nzSpan="24"  nzFor="soc_3">方位角</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group nzAddOnAfter="°"  style="width:80%">
-                <input type="text" name="soc_3" [(ngModel)]="result_data.azimuth" nz-input placeholder="0.00">
+                <input type="text" name="soc_3" [(ngModel)]="result_data.par.azimuth" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -59,7 +59,7 @@
             <nz-form-label nzSpan="24"  nzFor="upper_limit">下限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.capacityofPVMinimum" nz-input placeholder="0.00">
+                <input type="text" name="upper_limit" id="upper_limit" [(ngModel)]="result_data.num.capacityofPVMinimum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -69,7 +69,7 @@
             <nz-form-label nzSpan="24"  nzFor="lower_limit">上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="串" style="width:80%">
-                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.capacityofPVMaximum" nz-input placeholder="0.00">
+                <input type="text" name="lower_limit" id="lower_limit" [(ngModel)]="result_data.num.capacityofPVMaximum" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

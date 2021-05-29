@@ -1,0 +1,111 @@
+<div nz-row>
+  <div nz-col [nzXs]="12" [nzMd]="12">
+    <table class="price">
+      <tr class="title">
+        <td>时刻</td>
+        <td>购电价格(元/kWh)</td>
+        <td>售电价格(元/kWh)</td>
+      </tr>
+      <tr *ngFor="let item of result_data.elec_pr">
+        <td class="border"><label>{{item.time}}</label></td>
+        <td><input type="number" [(ngModel)]="item.purchasePriceGrid"></td>
+        <td><input type="number" [(ngModel)]="item.sellingPriceGrid"></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div nz-col [nzXs]="12" [nzMd]="12">
+    <div nz-row style="padding: 10px;">
+      <div nz-col nzSpan="23">
+        <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
+
+          <v-tooltip></v-tooltip>
+          <v-axis dataKey="time" [title]="chart_title_a"></v-axis>
+          <v-axis dataKey="price" [title]="chart_title_b"></v-axis>
+          <v-legend></v-legend>
+          <v-line position="time*price"  color="pr"></v-line>
+
+
+        </v-chart>
+      </div>
+    </div>
+
+    <div nz-row style="margin-top:18px">
+      <div nz-col [nzXs]="24" [nzMd]="24">
+        <nz-card nzTitle="网购每度电折算的排放参数" style="border-top:none;margin-bottom: 0 !important">
+          <div nz-row>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="upper_limit">二氧化碳</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor0"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="lower_limit">未燃烧的氢化物</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor5"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="lower_limit">二氧化硫</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor4"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="lower_limit">一氧化碳</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor1"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="lower_limit">颗粒物</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor2"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="24" [nzMd]="12">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzFor="lower_limit">氮氧化物</nz-form-label>
+                <nz-form-control nzSpan="24">
+                  <nz-input-group nzAddOnAfter="g/kWh" style="width:80%">
+                    <input type="text" name="upper_limit" [(ngModel)]="result_data.vGridEmissionFactor.vGridEmissionFactor3"
+                           nz-input placeholder="0.00">
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+
+</div>
+

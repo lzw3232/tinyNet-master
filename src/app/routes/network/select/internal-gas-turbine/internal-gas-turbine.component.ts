@@ -55,9 +55,13 @@ export class NetworkSelectInternalGasTurbineComponent implements OnInit {
   ];
 
   result_data = {
-    id : null,
-    numberofInternalGasturebineMinimum : '1.00',
-    numberofInternalGasturebineMaximum : '10.00'
+    par:{
+      id : null,
+    },
+    num:{
+      numberofInternalGasturebineMinimum : '1.00',
+      numberofInternalGasturebineMaximum : '10.00'
+    }
   };
 
   constructor(
@@ -86,14 +90,14 @@ export class NetworkSelectInternalGasTurbineComponent implements OnInit {
         this.params.pi = pi;
         // this.ps = 10;
 
-        if(this.result_data.id==null){
-          this.result_data.id = this.data[0].id;
+        if(this.result_data.par.id==null){
+          this.result_data.par.id = this.data[0].id;
           this.data[0].checked=true;
           this.showChart(this.data[0]);
         }
         else{
           this.data.map((res)=>{
-            res.checked=(res.id===this.result_data.id);
+            res.checked=(res.id===this.result_data.par.id);
           })
 
         }
@@ -140,10 +144,10 @@ export class NetworkSelectInternalGasTurbineComponent implements OnInit {
     });
     const data1 = dv.rows;
     this.data1 = data1;
-    this.result_data.id = value.id;
+    this.result_data.par.id = value.id;
 
-    let x = value.outPower.split(",");
-    let y = value.fuelUse.split(",");
+    let x = value.fInternalGasPower.split(",");
+    let y = value.internalgasConsumption.split(",");
     if(x.length>1) x.pop();
     if(y.length>1) y.pop();
     const sourceData2: any[] = [  ];

@@ -49,9 +49,13 @@ export class NetworkSelectHydroTurbineComponent implements OnInit {
   ];
 
   result_data = {
-    id : null,
-    numberofhydroTurbineMinimum : '1.00',
-    numberofhydroTurbineMaximum : '10.00'
+    par:{
+      id : null,
+    },
+    num:{
+      numberofhydroTurbineMinimum : '1.00',
+      numberofhydroTurbineMaximum : '10.00'
+    }
   };
 
   constructor(
@@ -80,14 +84,14 @@ export class NetworkSelectHydroTurbineComponent implements OnInit {
         this.params.pi = pi;
         // this.ps = 10;
 
-        if(this.result_data.id==null){
-          this.result_data.id = this.data[0].id;
+        if(this.result_data.par.id==null){
+          this.result_data.par.id = this.data[0].id;
           this.data[0].checked=true;
           this.showChart(this.data[0]);
         }
         else{
           this.data.map((res)=>{
-            res.checked=(res.id===this.result_data.id);
+            res.checked=(res.id===this.result_data.par.id);
           })
 
         }
@@ -134,6 +138,6 @@ export class NetworkSelectHydroTurbineComponent implements OnInit {
     });
     const data1 = dv.rows;
     this.data1 = data1;
-    this.result_data.id = value.id;
+    this.result_data.par.id = value.id;
   }
 }

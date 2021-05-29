@@ -59,9 +59,6 @@ export class DieselDetailEditComponent implements OnInit {
         addOnAfter: 'g/L',
         placeholder: '请输入数字',
       }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
-      fuelPrice: { type: 'string', title: '燃油价格',  default: 0, minimum: 0, ui: {
-        placeholder: '请输入数字',
-      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
       manufacturer: { type: 'string', title: '制造商', maxLength: 140 },
       type: {
         type: 'string',
@@ -92,7 +89,7 @@ export class DieselDetailEditComponent implements OnInit {
       // rlxh3: { type: 'number', title: '燃料消耗3(L/kW)',  default: 20, minimum: 0 },
     },
     required: ['name', 'ratedCapacity', 'minimumLoadRate', 'minimumRunningTime', 'percentofCO2', 'percentofCO', 'percentofUnburned', 'lifeTime',
-      'percentofMatter', 'percentofSO2', 'percentofNO', 'fuelPrice', 'manufacturer', 'type',
+      'percentofMatter', 'percentofSO2', 'percentofNO', 'manufacturer', 'type',
       'numberOrCapacity1', 'capitalCurve1', 'replacementCost1', 'maintainCost1',
       'numberOrCapacity2', 'capitalCurve2', 'replacementCost2', 'maintainCost2',
       'numberOrCapacity3', 'capitalCurve3', 'replacementCost3', 'maintainCost3',

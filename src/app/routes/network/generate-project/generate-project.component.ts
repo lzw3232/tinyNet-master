@@ -9,6 +9,7 @@ import {NzModalService} from "ng-zorro-antd";
 import {NetworkControlComponent} from "../control/control.component";
 import {ProjectService} from "../../../user-service/project.service";
 import {NetworkResultComponent} from "../result/result.component";
+import {NetworkSelectElecairconditionComponent} from "../select/elecaircondition/elecaircondition.component";
 
 @Component({
   selector: 'app-network-generate-project',
@@ -27,6 +28,31 @@ export class NetworkGenerateProjectComponent implements OnInit {
   radioValue: any;
   result:any;
   name:string;
+
+  get_chinese_name = {
+    wind_turbine: '风力发电机',
+    photovoltaic: '光伏发电系统',
+    hydro_turbine: '水力发电机',
+    cool_storage: '蓄冰空调',
+    battery: '电池储能系统',
+    heat_storage: '储热装置',
+    pump: '热泵',
+    gas_boiler: '燃气热水锅炉',
+    elec_boiler: '电锅炉',
+    waste_heat_boiler: '余热锅炉',
+    electricitychiller: '涡旋式电制冷机',
+    abschille: '溴化锂空调',
+    screw_electricitychiller: '螺杆式电制冷机',
+    centrifugal_electricitychiller: '离心式电制冷机',
+    heat_exchanger: '板式换热器',
+    gas_steam_boiler: '燃气蒸汽锅炉',
+    gas_abschille: '直燃型溴化锂空调',
+    gas_turbine: '燃气轮机',
+    diesel: '常规发电机',
+    internal_gas_turbine: '燃气内燃机',
+    nuclear_power: '核电机组',
+    elecaircondition : '双工况主机',
+  }
 
   //最终传向后台的数据
   data = {
@@ -83,13 +109,13 @@ export class NetworkGenerateProjectComponent implements OnInit {
         }
       }
       const temp_radioValue = this.networkDesignComponent.radioValue;
-      if(!temp_checkOption.has('1_1')){
-        this.modalService.error({
-          nzTitle: '选择错误',
-          nzContent: '<b>电负荷</b>必须勾选',
-          nzWidth: '650'
-        });
-      }
+      // if(!temp_checkOption.has('1_1')){
+      //   this.modalService.error({
+      //     nzTitle: '选择错误',
+      //     nzContent: '<b>电负荷</b>必须勾选',
+      //     nzWidth: '650'
+      //   });
+      // }
       if (temp_checkOption.has('1_2')) {
         if ( !temp_checkOption.has('3_1') &&!temp_checkOption.has('4_1') && !temp_checkOption.has('4_5')
           && !temp_checkOption.has('4_7')&& !temp_checkOption.has('4_8')&& !temp_checkOption.has('4_11')) {
@@ -136,6 +162,19 @@ export class NetworkGenerateProjectComponent implements OnInit {
         }
       }
     }
+    if(this.current==1){
+      for(let i in this.NetworkSelectComponent.select_device_data){
+        if(i=="num"||i=="GrowthFactor"||i=="elec_net"||i=="elec"||i=="cool"||i=="steam"||i=="heat") continue;
+        if(this.NetworkSelectComponent.select_device_data[i]["id"]==null){
+          this.modalService.error({
+            nzTitle: '选择错误',
+            nzContent: '请选择<b>'+this.get_chinese_name[i]+'</b>的设备',
+            nzWidth: '650'
+          });
+          return;
+        }
+      }
+    }
     this.current += 1;
     this.changeContent();
   }
@@ -159,8 +198,8 @@ export class NetworkGenerateProjectComponent implements OnInit {
         // this.result["isdone"]=false;
         // this.result["msg"] = res["errmsg"];
       }
-      this.current += 1;
-      this.changeContent();
+      // this.current += 1;
+      // this.changeContent();
     }))
 
   }

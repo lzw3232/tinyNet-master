@@ -154,7 +154,7 @@
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="0" y="11">电网</tspan>
               </text>
               <line x1="55" y1="22.5" x2="80.1" y2="22.5" class="color1" marker-start="url(#Arrow_Left1)" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="3" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="3" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('elec_net')" />
             </g>
 
             <!-- 光资源 -->
@@ -164,7 +164,7 @@
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">光资源</tspan>
               </text>
               <line x1="40" y1="22.5" x2="65.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0" (click)="hello('solar')"/>
             </g>
 
             <!-- 光伏 -->
@@ -184,7 +184,7 @@
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">风资源</tspan>
               </text>
               <line x1="40" y1="22.5" x2="65.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0" (click)="hello('wind')"/>
             </g>
 
             <!-- 风机 -->
@@ -204,7 +204,7 @@
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-2" y="11">电负荷</tspan>
               </text>
               <line x1="0" y1="22.5" x2="40.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="48" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="48" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('elec')"/>
             </g>
 
             <!-- 电池 -->
@@ -224,7 +224,7 @@
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-6" y="11">水资源</tspan>
               </text>
               <line x1="40" y1="22.5" x2="65.1" y2="22.5" class="color1" marker-end="url(#Arrow_Right1)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2"/>
-              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="0" y="2.5" width="45" height="50" id="path_11" fill-opacity="0" (click)="hello('water')"/>
             </g>
 
             <!-- 水力发电机 -->
@@ -333,7 +333,7 @@
               <text transform="translate(50 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-5" y="11">冷负荷</tspan>
               </text>
-              <rect class="rect-img" rx="1" ry="1" x="53" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="53" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('cool')"/>
             </g>
 
             <!-- 热泵 -->
@@ -385,7 +385,7 @@
               <text transform="translate(100 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">热水负荷</tspan>
               </text>
-              <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('heat')"/>
             </g>
 
             <!-- 蓄热装置 -->
@@ -395,7 +395,7 @@
               <text transform="translate(100 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">蓄热装置</tspan>
               </text>
-              <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="103" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('heat_storage')"/>
             </g>
           </g>
 
@@ -554,7 +554,7 @@
               <text transform="translate(100 45)" fill="black">
                 <tspan font-family="PingFang SC" font-size="15" font-weight="500" x="-10" y="11">蒸汽负荷</tspan>
               </text>
-              <rect class="rect-img" rx="1" ry="1" x="100" y="2" width="40" height="50" id="path_11" fill-opacity="0"/>
+              <rect class="rect-img" rx="1" ry="1" x="100" y="2" width="40" height="50" id="path_11" fill-opacity="0" (click)="hello('steam')"/>
             </g>
 
 

@@ -40,7 +40,7 @@ export class BatteryDetailComponent implements OnInit {
     { title: '最大充电速率', type: 'number', index: 'maximumChargeRate' },
     { title: '最大充电电流(A)', type: 'number', index: 'maximumChargeCurrent' },
     { title: '最大放电速率', type: 'number', index: 'constRate' },
-    { title: '电池容量(Ah)', type: 'number', index: 'maximumnumberOrCapacity' },
+    { title: '电池容量(Ah)', type: 'number', index: 'maximumCapacity' },
     { title: '寿命(年)', type: 'number', index: 'floatLife' },
     { title: '全寿命放电量(kWh)', type: 'number', index: 'lifeTimeThroughput' },
     { title: '串联个数', type: 'number', index: 'numberofBattery' },
