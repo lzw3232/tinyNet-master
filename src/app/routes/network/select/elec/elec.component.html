@@ -14,20 +14,22 @@
 
 
   <div nz-col [nzXs]="12" [nzMd]="12">
-    <div nz-row style="padding: 10px;">
-      <div nz-col nzSpan="23">
-        <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
+    <nz-card style="width:100%">
+      <div nz-row>
+        <div nz-col nzSpan="23">
+          <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
 
-          <v-tooltip></v-tooltip>
-          <v-axis dataKey="time" [title]="chart_title_a"></v-axis>
-          <v-axis dataKey="load" [title]="chart_title_b"></v-axis>
-          <v-legend></v-legend>
-          <v-line position="time*load"></v-line>
+            <v-tooltip></v-tooltip>
+            <v-axis dataKey="time" [title]="chart_title_a"></v-axis>
+            <v-axis dataKey="load" [title]="chart_title_b"></v-axis>
+            <v-legend></v-legend>
+            <v-line position="time*load"></v-line>
 
 
-        </v-chart>
+          </v-chart>
+        </div>
       </div>
-    </div>
+    </nz-card>
 
     <div nz-row style="margin-top:18px">
       <div nz-col [nzXs]="24" [nzMd]="24">
